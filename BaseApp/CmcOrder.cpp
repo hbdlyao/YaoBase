@@ -32,7 +32,7 @@ void CmcOrder::Init()
 					 //string Flag_IsPdSingle = "0";//是否单功率水平，该成员可以不要，当成员BdSize取值为1时即为但功率水平
 	PdStartPer = 10;//起始功率水平
 	PdIncrePer = 5;//功率水平增量
-	PdSize = 19;//功率水平数
+	PdSize = 9;//功率水平数
 
 }
 

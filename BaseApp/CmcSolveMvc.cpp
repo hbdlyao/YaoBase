@@ -182,7 +182,7 @@ void CmcSolveMvc::doRun_Rd(string vFlag)
 }
 
 
-void CmcSolveMvc::doRun_Ud(string  vFlag)
+void CmcSolveMvc::doRun_Ud(string vFlag)
 {
 	int vN = static_cast<int> (vFlag.size());
 	int vStaCount = pmcHvdc->StaCount();

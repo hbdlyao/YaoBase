@@ -4,7 +4,9 @@
 //  Original author: Âí¿¥Åô
 ///////////////////////////////////////////////////////////
 #pragma once
-//¸´Êý¼ÆËã
+
+
+
 #include <iostream>
 class CComplex
 {

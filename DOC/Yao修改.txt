@@ -1,0 +1,16 @@
+==================2017-4-14=================
+
+CmcOrder 
+	1.增加 selectGroundType....等函数 形参由指针改为为引用
+	2.
+
+
+CmcSolveMvc 
+
+	1.改写 selectGroundType....等函数 形参由指针改为为引用
+	2.selectGroundType....等函数的函数内容 改为 调用 CmcOrder 的相关函数
+	3.改写 Run 中 selectGroundType....等函数的相关调用形参
+
+
+CmcSolveMvc::Run
+   vOrder 付值有问题 CmcOrder中有指针

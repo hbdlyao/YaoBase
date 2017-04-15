@@ -1,0 +1,89 @@
+===================2017-04-05====================
+
+NodeMap的 typedef 放到了 CMydefs.h
+CHVdcFunc.h 增加了 xbTypeToName函数
+CmcDevDcLine 去掉 structBranch
+
+CMydefs.h 增加矩阵定义
+
+CDevBranch.h, CDevShunt.h
+
+=====================2017-04-06=========================
+
+CxbCalculate.cpp  mcNodeMap 该为 xbNodeMap
+
+CMath,CMath_NL
+
+CPower_YU_I 增加构造函数
+
+CHvdcDefs CHvdcFunc  xb_Xf2C  改为 xb_XfC
+
+CHvdcGrid  xb_Xf2C  改为 xb_XfC
+           Init()
+
+CxbSolves  doNewMcSolvers  改为 doNewXbSolvers
+           NewItem() : xb_Xf2C  改为 xb_XfC
+	   
+	   //Case xb_Shunt
+
+ CHvdcMvcs 增加 pxbSolveMvc , pxbRws,OnLoad OnSave
+ CHvdcVars  pxbHvdcGrid 类型 改为 CxbHvdcGrid
+
+ CxbProfile  增加 Init()
+
+ CHvdcVars 
+
+
+删除 CmcProfile ,CmcCalConvertor 中的 UpdateJ_IdCtrl()
+ UpdateJ 时需要考虑是否接地
+ 增加 CmcCalConvertor0 类 用于 当中性点接地时的换流站
+ gbHead_mcCal.h  增加#include "CmcCalConvertor0.h"
+
+CmcCalConvertor 修改NodeSort
+
+
+CmcProfile 增加 UpdateJ_PdCtrl0,UpdateJ_UdCtrl0,UpdateJ_AngCtrl0
+		UpdateF_PdCtrl0,UpdateF_UdCtrl0,UpdateF_AngCtrl0
+
+CmcSolves 修改 NewItem, doNewMcSolvers20
+
+CHvdcFunc.h 修改 mcTypeToName
+
+CmcCalculate, ClearNodeID(), -1 改为 -2
+
+CDeviceBase::SetDotCount
+
+//CmcCalculate	增加 DevType
+		删除 ClearNodeID
+
+//
+CHcdefs.h	增加 struct_mcStation ,ClearNodeID
+CmcProfile	修改 换流站数据 改为 struct_mcStation, 
+		修改 Init,Clear,InitMatrix
+		删除 ClearNodeMap
+
+增加 CxbDevGround CxbCalGround
+
+=======================================
+
+接地极线是否也有最大电阻，最小电阻
+直流线路电阻Zr,Zrmax,Zrmin
+
+
+换流器，12脉动中间是否接地?
+电压与换流站距离 ？
+
+
+交流电压:系统频率
+滤波器：额定电压
+
+换流站吸收无功参数：
+
+抽头触发角度 max,min
+
+直流电压预设，特殊情况参数
+
+计算时直流线路是否考虑Zr的情况
+
+
+换流站的无功计算?

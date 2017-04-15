@@ -1,0 +1,8 @@
+///////////////////////////////////////////////////////////
+//  CxbDevMetalLine.cpp
+//  Implementation of the Class CxbDevMetalLine
+//  Created on:      05-4ÔÂ-2017 16:58:39
+//  Original author: open2
+///////////////////////////////////////////////////////////
+
+#include "CxbDevMetalLine.h"

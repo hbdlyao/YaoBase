@@ -1,0 +1,35 @@
+2017-4-4 ,20:28
+
+
+===========所有数据库表去掉 dotCount 字段===========
+
+mcAcFilter:	dotCount,acfType,Zc,Zr,Zx
+
+mcAcSystem:	dotCount,Pac,PacN,Sac,ScaN,UacLevel,APhase,Zr,Zx
+	
+mcConvertor:	dotCount,Angle_DeltaType,Angle_DeltaPamx,AngleDeltaVect
+		增加 DcIdN
+
+mcDcLine:	dotCount,ZrType,Z_L,Z_C,Zx_L,Zx_C
+mcMetalLine:	表结构改为与mcDcLine完全一样
+
+mcGround:	dotCount,Z_L,Z_C,Zx_L,Zx_C
+mcGroundLine:	字段为mcGround所有字段，再加上 ZrMax,ZrMin
+
+mcTransformer:	dotCount,Zr,Zx,Zc,ZL,L_deltaA,L_deltaB,L_deltaC,L_deltaPmax,L_deltaType
+
+数据表里的 DeviceType
+
+	mc_AcSys =11
+	mc_AcF	 =12
+	mc_Xf2   =13
+	mc_Convertor =14
+	mc_DcLine =15
+	mc_GroundLine =16
+	mc_MetalLine =17
+	mc_Ground =18
+
+mcResult 增加 CaseID,StatioName字段
+	 DcPd改为 PdPer
+	 Ul  改为 Uac
+

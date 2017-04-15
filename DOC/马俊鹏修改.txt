@@ -1,0 +1,106 @@
+？？void CxbSolveMvc::doRun()	pxbProfile->Clear();？？
+
+CxbCalDcLine	增加	virtual void StationSort(StationMap& vStaMap);	？？是否参加站点编号？？
+
+？？void CPowerSolves::doNewCal(CDeviceBase * vDev, int vIndex)？？例：单极大地情况下负极的耦合电容也被创建Cal？？
+？？void CxbSolveMvc::Run(int vGNDType)？？输入接地类型？？应和读入三脉动源接地类型一致？？
+
+
+void CxbSolves::doNewXbSolvers10()	屏蔽	doNewItem(xb_xf2); *-
+void CxbSolves::doNewXbSolvers11()	屏蔽	doNewItem(xb_MetalLine);doNewItem(xb_xf2); *-
+void CxbSolves::doNewXbSolvers20()	取消屏蔽	doNewItem(xb_GroundLine);  *-
+
+？？接地电阻？？ *-
+
+void CxbCalDcLine::NodeGround(NodeMap & vNodeMap) *-
+CxbCalGroundLine	增加	virtual void NodeGround(NodeMap & vNodeMap); *-
+
+====================2017/4/12====================
+
+CcxbResult
+CxbOrder	增加	属性string GroundStaiton; *
+
+
+pxbProfile	增加	属性int Flag_DCFOver *
+
+pxbOrder	增加	属性int DCFRandTimes *
+
+void CxbSolveMvc::Run(int vGNDType) *
+
+====================2017/4/11====================
+
+增加CRand.cpp,CRand.h	筛选器	数学计算 *
+
+CxbDevDCF	增加	void set_dev(unsigned int type); *
+
+void CxbSolveMvc::doDCF() *
+
+CxbOrder	增加	属性DCFDevType *
+
+void CxbSolveMvc::doRun() ,doDCF	谐波次数循环  *
+
+
+
+CxbDevDcLine		增加	string StationName1;string StationName2; *
+
+====================2017/4/8====================
+
+CxbCalBranch::UpdateY()
+
+CxbCal3pVSrc::UpdateY()
+
+CxbCal3pVSrc::UpdateI()
+
+CxbProfile	增加	属性NodeMap StationMap
+
+CxbCalShunt::UpdateY()
+
+CxbCalDcF::UpdateY()
+
+CxbCalDcLine::UpdateY()
+
+CPower_YU_I::UpdateI(int iNode, double vIr,double vIm)			修改	=改为+=
+
+CPower_YU_I::UpdateI(int iNode, int jNode, double vIr, double vIm)	修改	=改为+=
+
+CPower_YU_I::UpdateY0(int iNode, double vYg, double vYb)		增加	复数矩阵导纳追加
+CPower_YU_I::UpdateY(int iNode, int jNode, double vYg, double vYb)	增加	复数矩阵导纳追加
+CPower_YU_I::UpdateI(int iNode, double vIr,double vIm)			增加	复数矩阵电流追加
+CPower_YU_I::UpdateI(int iNode, int jNode, double vIr, double vIm)	增加	复数矩阵电流追加
+
+CxbProfile::Solve()
+
+====================2017/4/7====================
+CxbDevDCF	增加	CxbDevDCF::InitY(int vhOrder)
+
+CxbDevDcLine	增加	void SetYs(int hOrder, CComplex *newVal);
+			void SetYm(int hOrder, CComplex *newVal);
+			CMatrix GetYMatrix(int hOrder);
+			CComplex* GetYs(int hOrder);
+			CComplex* GetYm(int hOrder);
+
+增加MyType.h 筛选器 基本框架 功能typedef常用类型
+
+CPower_YU_I	增加	int StationNum	存储站数
+		修改	U，I长度扩大
+		增加	CMatrix Y，U，I
+		修改	void CPower_YU_I::doInit()变量Im_Vect书写错误
+
+
+
+====================2017/4/6====================
+CDevShunt	增加	virtual double GetYg(double &vOmega);
+			virtual double GetYb(double &vOmega);
+
+CDevBranch	增加	virtual double GetYg(double &vOmega);
+			virtual double GetYb(double &vOmega);
+
+增加CComplex.cpp,CComplex.h,CMatrix.cpp,CMatrix.h 筛选器 数学计算
+
+CxbCalculate::doNodeSort() 修改错误mcNodeMap为xbNodeMap
+
+xbDev3pVSrc	重写
+
+CxbDevDCF	增加	成员：RLC参数，类型，频率
+
+增加DefaultValue.h 筛选器 数学计算 功能存储常用变量默认值

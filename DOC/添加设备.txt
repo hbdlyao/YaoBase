@@ -1,0 +1,40 @@
+
+==============添加设备相关====================
+
+1 添加新类的文件
+
+CxbDevXf2_C.h CxbDevXf2_C.cpp
+
+在 gbHead_xbDevice.h 中 添加 头文件"CxbDevXf2_C.h"
+
+2. 在 CHvdcDefs.h中 enum Enum_xbDeviceType 添加新的类型 xb_xf2
+
+3. CHvdcFunc 中  xbTypeToName 函数中添加新类型 xb_xf2
+
+4. CxbHvdcGrid  修改 Init()中的for 循环，视情况增加xb_xf2
+
+5. CxbHvdcDeviceTBL  的 doNewDevice 中添加 xb_xf2
+
+6. 在CxbRw 的 doLoad 和 doSave中 添加 doLoad_xf2,doSave_Xf2
+
+
+==============添加计算相关====================
+
+1 添加新类的文件
+
+CxbCalXf2.h CxbCalXf2.cpp
+
+在 gbHead_xbCal.h 中 添加 头文件"CxbCalXf2.h"
+
+2. CxbHvdcGrid  修改 Init()中的for 循环，视情况增加xb_xf2
+
+3  CxbSolves 中 修改 doNewSolves() ,增加 doNewItem(xb_xf2);
+
+4 CxbCalXf2 中根据需要 派生相关函数 如:
+             StationSort, 
+	     NodeSort,
+	     NodeGround,
+	     NodeID,
+	     Prepare
+	     UpdateY,
+	     UpdateI

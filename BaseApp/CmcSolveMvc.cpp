@@ -79,10 +79,6 @@ void CmcSolveMvc::doNewSolves(int vGNDType)
 	pmcSolves->NewSolves(vGNDType);
 }
 
-/**
- * 南方电网主回路及谐波计算软件* 改动对象:  Run 改动者:    崔康生 改动类型:  修改 改动内容:  1.
- * 修改方法功能的定义：用于求解Order中所有工况 2.取消入参int vGNDType 改动时间:  2017/04/12
- */
 void CmcSolveMvc::Run()
 {//多工况运行
 	

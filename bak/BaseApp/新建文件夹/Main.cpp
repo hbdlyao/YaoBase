@@ -78,11 +78,11 @@ int main()
 	CHvdcInitApp::Open();
 
 	//
-	//mcCalculateNormal();
+	mcCalculateNormal();
 
-	//mcCalculate();
+	mcCalculate();
 
-	xbCalculate();
+	//xbCalculate();
 
 	//
 	CHvdcInitApp::Exit();

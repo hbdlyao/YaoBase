@@ -13,3 +13,4 @@ CmcSolveMvc 中	增加 StaCount(),从工程属性中得到换流站数目
 
 删除 CHvdcGrid 中的 StaCount()
 
+增加 CxbDevL3p类

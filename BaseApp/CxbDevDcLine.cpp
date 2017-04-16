@@ -18,17 +18,6 @@ void CxbDevDcLine::Init()
 
 }
 
-
-void CxbDevDcLine::MyFree()
-{
-	delete Ys;
-	delete Ym;
-
-	Ys = nullptr;
-	Ym = nullptr;
-
-}
-
 //Âí¿¥Åô
 void CxbDevDcLine::SetYs(int hOrder, CComplex *newVal) {
 	if (hOrder >= H_CAL_NUM) {
@@ -79,4 +68,34 @@ CComplex* CxbDevDcLine::GetYm(int hOrder) {
 		return 0;
 	}
 	return Ym + (hOrder - 1) * 4;
+}
+
+
+/**
+ * Âí¿¥Åô
+ */
+string CxbDevDcLine::GetStationName1(){
+
+	return StationName1;
+}
+
+
+string CxbDevDcLine::GetStationName2(){
+
+	return StationName2;
+}
+
+
+/**
+ * Âí¿¥Åô
+ */
+void CxbDevDcLine::SetStationName1(string newVal){
+
+	StationName1 = newVal;
+}
+
+
+void CxbDevDcLine::SetStationName2(string newVal){
+
+	StationName2 = newVal;
 }

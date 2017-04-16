@@ -6,28 +6,35 @@
 class CmcRw : public CRwDbf
 {
 public:
+	virtual void InitAdo(string vDbf);
+
+public:
 	void OnLoad_Order();
 	void OnSave_Order();
-
 	void OnLoad_Result();
 	void OnSave_Result();
 
+protected:
+	void doLoad_Order();
+	void doLoad_Result();
+	void doSave_Order();
+	void doSave_Result();
 
-	virtual void InitAdo(string vDbf);
-
+protected:
 	void doLoad_One(CDeviceBase * vDev);
-	void doLoad_Shunt(CmcDevShunt * vDev);
 	void doLoad_Two(CDeviceBase * vDev);
-	
+	void doLoad_Shunt(CmcDevShunt * vDev);
+	void doLoad_Branch(CmcDevDcLine * vDev);
+
+	void doSave_One(CDeviceBase * vDev);
+	void doSave_Two(CDeviceBase * vDev);
+	void doSave_Shunt(CmcDevShunt * vDev);
+	void doSave_Branch(CmcDevDcLine * vDev);
+
+
 protected:
 	virtual void doLoad();
 	virtual void doSave();
-
-	void doLoad_Order();
-	void doSave_Order();
-
-	void doLoad_Result();
-	void doSave_Result();
 
 
 	/**
@@ -38,15 +45,9 @@ protected:
 	void doLoad_Xf2();
 	void doLoad_Convertor();
 	void doLoad_DcLine();
-	/**
-	 * void
-	 */
 	void doLoad_MetalLine();
 	void doLoad_GroundLine();
 	void doLoad_Ground();
-
-	void doSave_One(CDeviceBase * vDev);
-	void doSave_Two(CDeviceBase * vDev);
 
 	/**
 	 * void
@@ -60,13 +61,5 @@ protected:
 	void doSave_GroundLine();
 	void doSave_Ground();
 
-	void doSave_Shunt(CmcDevShunt * vDev);
-
-
-	/**
-	 * void
-	 */
-	void doLoad_Branch(CmcDevDcLine * vDev);
-	void doSave_Branch(CmcDevDcLine * vDev);
 
 };

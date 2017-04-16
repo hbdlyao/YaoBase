@@ -8,7 +8,6 @@
 #include "CmcRw.h"
 #include "gbHead_mcDevice.h"
 #include "gbHead_Def.h"
-#include "gbHead_Def.h"
 
 #include "gbHead_Var.h"
 #include <iostream>
@@ -46,15 +45,6 @@ void CmcRw::doSave()
 
 	//doSave_Ground();
 
-}
-
-void CmcRw::doLoad_Order()
-{
-
-}
-
-void CmcRw::doSave_Order()
-{
 }
 
 
@@ -336,14 +326,6 @@ void CmcRw::doLoad_Branch(CmcDevDcLine * vDev)
 	};
 
 
-}//void
-
-void CmcRw::doLoad_Result()
-{
-}
-
-void CmcRw::doSave_Result()
-{
 }
 
 /**
@@ -1781,4 +1763,24 @@ void CmcRw::OnSave_Result()
 	{
 		cout << vErr.Description() << endl;
 	}
+}
+
+
+void CmcRw::doLoad_Order(){
+
+}
+
+
+void CmcRw::doLoad_Result(){
+
+}
+
+
+void CmcRw::doSave_Order(){
+
+}
+
+
+void CmcRw::doSave_Result(){
+
 }

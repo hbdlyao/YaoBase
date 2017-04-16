@@ -30,7 +30,7 @@ enum Enum_xbDeviceType
 	xb_PulseC,
 	xb_Shunt,
 	xb_Branch
-
+	
 };
 
 enum Enum_DCFType

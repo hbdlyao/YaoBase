@@ -19,9 +19,6 @@ class CxbDevDcLine : public CxbDevBase
 {
 
 public:
-	//马骏鹏
-	string StationName1;
-	string StationName2;
 
 	virtual void Init();
 
@@ -37,10 +34,14 @@ protected:
 	* 复数型2X2矩阵
 	*/
 	CComplex *  Ym;
-	virtual void MyFree();
 
 	//马骏鹏
 public:
+	/**
+	 * 马骏鹏
+	 */
+	string StationName1;
+	string StationName2;
 	//
 	void SetYs(int hOrder, CComplex *newVal);
 	void SetYm(int hOrder, CComplex *newVal);
@@ -49,5 +50,15 @@ public:
 	//返回Ys，Ym
 	CComplex* GetYs(int hOrder);
 	CComplex* GetYm(int hOrder);
+	/**
+	 * 马骏鹏
+	 */
+	string GetStationName1();
+	string GetStationName2();
+	/**
+	 * 马骏鹏
+	 */
+	void SetStationName1(string newVal);
+	void SetStationName2(string newVal);
 };
 #endif // !defined(EA_8F46C231_3B03_492f_AF91_2960C3884C16__INCLUDED_)

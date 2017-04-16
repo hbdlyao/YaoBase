@@ -17,6 +17,9 @@ CRwAdo::~CRwAdo()
 }
 
 
+/**
+ * StrTable dbfTable;
+ */
 void CRwAdo::InitDbf(string vDbf, string vUserID, string vPassword, string vSecurity)
 {
 

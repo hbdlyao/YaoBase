@@ -34,6 +34,9 @@ public:
 	~CRwAdo();
 
 
+	/**
+	 * StrTable dbfTable;
+	 */
 	virtual void InitDbf(string vDbf, string vUserID, string vPassword, string vSecurity);
 
 	virtual bool IsEOF();

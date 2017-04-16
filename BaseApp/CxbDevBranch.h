@@ -41,23 +41,6 @@ public:
 	//马骏鹏
 	double * Yg;
 	double * Yb;
-
-	/**
-	* 受端换流站名称
-	*/
-	string GetStationName1();
-	/**
-	* 受端换流站名称
-	*/
-	string GetStationName2();
-	/**
-	* 受端换流站名称
-	*/
-	void SetStationName1(string newVal);
-	/**
-	* 受端换流站名称
-	*/
-	void SetStationName2(string newVal);
 	//马骏鹏
 	virtual void InitY(double vFre);
 	virtual double GetYg(int vhOrder);
@@ -65,14 +48,6 @@ public:
 
 
 protected:
-	/**
-	* 受端换流站名称
-	*/
-	string StationName1;
-	/**
-	* 受端换流站名称
-	*/
-	string StationName2;
 
 };
 #endif // !defined(EA_F5DF077B_7C96_4a64_AB81_338A47E67934__INCLUDED_)

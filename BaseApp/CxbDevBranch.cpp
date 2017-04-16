@@ -86,41 +86,8 @@ void CxbDevBranch::SetZx_L(double vValue) {
 
 
 /**
-* 受端换流站名称
-*/
-string CxbDevBranch::GetStationName1() {
-
-	return StationName1;
-}
-
-
-/**
-* 受端换流站名称
-*/
-string CxbDevBranch::GetStationName2() {
-
-	return StationName2;
-}
-
-
-/**
-* 受端换流站名称
-*/
-void CxbDevBranch::SetStationName1(string newVal) {
-
-	StationName1 = newVal;
-}
-
-
-/**
-* 受端换流站名称
-*/
-void CxbDevBranch::SetStationName2(string newVal) {
-
-	StationName2 = newVal;
-}
-
-
+ * 马骏鹏
+ */
 void CxbDevBranch::InitY(double vFre)
 {
 	CComplex vY;

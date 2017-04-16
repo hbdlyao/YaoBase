@@ -82,6 +82,9 @@ void CxbDevShunt::Init() {
 }
 
 
+/**
+ * Âí¿¥Åô
+ */
 void CxbDevShunt::InitY(double vFre)
 {
 	CComplex vY;

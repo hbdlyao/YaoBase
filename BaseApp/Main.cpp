@@ -64,7 +64,7 @@ void xbCalculate()
 	vMvc->Init();
 	vMvc->Init(CHvdcVars::pxbHvdcGrid);
 
-	vMvc->Run();
+	//vMvc->Run();
 
 	delete vMvc;
 
@@ -78,11 +78,11 @@ int main()
 	CHvdcInitApp::Open();
 
 	//
-	mcCalculateNormal();
+	//mcCalculateNormal();
 
-	mcCalculate();
+	//mcCalculate();
 
-	//xbCalculate();
+	xbCalculate();
 
 	//
 	CHvdcInitApp::Exit();

@@ -24,9 +24,12 @@ void CHvdcMvcs::Init()
 
 	pmcRws = new CmcRw();
 	pmcRws->InitAdo(CMyParams::dbf_mdb);
+	//pmcRws->Init(CHvdcVars::pmcHvdcGrid);
+
 
 	pxbRws = new CxbRw();
 	pxbRws->InitAdo(CMyParams::dbf_mdb);
+	pxbRws->InitGrid(CHvdcVars::pxbHvdcGrid);
 	
 }
 

@@ -25,6 +25,7 @@ public:
 	static string tbl_Ground;
 
 	//
+	static string ProjectName;
 	static int StationCount;
 		
 };

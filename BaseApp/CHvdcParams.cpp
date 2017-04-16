@@ -17,7 +17,9 @@ string CHvdcParams::tbl_GroundLine	= "mcGroundLine";
 string CHvdcParams::tbl_MetalLine	= "mcMetalLine";
 string CHvdcParams::tbl_Ground		= "mcGround";
 
-int CHvdcParams::StationCount=3;
+string CHvdcParams::ProjectName = "Hvdc_Project";
+
+int CHvdcParams::StationCount=2;
 
 void CHvdcParams::Init()
 {

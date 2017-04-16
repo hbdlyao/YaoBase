@@ -56,7 +56,8 @@ void CRwDbf::OnSave(){
 }
 
 
-void CRwDbf::InitAdo(string vDbf){
+void CRwDbf::InitAdo(string vDbf)
+{
 
 	dbfName = vDbf;
 	

@@ -396,6 +396,9 @@
     <ClCompile Include="CmcDevTwoDot.cpp">
       <Filter>源文件\主回路\mcDevice</Filter>
     </ClCompile>
+    <ClCompile Include="CProjectRwMDB.cpp">
+      <Filter>源文件\HvdcApp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CPowerGrid.h">
@@ -724,6 +727,9 @@
     </ClInclude>
     <ClInclude Include="CxbU3pData.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CProjectRwMDB.h">
+      <Filter>头文件\HvdcApp</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

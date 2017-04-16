@@ -66,6 +66,7 @@ protected:
 	void doRun_UacSwap(string vFlag, int vIndex, int vStaCount);
 	void doRun_Pd();
 	virtual void doPrepareNormal();
+	int StaCount();
 
 
 

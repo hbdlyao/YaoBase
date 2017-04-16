@@ -24,7 +24,6 @@ class CmcHvdcGrid : public CPowerGrid
 
 public:
 	virtual void Init();
-	int StaCount();
 	virtual string TypeToName(int vType);
 	virtual CDeviceTBL * NewDeviceTBL(int vType);
 

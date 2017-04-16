@@ -10,15 +10,18 @@
 
 #include "CHvdcVars.h"
 
+CProjectRwMDB *  CHvdcMvcs::pProjectRw = nullptr;
+
 CmcRw * CHvdcMvcs::pmcRws=nullptr;
 CxbRw * CHvdcMvcs::pxbRws = nullptr;
 
 
-/**
- * CxbSolveMvc * CHvdcMvcs::pxbSolveMvc;
- */
 void CHvdcMvcs::Init()
 {
+	pProjectRw = new CProjectRwMDB();
+	pProjectRw->InitAdo(CMyParams::dbf_mdb);
+
+
 	pmcRws = new CmcRw();
 	pmcRws->InitAdo(CMyParams::dbf_mdb);
 
@@ -30,6 +33,8 @@ void CHvdcMvcs::Init()
 
 void CHvdcMvcs::Clear()
 {
+	pProjectRw->Clear();
+
 	pmcRws->Clear();
 
 	pxbRws->Clear();
@@ -39,22 +44,32 @@ void CHvdcMvcs::Clear()
 
 void CHvdcMvcs::Release()
 {
-
+	delete pProjectRw;
+	pProjectRw = nullptr;
+	//
 	delete pmcRws;
+	pmcRws = nullptr;
 	//
 	delete pxbRws;
+	pxbRws = nullptr;
 	//
 
 }
 
 void CHvdcMvcs::OnLoad()
 {
+	pProjectRw->OnLoad();
+
 	pmcRws->OnLoad();
+
 	pxbRws->OnLoad();
 }
 
 void CHvdcMvcs::OnSave()
 {
-	pmcRws->OnSave();
+	pProjectRw->OnSave();
+
+	//pmcRws->OnSave();
+
 	//pxbRws->OnSave();
 }

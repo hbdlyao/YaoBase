@@ -168,6 +168,7 @@
     <ClCompile Include="CPowerProfile.cpp" />
     <ClCompile Include="CPowerSolveMvc.cpp" />
     <ClCompile Include="CPowerSolves.cpp" />
+    <ClCompile Include="CProjectRwMDB.cpp" />
     <ClCompile Include="CRand.cpp" />
     <ClCompile Include="CxbCal3pVSrc.cpp" />
     <ClCompile Include="CxbCalBranch.cpp" />
@@ -238,6 +239,7 @@
     <ClInclude Include="CPowerProfile.h" />
     <ClInclude Include="CPowerSolveMvc.h" />
     <ClInclude Include="CPowerSolves.h" />
+    <ClInclude Include="CProjectRwMDB.h" />
     <ClInclude Include="CRand.h" />
     <ClInclude Include="CxbCal3pVSrc.h" />
     <ClInclude Include="CxbCalBranch.h" />

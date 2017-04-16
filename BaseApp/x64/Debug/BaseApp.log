@@ -40,9 +40,10 @@
   CxbCal3pVSrc.cpp
   CRand.cpp
 d:\01-myworks\develop\cpp\yaobase\baseapp\crand.cpp(3): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
-  CPowerSolves.cpp
+  CProjectRwMDB.cpp
   正在生成代码...
   正在编译...
+  CPowerSolves.cpp
   CPowerSolveMvc.cpp
   CPowerProfile.cpp
   CPowerMath.cpp
@@ -66,9 +67,9 @@ d:\01-myworks\develop\cpp\yaobase\baseapp\cmcprofile.cpp(595): warning C4244: �
 d:\01-myworks\develop\cpp\yaobase\baseapp\cmcprofile.cpp(605): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
   CmcCalXf2.cpp
 d:\01-myworks\develop\cpp\yaobase\baseapp\cmccalxf2.cpp(73): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-  CmcCalTwoDot.cpp
   正在生成代码...
   正在编译...
+  CmcCalTwoDot.cpp
   CmcCalOneDot.cpp
   CmcCalMetalLine.cpp
   CmcCalGroundLine.cpp
@@ -89,9 +90,9 @@ d:\01-myworks\develop\cpp\yaobase\baseapp\cmcorder.cpp(101): warning C4244: “=
   CmcDevOneDot.cpp
   CmcDevMetalLine.cpp
   CmcDevGroundLine.cpp
-  CmcDevGround.cpp
   正在生成代码...
   正在编译...
+  CmcDevGround.cpp
   CmcDevDcLine.cpp
   CmcDevConvertor.cpp
   CmcDevBranch.cpp

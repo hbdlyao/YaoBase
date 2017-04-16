@@ -6,6 +6,8 @@
 ///////////////////////////////////////////////////////////
 
 #include "CmcSolveMvc.h"
+#include "CHvdcParams.h"
+
 #include <iostream>
 
 using namespace std;
@@ -79,6 +81,17 @@ void CmcSolveMvc::doNewSolves(int vGNDType)
 	pmcSolves->NewSolves(vGNDType);
 }
 
+
+int CmcSolveMvc::StaCount() 
+{
+	//应该从工程属性中读取
+	return CHvdcParams::StationCount;
+
+}
+/**
+ * 南方电网主回路及谐波计算软件* 改动对象:  Run 改动者:    崔康生 改动类型:  修改 改动内容:  1.
+ * 修改方法功能的定义：用于求解Order中所有工况 2.取消入参int vGNDType 改动时间:  2017/04/12
+ */
 void CmcSolveMvc::Run()
 {//多工况运行
 	
@@ -94,7 +107,7 @@ void CmcSolveMvc::doInitRun()
 	//
 	pmcSolves->Init(pmcProfile, pmcHvdc);
 	//
-	int vStaCount = pmcHvdc->StaCount();
+	int vStaCount = StaCount();
 	pmcProfile->pmcOrder->Clear();
 	pmcProfile->pmcOrder->InitMatrix(vStaCount);
 
@@ -146,7 +159,7 @@ void CmcSolveMvc::doInitMatrix()
 {
 	int vN;
 
-	vN = pmcHvdc->StaCount();
+	vN = StaCount();
 
 	//
 	pmcProfile->InitMatrix(vN);
@@ -185,7 +198,7 @@ void CmcSolveMvc::doRun_Rd(string vFlag)
 void CmcSolveMvc::doRun_Ud(string vFlag)
 {
 	int vN = static_cast<int> (vFlag.size());
-	int vStaCount = pmcHvdc->StaCount();
+	int vStaCount = StaCount();
 
 	//全压/80%/70%
 	for (int i = 0; i < vN; i++) 
@@ -206,7 +219,7 @@ void CmcSolveMvc::doRun_Ud(string vFlag)
 
 void CmcSolveMvc::doRun_UdCustom()
 {
-	int vStaCount = pmcHvdc->StaCount();
+	int vStaCount = StaCount();
 
 	pmcProfile->pmcOrder->UdLevel = Ud_Custom;
 
@@ -224,7 +237,7 @@ void CmcSolveMvc::doRun_UdCustom()
 void CmcSolveMvc::doRun_Uac(string vFlag)
 {
 	int vN = static_cast<int> (vFlag.size());
-	int vStaCount = pmcHvdc->StaCount();
+	int vStaCount = StaCount();
 
 	//最大/额定/最小/极小
 	for (int i = 0; i < vN; i++)
@@ -311,6 +324,7 @@ void CmcSolveMvc::doRecordResult()
 
 	//pmcResult->mcResultMap[vCaseID]=
 
+	cout << "主回路:";
 	cout << vCaseID;
 	cout << "%";
 	cout << pmcProfile->pmcOrder->PdPer;
@@ -365,6 +379,7 @@ void CmcSolveMvcNormal::doRecordResult()
 
 	//pmcResult->mcResultMap[vCaseID]=
 
+	cout << "主回路额定:";
 	cout << vCaseID;
 	cout << "%";
 	cout << pmcProfile->pmcOrder->PdPer;

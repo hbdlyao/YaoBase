@@ -94,21 +94,6 @@ void CmcHvdcGrid::Init(){
 }
 
 
-int CmcHvdcGrid::StaCount(){
-
-	CDeviceTBL * vTBL;
-	
-	int vN=0;
-	
-	vTBL = DeviceTBL(mc_Convertor);
-	
-	if (vTBL!=nullptr)
-		vN = vTBL->GetItemCount();
-	
-	return vN;
-}
-
-
 string CmcHvdcGrid::TypeToName(int vType){
 
 	string vName;

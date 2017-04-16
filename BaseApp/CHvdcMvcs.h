@@ -1,5 +1,7 @@
 #pragma once
 
+#include "CProjectRwMDB.h"
+
 #include "CmcRw.h"
 #include "CmcSolveMvc.h"
 
@@ -11,16 +13,13 @@ class CHvdcMvcs
 {
 public:
 	//
+
+	static CProjectRwMDB *  pProjectRw;
+
 	static CmcRw *  pmcRws;
 	static CxbRw *  pxbRws;
-	CmcRw *pRws;
-	CmcRw *pRwMvcs;
-	CmcSolveMvc *pmcSolveMvc;
-	CxbSolveMvc *pxbSolveMvc;
 
-	/**
-	 * CxbSolveMvc * CHvdcMvcs::pxbSolveMvc;
-	 */
+		
 	static void Init();
 	static void Clear();
 	static void Release();
@@ -34,7 +33,7 @@ protected:
 
 	CHvdcMvcs() {};
 
-	~CHvdcMvcs() {};
+	virtual ~CHvdcMvcs() {};
 
 
 };

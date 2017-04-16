@@ -1,16 +1,15 @@
-==================2017-4-14=================
+==================2017-4-16=================
+CHvdcParams 中添加 ProjectName，StationCount属性
 
-CmcOrder 
-	1.增加 selectGroundType....等函数 形参由指针改为为引用
-	2.
+添加 CProjectRwMDB类 ，用于读取 工程属性参数
 
-
-CmcSolveMvc 
-
-	1.改写 selectGroundType....等函数 形参由指针改为为引用
-	2.selectGroundType....等函数的函数内容 改为 调用 CmcOrder 的相关函数
-	3.改写 Run 中 selectGroundType....等函数的相关调用形参
+CHvdcMvcs 中	添加pProjectRw,
+		Init、Clear、Release、Load、Save中 分别添加与 pProjectRw相关的内容
 
 
-CmcSolveMvc::Run
-   vOrder 付值有问题 CmcOrder中有指针
+CmcSolveMvc 中	增加 StaCount(),从工程属性中得到换流站数目
+		CmcSolveMvc中各函数用到换流站数目时，从其StaCount函数()中得到；
+
+
+删除 CHvdcGrid 中的 StaCount()
+

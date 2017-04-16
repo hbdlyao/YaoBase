@@ -6,12 +6,18 @@
 ///////////////////////////////////////////////////////////
 
 #include "CmcRw.h"
-#include "gbHead_mcDevice.h"
-#include "gbHead_Def.h"
+#include "CHvdcParams.h"
 
-#include "gbHead_Var.h"
+#include "gbHead_mcDevice.h"
+
+
 #include <iostream>
 
+
+void CmcRw::InitGrid(CmcHvdcGrid* vHvdc) 
+{
+	pHvdc = vHvdc;
+}
 
 void CmcRw::doLoad()
 {
@@ -66,6 +72,12 @@ void CmcRw::doLoad_One(CDeviceBase * vDev)
 	string vStr;
 	_variant_t vValue;
 
+	RwAdo->GetFieldValue("ID", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vDev->SetObjGUID(vValue.iVal);
+	};
+
 	//
 	RwAdo->GetFieldValue("DeviceID", vValue);
 	if (vValue.vt != VT_NULL)
@@ -93,14 +105,6 @@ void CmcRw::doLoad_One(CDeviceBase * vDev)
 		vStr = (LPCTSTR)(_bstr_t)vValue; //字符型
 		vDev->SetStationName(vStr);
 	};
-
-	/*
-	RwAdo->GetFieldValue("dotCount", vValue);
-	if (vValue.vt != VT_NULL)
-	{
-		vDev->SetdotCount(vValue.iVal);
-	};
-	*/
 
 	RwAdo->GetFieldValue("NodeName", vValue);
 	if (vValue.vt != VT_NULL)
@@ -109,11 +113,13 @@ void CmcRw::doLoad_One(CDeviceBase * vDev)
 		vDev->SetNodeName(0, vStr);
 	};
 
+	/*
 	RwAdo->GetFieldValue("NodeID", vValue);
 	if (vValue.vt != VT_NULL)
 	{
 		vDev->SetNodeID(0, vValue.iVal);//整型
 	};
+	*/
 }
 
 
@@ -121,6 +127,12 @@ void CmcRw::doLoad_Two(CDeviceBase * vDev)
 {
     string vStr;
 	_variant_t vValue;
+
+	RwAdo->GetFieldValue("ID", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vDev->SetObjGUID(vValue.iVal);
+	};
 
 	//
 	RwAdo->GetFieldValue("DeviceID", vValue);
@@ -150,13 +162,6 @@ void CmcRw::doLoad_Two(CDeviceBase * vDev)
 		vDev->SetStationName(vStr);
 	};
 
-	/*
-	RwAdo->GetFieldValue("dotCount", vValue);
-	if (vValue.vt != VT_NULL)
-	{
-		vDev->SetdotCount(vValue.iVal);
-	};
-	*/
 
 	RwAdo->GetFieldValue("NodeName1", vValue);
 	if (vValue.vt != VT_NULL)
@@ -165,11 +170,6 @@ void CmcRw::doLoad_Two(CDeviceBase * vDev)
 		vDev->SetNodeName(0, vStr);
 	};
 
-	RwAdo->GetFieldValue("NodeID1", vValue);
-	if (vValue.vt != VT_NULL)
-	{
-		vDev->SetNodeID(0, vValue.iVal);//整型
-	};
 
 	RwAdo->GetFieldValue("NodeName2", vValue);
 	if (vValue.vt != VT_NULL)
@@ -178,11 +178,19 @@ void CmcRw::doLoad_Two(CDeviceBase * vDev)
 		vDev->SetNodeName(1, vStr);
 	};
 
+	/*
+	RwAdo->GetFieldValue("NodeID1", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vDev->SetNodeID(0, vValue.iVal);//整型
+	};
+
 	RwAdo->GetFieldValue("NodeID2", vValue);
 	if (vValue.vt != VT_NULL)
 	{
 		vDev->SetNodeID(1, vValue.iVal);//整型
 	};
+	*/
 
 }
 
@@ -238,6 +246,12 @@ void CmcRw::doLoad_Branch(CmcDevDcLine * vDev)
 	string vStr;
 	_variant_t vValue;
 
+	RwAdo->GetFieldValue("ID", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vDev->SetObjGUID(vValue.iVal);
+	};
+
 	RwAdo->GetFieldValue("DeviceID", vValue);
 	if (vValue.vt != VT_NULL)
 	{
@@ -258,13 +272,6 @@ void CmcRw::doLoad_Branch(CmcDevDcLine * vDev)
 		vDev->SetDeviceType(vValue.iVal);//整型
 	};
 
-	/*
-	RwAdo->GetFieldValue("dotCount", vValue);
-	if (vValue.vt != VT_NULL)
-	{
-		vDev->SetdotCount(vValue.iVal);
-	};
-	*/
 
 	RwAdo->GetFieldValue("NodeName1", vValue);
 	if (vValue.vt != VT_NULL)
@@ -280,17 +287,19 @@ void CmcRw::doLoad_Branch(CmcDevDcLine * vDev)
 		vDev->SetNodeName(1, vStr);
 	};
 
+	/*
 	RwAdo->GetFieldValue("NodeID1", vValue);
 	if (vValue.vt != VT_NULL)
 	{
-		vDev->SetNodeID(0, vValue.iVal);//整型
+	vDev->SetNodeID(0, vValue.iVal);//整型
 	};
 
 	RwAdo->GetFieldValue("NodeID2", vValue);
 	if (vValue.vt != VT_NULL)
 	{
-		vDev->SetNodeID(1, vValue.iVal);//整型
+	vDev->SetNodeID(1, vValue.iVal);//整型
 	};
+	*/
 
 	RwAdo->GetFieldValue("StationName1", vValue);
 	if (vValue.vt != VT_NULL)
@@ -352,7 +361,7 @@ void CmcRw::doLoad_AcSys()
 
 		while (!RwAdo->IsEOF())
 		{
-			vTBL = CHvdcVars::pmcHvdcGrid->DeviceTBL(mc_AcSys);
+			vTBL = pHvdc->DeviceTBL(mc_AcSys);
 			vDev = dynamic_cast<CmcDevAcSys *>(vTBL->NewDevice(mc_AcSys));
 			//
 			doLoad_One(vDev);
@@ -452,7 +461,7 @@ void CmcRw::doLoad_AcFilter()
 		cout << "Load---" + vtblName + "---" << endl;
 		while (!RwAdo->IsEOF())
 		{
-			vTBL = CHvdcVars::pmcHvdcGrid->DeviceTBL(mc_AcF);
+			vTBL = pHvdc->DeviceTBL(mc_AcF);
 			vDev = dynamic_cast<CmcDevAcFilter *>(vTBL->NewDevice(mc_AcF));
 
 			doLoad_One(vDev);
@@ -517,7 +526,7 @@ void CmcRw::doLoad_Xf2()
 
 		while (!RwAdo->IsEOF())
 		{
-			vTBL = CHvdcVars::pmcHvdcGrid->DeviceTBL(mc_Xf2);
+			vTBL = pHvdc->DeviceTBL(mc_Xf2);
 			vDev = dynamic_cast<CmcDevXf2 *>(vTBL->NewDevice(mc_Xf2));
 
 			//
@@ -674,7 +683,7 @@ void CmcRw::doLoad_Convertor()
 		cout << "Load---" + vtblName + "---" << endl;
 		while (!RwAdo->IsEOF())
 		{
-			vTBL = CHvdcVars::pmcHvdcGrid->DeviceTBL(mc_Convertor);
+			vTBL = pHvdc->DeviceTBL(mc_Convertor);
 			vDev = dynamic_cast<CmcDevConvertor *>(vTBL->NewDevice(mc_Convertor));
 
 			
@@ -802,7 +811,7 @@ void CmcRw::doLoad_DcLine()
 		cout << "Load---" + vtblName + "---" << endl;
 		while (!RwAdo->IsEOF())
 		{
-			vTBL = CHvdcVars::pmcHvdcGrid->DeviceTBL(mc_DcLine);
+			vTBL = pHvdc->DeviceTBL(mc_DcLine);
 			vDev = dynamic_cast<CmcDevDcLine *>(vTBL->NewDevice(mc_DcLine));
 
 			doLoad_Branch(vDev);
@@ -846,7 +855,7 @@ void CmcRw::doLoad_MetalLine()
 
 		while (!RwAdo->IsEOF())
 		{
-			vTBL = CHvdcVars::pmcHvdcGrid->DeviceTBL(mc_MetalLine);
+			vTBL = pHvdc->DeviceTBL(mc_MetalLine);
 			vDev = dynamic_cast<CmcDevMetalLine *>(vTBL->NewDevice(mc_MetalLine));
 
 			doLoad_Branch(vDev);
@@ -887,7 +896,7 @@ void CmcRw::doLoad_GroundLine()
 
 		while (!RwAdo->IsEOF())
 		{
-			vTBL = CHvdcVars::pmcHvdcGrid->DeviceTBL(mc_GroundLine);
+			vTBL = pHvdc->DeviceTBL(mc_GroundLine);
 			vDev = dynamic_cast<CmcDevGroundLine *>(vTBL->NewDevice(mc_GroundLine));
 
 			doLoad_Shunt(vDev);
@@ -928,7 +937,7 @@ void CmcRw::doLoad_Ground()
 		cout << "Load---" + vtblName + "---" << endl;
 		while (!RwAdo->IsEOF())
 		{
-			vTBL = CHvdcVars::pmcHvdcGrid->DeviceTBL(mc_Ground);
+			vTBL = pHvdc->DeviceTBL(mc_Ground);
 			vDev = dynamic_cast<CmcDevGround *>(vTBL->NewDevice(mc_Ground));
 
 			doLoad_Shunt(vDev);
@@ -956,37 +965,38 @@ void CmcRw::doSave_One(CDeviceBase * vDev)
 	string vStr;
 	_variant_t vValue;
 
-			vValue = _variant_t(vDev->GetDeviceID().c_str());//文本型
-			RwAdo->SetFieldValue("DeviceID", vValue);
+	vValue = _variant_t(vDev->GetObjGUID()); //整型
+	RwAdo->SetFieldValue("ID", vValue);
 
-			
-			vValue = _variant_t(vDev->GetDeviceName().c_str());
-			RwAdo->SetFieldValue("DeviceName", vValue);
 
-			vValue = _variant_t(vDev->GetDeviceType());
-			RwAdo->SetFieldValue("DeviceType", vValue);
+	vValue = _variant_t(vDev->GetDeviceID().c_str());//文本型
+	RwAdo->SetFieldValue("DeviceID", vValue);
 
-			vValue = _variant_t(vDev->GetStationName().c_str());//文本型
-			RwAdo->SetFieldValue("StationName", vValue);
 
-			vValue = _variant_t(vDev->GetNodeID(0));
-			RwAdo->SetFieldValue("NodeID", vValue);
+	vValue = _variant_t(vDev->GetDeviceName().c_str());
+	RwAdo->SetFieldValue("DeviceName", vValue);
 
-			vValue = _variant_t(vDev->GetNodeName(0).c_str());//文本型
-			RwAdo->SetFieldValue("NodeName", vValue);
+	vValue = _variant_t(vDev->GetDeviceType());
+	RwAdo->SetFieldValue("DeviceType", vValue);
 
-			
+	vValue = _variant_t(vDev->GetStationName().c_str());//文本型
+	RwAdo->SetFieldValue("StationName", vValue);
 
-			/*
-			vValue = _variant_t(vDev->GetdotCount()); //
-			RwAdo->SetFieldValue("dotCount", vValue); //
-			*/
+	vValue = _variant_t(vDev->GetNodeID(0));
+	RwAdo->SetFieldValue("NodeID", vValue);
+
+	vValue = _variant_t(vDev->GetNodeName(0).c_str());//文本型
+	RwAdo->SetFieldValue("NodeName", vValue);
+
 }
 
 void CmcRw::doSave_Two(CDeviceBase * vDev)
 {
 	string vStr;
 	_variant_t vValue;
+
+	vValue = _variant_t(vDev->GetObjGUID()); //整型
+	RwAdo->SetFieldValue("ID", vValue);
 
 	vValue = _variant_t(vDev->GetDeviceID().c_str());//文本型
 	RwAdo->SetFieldValue("DeviceID", vValue);
@@ -1025,32 +1035,10 @@ void CmcRw::doSave_Shunt(CmcDevShunt * vDev)
 {
 	string vStr;
 	_variant_t vValue;
+
+	doSave_One(vDev);
+
 	//
-	vValue = _variant_t(vDev->GetDeviceID().c_str());//文本型
-	RwAdo->SetFieldValue("DeviceID", vValue);
-
-	vValue = _variant_t(vDev->GetDeviceName().c_str());
-	RwAdo->SetFieldValue("DeviceName", vValue);
-
-	vValue = _variant_t(vDev->GetDeviceType());
-	RwAdo->SetFieldValue("DeviceType", vValue);
-
-	vValue = _variant_t(vDev->GetZr()); //
-	RwAdo->SetFieldValue("Zr", vValue); //
-
-	vValue = _variant_t(vDev->GetStationName().c_str());//文本型
-	RwAdo->SetFieldValue("StationName", vValue);
-	
-	//vValue = _variant_t(vDev->GetdotCount()); //
-	//RwAdo->SetFieldValue("dotCount", vValue); //
-
-	vValue = _variant_t(vDev->GetNodeID(0));
-	RwAdo->SetFieldValue("NodeID", vValue);
-
-	vValue = _variant_t(vDev->GetNodeName(0).c_str());//文本型
-	RwAdo->SetFieldValue("NodeName", vValue);
-
-
 	vValue = _variant_t(vDev->GetZr()); //
 	RwAdo->SetFieldValue("Zr", vValue); //
 
@@ -1075,6 +1063,8 @@ void CmcRw::doSave_Branch(CmcDevDcLine * vDev)
 	string vStr;
 	_variant_t vValue;
 
+	vValue = _variant_t(vDev->GetObjGUID()); //整型
+	RwAdo->SetFieldValue("ID", vValue);
 
 	//
 	vValue = _variant_t(vDev->GetDeviceID().c_str());//文本型
@@ -1105,12 +1095,8 @@ void CmcRw::doSave_Branch(CmcDevDcLine * vDev)
 	RwAdo->SetFieldValue("NodeName2", vValue);
 
 
-	//vValue = _variant_t(vDev->GetdotCount()); //
-	//RwAdo->SetFieldValue("dotCount", vValue); //
-
-
-	//vValue = _variant_t(vDev->GetZr()); //
-	//RwAdo->SetFieldValue("Zr", vValue); //
+	vValue = _variant_t(vDev->GetZr()); //
+	RwAdo->SetFieldValue("Zr", vValue); //
 
 	vValue = _variant_t(vDev->GetZrMax()); //
 	RwAdo->SetFieldValue("ZrMax", vValue); //
@@ -1163,7 +1149,7 @@ void CmcRw::doSave_AcSys()
 	{
 		cout << "Save---" + vtblName + "---" << endl;
 
-		vTBL = CHvdcVars::pmcHvdcGrid->DeviceTBL(mc_AcSys);
+		vTBL = pHvdc->DeviceTBL(mc_AcSys);
 		for (i = 0; i<vTBL->GetItemCount(); i++)
 		{
 		
@@ -1242,7 +1228,7 @@ void CmcRw::doSave_AcFilter()
 	{
 		cout << "Save---" + vtblName + "---" << endl;
 
-		vTBL = CHvdcVars::pmcHvdcGrid->DeviceTBL(mc_AcF);
+		vTBL = pHvdc->DeviceTBL(mc_AcF);
 		for (i = 0; i<vTBL->GetItemCount(); i++)
 		{
 			vDev = dynamic_cast<CmcDevAcFilter *>(vTBL->Device(i));
@@ -1312,7 +1298,7 @@ void CmcRw::doSave_Xf2()
 		cout << "Save---" + vtblName + "---" << endl;
 
 		
-		vTBL = CHvdcVars::pmcHvdcGrid->DeviceTBL(mc_Xf2);
+		vTBL = pHvdc->DeviceTBL(mc_Xf2);
 		for (i = 0; i<vTBL->GetItemCount(); i++)
 		{
 		
@@ -1424,7 +1410,7 @@ void CmcRw::doSave_Convertor()
 	{
 		cout << "Save---" + vtblName + "---" << endl;
 		
-		vTBL = CHvdcVars::pmcHvdcGrid->DeviceTBL(mc_Convertor);
+		vTBL = pHvdc->DeviceTBL(mc_Convertor);
 		for (i = 0; i<vTBL->GetItemCount(); i++)
 		{
 			vDev = dynamic_cast<CmcDevConvertor *>(vTBL->Device(i));
@@ -1526,7 +1512,7 @@ void CmcRw::doSave_DcLine()
 	{
 		cout << "Save---" + vtblName + "---" << endl;
 
-		vTBL = CHvdcVars::pmcHvdcGrid->DeviceTBL(mc_DcLine);
+		vTBL = pHvdc->DeviceTBL(mc_DcLine);
 		for (i = 0; i<vTBL->GetItemCount(); i++)
 		{
 
@@ -1573,7 +1559,7 @@ void CmcRw::doSave_MetalLine()
 	{
 		cout << "Save---" + vtblName + "---" << endl;
 
-		vTBL = CHvdcVars::pmcHvdcGrid->DeviceTBL(mc_MetalLine);
+		vTBL = pHvdc->DeviceTBL(mc_MetalLine);
 		for (i = 0; i<vTBL->GetItemCount(); i++)
 		{
 
@@ -1620,7 +1606,7 @@ void CmcRw::doSave_GroundLine()
 	{
 		cout << "Save---" + vtblName + "---" << endl;
 
-		vTBL = CHvdcVars::pmcHvdcGrid->DeviceTBL(mc_GroundLine);
+		vTBL = pHvdc->DeviceTBL(mc_GroundLine);
 		for (i = 0; i<vTBL->GetItemCount(); i++)
 		{
 
@@ -1666,7 +1652,7 @@ void CmcRw::doSave_Ground()
 	{
 		cout << "Save---" + vtblName + "---" << endl;
 
-		vTBL = CHvdcVars::pmcHvdcGrid->DeviceTBL(mc_Ground);
+		vTBL = pHvdc->DeviceTBL(mc_Ground);
 		for (i = 0; i<vTBL->GetItemCount(); i++)
 		{
 
@@ -1784,3 +1770,4 @@ void CmcRw::doSave_Order(){
 void CmcRw::doSave_Result(){
 
 }
+

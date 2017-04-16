@@ -13,4 +13,15 @@ CmcSolveMvc 中	增加 StaCount(),从工程属性中得到换流站数目
 
 删除 CHvdcGrid 中的 StaCount()
 
-增加 CxbDevL3p类
+CxbRw	doLoad()中补充了各设备的读取
+	增加 pHvdc属性，并用InitGrid()函数传入
+
+CmcRw	增加 pHvdc属性，并用InitGrid()函数传入
+	每个设备读写中，增加字段ID的读写
+
+CObjBase 的objGUID 从string 改为 int
+
+
+
+===============================================
+直流线路 的Zr,Zrmax zrmin ?

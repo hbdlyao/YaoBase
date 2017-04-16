@@ -23,7 +23,7 @@ CObjBase::~CObjBase()
 
 void CObjBase::Init()
 {
-	objGUID = CMyFunc::CreateObjID();
+	//objGUID = CMyFunc::CreateObjID();
 	//
 }
 
@@ -33,15 +33,13 @@ void CObjBase::Clear()
 }
 
 
-string CObjBase::GetObjGUID(){
+unsigned long CObjBase::GetObjGUID(){
 
 	return objGUID;
 }
 
 
-void CObjBase::SetObjGUID(string newVal){
+void CObjBase::SetObjGUID(unsigned long newVal){
 
 	objGUID = newVal;
 }
-
-

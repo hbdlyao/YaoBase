@@ -34,6 +34,10 @@ protected:
 	* ¸´ÊýÐÍ2X2¾ØÕó
 	*/
 	CComplex *  Ym;
+	double Ys11;
+	double Ys12;
+	double Ym11;
+	double Ym12;
 
 	//Âí¿¥Åô
 public:
@@ -60,5 +64,13 @@ public:
 	 */
 	void SetStationName1(string newVal);
 	void SetStationName2(string newVal);
+	double GetYs11();
+	void SetYs11(double newVal);
+	double GetYs12();
+	void SetYs12(double newVal);
+	double GetYm11();
+	void SetYm11(double newVal);
+	double GetYm12();
+	void SetYm12(double newVal);
 };
 #endif // !defined(EA_8F46C231_3B03_492f_AF91_2960C3884C16__INCLUDED_)

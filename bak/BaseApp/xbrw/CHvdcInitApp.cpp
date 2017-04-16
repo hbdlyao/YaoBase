@@ -172,7 +172,7 @@ bool CHvdcInitApp::Exit()
 {
 	bool vOk = true;
 
-	//Save();
+	Save();
 
 	//
 	Release();

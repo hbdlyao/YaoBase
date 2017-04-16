@@ -99,3 +99,51 @@ void CxbDevDcLine::SetStationName2(string newVal){
 
 	StationName2 = newVal;
 }
+
+
+double CxbDevDcLine::GetYs11(){
+
+	return Ys11;
+}
+
+
+void CxbDevDcLine::SetYs11(double newVal){
+
+	Ys11 = newVal;
+}
+
+
+double CxbDevDcLine::GetYs12(){
+
+	return Ys12;
+}
+
+
+void CxbDevDcLine::SetYs12(double newVal){
+
+	Ys12 = newVal;
+}
+
+
+double CxbDevDcLine::GetYm11(){
+
+	return Ym11;
+}
+
+
+void CxbDevDcLine::SetYm11(double newVal){
+
+	Ym11 = newVal;
+}
+
+
+double CxbDevDcLine::GetYm12(){
+
+	return Ym12;
+}
+
+
+void CxbDevDcLine::SetYm12(double newVal){
+
+	Ym12 = newVal;
+}

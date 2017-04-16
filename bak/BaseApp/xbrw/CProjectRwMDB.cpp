@@ -42,6 +42,12 @@ void CProjectRwMDB::doLoad()
 			CHvdcParams::ProjectName = vStr;
 		};
 
+		RwAdo->GetFieldValue("ID", vValue);
+		if (vValue.vt != VT_NULL)
+		{
+			CHvdcParams::ProjectID = vValue.iVal;
+		};
+
 		RwAdo->GetFieldValue("StationCount", vValue);
 		if (vValue.vt != VT_NULL)
 		{
@@ -58,7 +64,40 @@ void CProjectRwMDB::doLoad()
 
 void CProjectRwMDB::doSave()
 {
+	string vSQL, vStr;
+	_variant_t vValue;
+
+	bool vOk = S_FALSE;
+
+	vSQL = "delete * from Hvdc_Project";
+	vOk = RwAdo->ExecSQL(vSQL);
 
 
+	vSQL = "select * from Hvdc_Project";
+	if (vOk)
+		vOk = vOk && (RwAdo->OpenSQL(vSQL));
+
+	if (vOk)
+	{
+		cout << "Save---Hvdc_Project---" << endl;
+
+			RwAdo->Record_AddNew();
+		
+			vValue = _variant_t(CHvdcParams::ProjectID); //整型
+			RwAdo->SetFieldValue("ID", vValue);
+
+			vValue = _variant_t(CHvdcParams::ProjectName.c_str());//文本型
+			RwAdo->SetFieldValue("ProjectName", vValue);
+
+			vValue = _variant_t(CHvdcParams::StationCount); 
+			RwAdo->SetFieldValue("StationCount", vValue); 
+
+			RwAdo->Record_Update();
+
+			cout << " Finished Hvdc_Project " << endl;
+
+
+	}//if
+
+	RwAdo->CloseTBL();
 }
-

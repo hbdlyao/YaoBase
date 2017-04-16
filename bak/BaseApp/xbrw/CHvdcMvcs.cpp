@@ -24,7 +24,7 @@ void CHvdcMvcs::Init()
 
 	pmcRws = new CmcRw();
 	pmcRws->InitAdo(CMyParams::dbf_mdb);
-	//pmcRws->Init(CHvdcVars::pmcHvdcGrid);
+	pmcRws->InitGrid(CHvdcVars::pmcHvdcGrid);
 
 
 	pxbRws = new CxbRw();
@@ -72,7 +72,7 @@ void CHvdcMvcs::OnSave()
 {
 	pProjectRw->OnSave();
 
-	//pmcRws->OnSave();
+	pmcRws->OnSave();
 
-	//pxbRws->OnSave();
+	pxbRws->OnSave();
 }

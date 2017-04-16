@@ -15,13 +15,13 @@ public:
 	CObjBase();
 	virtual ~CObjBase();
 
-	string GetObjGUID();
-	void SetObjGUID(string newVal);
-
 	virtual void Clear();
 
+	unsigned long GetObjGUID();
+	void SetObjGUID(unsigned long newVal);
+
 protected:
-	string objGUID;
+	unsigned long objGUID;
 	
 	virtual void Init();
 

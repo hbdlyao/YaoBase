@@ -10,6 +10,9 @@
 
 #include "CMyRw.h"
 
+/**
+ * ¹¤³Ì¶ÁÐ´
+ */
 class CProjectRwMDB : public CRwDbf
 {
 

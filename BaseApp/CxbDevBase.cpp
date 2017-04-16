@@ -11,8 +11,8 @@
 /**
  * 所属拓扑类型  单极大地 单极金属 双极
  */
-int CxbDevBase::GetPosOrNeg(){
-
+int CxbDevBase::GetPosOrNeg()
+{
 	return PosOrNeg;
 }
 

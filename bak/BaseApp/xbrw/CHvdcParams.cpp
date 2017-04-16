@@ -19,6 +19,7 @@ string CHvdcParams::tbl_Ground		= "mcGround";
 
 string CHvdcParams::ProjectName = "Hvdc_Project";
 
+int CHvdcParams::ProjectID = 1;
 int CHvdcParams::StationCount=2;
 
 void CHvdcParams::Init()

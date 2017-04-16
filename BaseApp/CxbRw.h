@@ -10,9 +10,10 @@ protected:
 	CxbHvdcGrid * pHvdc = nullptr;
 
 public:
+	virtual void InitAdo(string vDbf);
+
 	void InitGrid(CxbHvdcGrid * vHvdc);
 
-	virtual void InitAdo(string vDbf);
 
 public:
 	void OnLoad_Order();
@@ -22,13 +23,21 @@ public:
 
 protected:
 	void doLoad_One(CxbDevOneDot * vDev);
-
 	void doLoad_Two(CxbDevTwoDot * vDev);
 
 	void doLoad_Shunt(CxbDevShunt * vDev);
 	void doLoad_Branch(CxbDevBranch * vDev);
 
 	void doLoad_DcLine(CxbDevDcLine * vDev);
+
+
+	void doSave_One(CxbDevOneDot* vDev);
+	void doSave_Two(CxbDevTwoDot* vDev);
+	void doSave_Shunt(CxbDevShunt* vDev);
+	void doSave_Branch(CxbDevBranch* vDev);
+
+	void doSave_DcLine(CxbDevDcLine * vDev);
+
 
 protected:
 	virtual void doLoad();

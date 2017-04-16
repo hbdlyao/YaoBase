@@ -9,6 +9,9 @@
 
 using namespace std;
 
+/**
+ * Ado数据库
+ */
 class CRwAdo
 {
 
@@ -68,6 +71,9 @@ public:
 };
 
 
+/**
+ * Ado_MDB数据库
+ */
 class CRwAdo_MDB : public CRwAdo
 {
 public:

@@ -2,7 +2,11 @@
 
 #include "CMyRw.h"
 #include "gbHead_mcDevice.h"
+#include "CmcHvdcGrid.h"
 
+/**
+ * 主回路计算读写
+ */
 class CmcRw : public CRwDbf
 {
 public:
@@ -13,6 +17,7 @@ public:
 	void OnSave_Order();
 	void OnLoad_Result();
 	void OnSave_Result();
+	void InitGrid(CmcHvdcGrid* vHvdc);
 
 protected:
 	void doLoad_Order();
@@ -32,7 +37,7 @@ protected:
 	void doSave_Branch(CmcDevDcLine * vDev);
 
 
-protected:
+protected:	CmcHvdcGrid* pHvdc;
 	virtual void doLoad();
 	virtual void doSave();
 

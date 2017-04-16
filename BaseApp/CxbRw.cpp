@@ -10,7 +10,6 @@
 #include "CHvdcVars.h"
 
 
-
 void CxbRw::InitGrid(CxbHvdcGrid * vHvdc)
 {
 	pHvdc = vHvdc;
@@ -282,7 +281,7 @@ void CxbRw::doLoad_xbDcF()
 			//
 			doLoad_Two(vDev);
 
-			//doLoad_Branch(vDev);
+			//to-do
 
 			//
 			vTBL->DeviceAdd(vDev->GetDeviceID(), vDev);
@@ -704,58 +703,551 @@ void CxbRw::doSave_xb3pVSrc()
 }
 
 
-void CxbRw::doSave_xbPbDKQ(){
+void CxbRw::doSave_xbPbDKQ()
+{
+	CDeviceTBL * vTBL;
+	CxbDevPbDkq * vDev;
+
+	string vSQL, vStr;
+	_variant_t vValue;
+
+	bool vOk = S_FALSE;
+	int i;
+
+	vSQL = "delete * from xbPbDKQ ";
+	vOk = RwAdo->ExecSQL(vSQL);
+
+
+	vSQL = "select * from xbPbDKQ ";
+	if (vOk)
+		vOk = vOk && (RwAdo->OpenSQL(vSQL));
+
+	if (vOk)
+	{
+		cout << "Save---xbPbDkq---" << endl;
+
+		vTBL = pHvdc->DeviceTBL(xb_PbDKQ);
+		for (i = 0; i<vTBL->GetItemCount(); i++)
+		{
+
+			vDev = dynamic_cast<CxbDevPbDkq *>(vTBL->Device(i));
+			//
+			RwAdo->Record_AddNew();
+
+			doSave_Branch(vDev);
+
+
+			//
+			RwAdo->Record_Update();
+			//
+			cout << "   --" << vDev->GetDeviceName() << endl;
+
+		}//for
+
+	}//if
+
+	RwAdo->CloseTBL();
+}
+
+
+void CxbRw::doSave_xbDcF()
+{
+	CDeviceTBL * vTBL;
+	CxbDevDCF * vDev;
+
+	string vSQL, vStr;
+	_variant_t vValue;
+
+	bool vOk = S_FALSE;
+	int i;
+
+	vSQL = "delete * from xbDcFilter ";
+	vOk = RwAdo->ExecSQL(vSQL);
+
+
+	vSQL = "select * from xbDcFilter ";
+	if (vOk)
+		vOk = vOk && (RwAdo->OpenSQL(vSQL));
+
+	if (vOk)
+	{
+		cout << "Save---xbDcFilter---" << endl;
+
+		vTBL = pHvdc->DeviceTBL(xb_DcF);
+		for (i = 0; i<vTBL->GetItemCount(); i++)
+		{
+
+			vDev = dynamic_cast<CxbDevDCF *>(vTBL->Device(i));
+			//
+			RwAdo->Record_AddNew();
+
+			//
+			doSave_Two(vDev);
+
+			//to-do
+
+			//
+			RwAdo->Record_Update();
+			//
+			cout << "   --" << vDev->GetDeviceName() << endl;
+
+		}//for
+
+	}//if
+
+	RwAdo->CloseTBL();
+}
+
+
+void CxbRw::doSave_xbDcLine()
+{
+	CDeviceTBL * vTBL;
+	CxbDevDcLine * vDev;
+
+	string vSQL, vStr;
+	_variant_t vValue;
+
+	bool vOk = S_FALSE;
+	int i;
+
+	vSQL = "delete * from xbDcLine ";
+	vOk = RwAdo->ExecSQL(vSQL);
+
+
+	vSQL = "select * from xbDcLine ";
+	if (vOk)
+		vOk = vOk && (RwAdo->OpenSQL(vSQL));
+
+	if (vOk)
+	{
+		cout << "Save---xbDcLine---" << endl;
+
+		vTBL = pHvdc->DeviceTBL(xb_DcLine);
+		for (i = 0; i<vTBL->GetItemCount(); i++)
+		{
+
+			vDev = dynamic_cast<CxbDevDcLine *>(vTBL->Device(i));
+			//
+			RwAdo->Record_AddNew();
+
+
+			doSave_DcLine(vDev);
+
+
+			vValue = _variant_t(vDev->GetStationName1().c_str());//文本型
+			RwAdo->SetFieldValue("StationName1", vValue);
+
+			vValue = _variant_t(vDev->GetStationName2().c_str());//文本型
+			RwAdo->SetFieldValue("StationName2", vValue);
+
+			//
+			RwAdo->Record_Update();
+			//
+			cout << "   --" << vDev->GetDeviceName() << endl;
+
+		}//for
+
+	}//if
+
+	RwAdo->CloseTBL();
+}
+
+void CxbRw::doSave_xbMetalLine()
+{
+	CDeviceTBL * vTBL;
+	CxbDevMetalLine * vDev;
+
+	string vSQL, vStr;
+	_variant_t vValue;
+
+	bool vOk = S_FALSE;
+	int i;
+
+	vSQL = "delete * from xbMetalLine ";
+	vOk = RwAdo->ExecSQL(vSQL);
+
+
+	vSQL = "select * from xbMetalLine ";
+	if (vOk)
+		vOk = vOk && (RwAdo->OpenSQL(vSQL));
+
+	if (vOk)
+	{
+		cout << "Save---xbMetalLine---" << endl;
+
+		vTBL = pHvdc->DeviceTBL(xb_MetalLine);
+		for (i = 0; i<vTBL->GetItemCount(); i++)
+		{
+
+			vDev = dynamic_cast<CxbDevMetalLine *>(vTBL->Device(i));
+			//
+			RwAdo->Record_AddNew();
+			
+			doSave_DcLine(vDev);
+
+
+			vValue = _variant_t(vDev->GetStationName1().c_str());//文本型
+			RwAdo->SetFieldValue("StationName1", vValue);
+
+			vValue = _variant_t(vDev->GetStationName2().c_str());//文本型
+			RwAdo->SetFieldValue("StationName2", vValue);
+
+			//
+			RwAdo->Record_Update();
+			//
+			cout << "   --" << vDev->GetDeviceName() << endl;
+
+		}//for
+
+	}//if
+
+	RwAdo->CloseTBL();
+
+}
+
+void CxbRw::doSave_xbGroundLine()
+{
+	CDeviceTBL * vTBL;
+	CxbDevGroundLine * vDev;
+
+	string vSQL, vStr;
+	_variant_t vValue;
+
+	bool vOk = S_FALSE;
+	int i;
+
+	vSQL = "delete * from xbGroundLine ";
+	vOk = RwAdo->ExecSQL(vSQL);
+
+
+	vSQL = "select * from xbGroundLine ";
+	if (vOk)
+		vOk = vOk && (RwAdo->OpenSQL(vSQL));
+
+	if (vOk)
+	{
+		cout << "Save---xbGroundLine---" << endl;
+
+		vTBL = pHvdc->DeviceTBL(xb_GroundLine);
+		for (i = 0; i<vTBL->GetItemCount(); i++)
+		{
+
+			vDev = dynamic_cast<CxbDevGroundLine *>(vTBL->Device(i));
+			//
+			RwAdo->Record_AddNew();
+
+			doSave_DcLine(vDev);
+
+			vValue = _variant_t(vDev->GetStationName().c_str());//文本型
+			RwAdo->SetFieldValue("StationName", vValue);
+
+			
+			//
+			RwAdo->Record_Update();
+			//
+			cout << "   --" << vDev->GetDeviceName() << endl;
+
+		}//for
+
+	}//if
+
+	RwAdo->CloseTBL();
+
 
 }
 
 
-void CxbRw::doSave_xbDcF(){
+
+void CxbRw::doSave_xbGround() 
+{
+	CDeviceTBL * vTBL;
+	CxbDevGround * vDev;
+
+	string vSQL, vStr;
+	_variant_t vValue;
+
+	bool vOk = S_FALSE;
+	int i;
+
+	vSQL = "delete * from xbGround ";
+	vOk = RwAdo->ExecSQL(vSQL);
+
+
+	vSQL = "select * from xbGround ";
+	if (vOk)
+		vOk = vOk && (RwAdo->OpenSQL(vSQL));
+
+	if (vOk)
+	{
+		cout << "Save---xbGround---" << endl;
+
+		vTBL = pHvdc->DeviceTBL(xb_Ground);
+		for (i = 0; i<vTBL->GetItemCount(); i++)
+		{
+
+			vDev = dynamic_cast<CxbDevGround *>(vTBL->Device(i));
+			//
+			RwAdo->Record_AddNew();
+
+			doSave_Shunt(vDev);
+			
+			//
+			RwAdo->Record_Update();
+			//
+			cout << "   --" << vDev->GetDeviceName() << endl;
+
+		}//for
+
+	}//if
+
+	RwAdo->CloseTBL();
+
 
 }
 
 
-void CxbRw::doSave_xbDcLine(){
+
+void CxbRw::doSave_xbXfC()
+{
+	CDeviceTBL * vTBL;
+	CxbDevXf_C * vDev;
+
+	string vSQL, vStr;
+	_variant_t vValue;
+
+	bool vOk = S_FALSE;
+	int i;
+
+	vSQL = "delete * from xbXf_C ";
+	vOk = RwAdo->ExecSQL(vSQL);
+
+
+	vSQL = "select * from xbXf_C ";
+	if (vOk)
+		vOk = vOk && (RwAdo->OpenSQL(vSQL));
+
+	if (vOk)
+	{
+		cout << "Save---xbXf_C---" << endl;
+
+		vTBL = pHvdc->DeviceTBL(xb_XfC);
+		for (i = 0; i<vTBL->GetItemCount(); i++)
+		{
+
+			vDev = dynamic_cast<CxbDevXf_C *>(vTBL->Device(i));
+			//
+			RwAdo->Record_AddNew();
+
+			doSave_Shunt(vDev);
+
+
+			//
+			RwAdo->Record_Update();
+			//
+			cout << "   --" << vDev->GetDeviceName() << endl;
+
+		}//for
+
+	}//if
+
+	RwAdo->CloseTBL();
+
 
 }
 
 
-void CxbRw::doSave_xbGroundLine(){
+void CxbRw::doSave_xbCoupleC()
+{
+	CDeviceTBL * vTBL;
+	CxbDevCouple_C * vDev;
+
+	string vSQL, vStr;
+	_variant_t vValue;
+
+	bool vOk = S_FALSE;
+	int i;
+
+	vSQL = "delete * from xbCouple_C ";
+	vOk = RwAdo->ExecSQL(vSQL);
+
+
+	vSQL = "select * from xbCouple_C ";
+	if (vOk)
+		vOk = vOk && (RwAdo->OpenSQL(vSQL));
+
+	if (vOk)
+	{
+		cout << "Save---xbCouple_C---" << endl;
+
+		vTBL = pHvdc->DeviceTBL(xb_CoupleC);
+		for (i = 0; i<vTBL->GetItemCount(); i++)
+		{
+
+			vDev = dynamic_cast<CxbDevCouple_C *>(vTBL->Device(i));
+			//
+			RwAdo->Record_AddNew();
+
+			doSave_Shunt(vDev);
+
+
+			//
+			RwAdo->Record_Update();
+			//
+			cout << "   --" << vDev->GetDeviceName() << endl;
+
+		}//for
+
+	}//if
+
+	RwAdo->CloseTBL();
 
 }
 
 
-void CxbRw::doSave_xbMetalLine(){
+void CxbRw::doSave_xbPulseC()
+{
+	CDeviceTBL * vTBL;
+	CxbDevPulse_C * vDev;
+
+	string vSQL, vStr;
+	_variant_t vValue;
+
+	bool vOk = S_FALSE;
+	int i;
+
+	vSQL = "delete * from xbPulse_C ";
+	vOk = RwAdo->ExecSQL(vSQL);
+
+
+	vSQL = "select * from xbPulse_C ";
+	if (vOk)
+		vOk = vOk && (RwAdo->OpenSQL(vSQL));
+
+	if (vOk)
+	{
+		cout << "Save---xbPulse_C---" << endl;
+
+		vTBL = pHvdc->DeviceTBL(xb_PulseC);
+		for (i = 0; i<vTBL->GetItemCount(); i++)
+		{
+
+			vDev = dynamic_cast<CxbDevPulse_C *>(vTBL->Device(i));
+			//
+			RwAdo->Record_AddNew();
+
+			doSave_Shunt(vDev);
+
+
+			//
+			RwAdo->Record_Update();
+			//
+			cout << "   --" << vDev->GetDeviceName() << endl;
+
+		}//for
+
+	}//if
+
+	RwAdo->CloseTBL();
+
 
 }
 
 
-void CxbRw::doSave_xbGround(){
+void CxbRw::doSave_xbShunt()
+{
+	CDeviceTBL * vTBL;
+	CxbDevShunt * vDev;
 
-}
+	string vSQL, vStr;
+	_variant_t vValue;
 
+	bool vOk = S_FALSE;
+	int i;
 
-void CxbRw::doSave_xbXfC(){
-
-}
-
-
-void CxbRw::doSave_xbCoupleC(){
-
-}
-
-
-void CxbRw::doSave_xbPulseC(){
-
-}
+	vSQL = "delete * from xbShunt ";
+	vOk = RwAdo->ExecSQL(vSQL);
 
 
-void CxbRw::doSave_xbShunt(){
+	vSQL = "select * from xbShunt ";
+	if (vOk)
+		vOk = vOk && (RwAdo->OpenSQL(vSQL));
+
+	if (vOk)
+	{
+		cout << "Save---xbShunt---" << endl;
+
+		vTBL = pHvdc->DeviceTBL(xb_Shunt);
+		for (i = 0; i<vTBL->GetItemCount(); i++)
+		{
+
+			vDev = dynamic_cast<CxbDevShunt *>(vTBL->Device(i));
+			//
+			RwAdo->Record_AddNew();
+
+			doSave_Shunt(vDev);
+
+
+			//
+			RwAdo->Record_Update();
+			//
+			cout << "   --" << vDev->GetDeviceName() << endl;
+
+		}//for
+
+	}//if
+
+	RwAdo->CloseTBL();
+
 
 }
 
 
 void CxbRw::doSave_xbBranch()
 {
+
+	CDeviceTBL * vTBL;
+	CxbDevBranch * vDev;
+
+	string vSQL, vStr;
+	_variant_t vValue;
+
+	bool vOk = S_FALSE;
+	int i;
+
+	vSQL = "delete * from xbBranch ";
+	vOk = RwAdo->ExecSQL(vSQL);
+
+
+	vSQL = "select * from xbBranch ";
+	if (vOk)
+		vOk = vOk && (RwAdo->OpenSQL(vSQL));
+
+	if (vOk)
+	{
+		cout << "Save---xbBranch---" << endl;
+
+		vTBL = pHvdc->DeviceTBL(xb_Branch);
+		for (i = 0; i<vTBL->GetItemCount(); i++)
+		{
+
+			vDev = dynamic_cast<CxbDevBranch *>(vTBL->Device(i));
+			//
+			RwAdo->Record_AddNew();
+
+			doSave_Branch(vDev);
+
+
+			//
+			RwAdo->Record_Update();
+			//
+			cout << "   --" << vDev->GetDeviceName() << endl;
+
+		}//for
+
+	}//if
+
+	RwAdo->CloseTBL();
+
 
 }
 
@@ -766,7 +1258,13 @@ void CxbRw::doLoad_One(CxbDevOneDot * vDev)
 	string vStr;
 	_variant_t vValue;
 	
-	
+	RwAdo->GetFieldValue("ID", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vDev->SetObjGUID(vValue.iVal);
+	};
+
+
 	RwAdo->GetFieldValue("DeviceID", vValue);
 	if (vValue.vt != VT_NULL)
 	{
@@ -865,6 +1363,11 @@ void CxbRw::doLoad_Two(CxbDevTwoDot * vDev)
 	string vStr;
 	_variant_t vValue;
 
+	RwAdo->GetFieldValue("ID", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vDev->SetObjGUID(vValue.iVal);
+	};
 
 	RwAdo->GetFieldValue("DeviceID", vValue);
 	if (vValue.vt != VT_NULL)
@@ -980,6 +1483,11 @@ void CxbRw::doLoad_DcLine(CxbDevDcLine * vDev)
 	string vStr;
 	_variant_t vValue;
 
+	RwAdo->GetFieldValue("ID", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vDev->SetObjGUID(vValue.iVal);
+	};
 
 	RwAdo->GetFieldValue("DeviceID", vValue);
 	if (vValue.vt != VT_NULL)
@@ -1001,7 +1509,6 @@ void CxbRw::doLoad_DcLine(CxbDevDcLine * vDev)
 		vDev->SetDeviceType(vValue.iVal);//整型
 	};
 
-
 	RwAdo->GetFieldValue("NodeName1", vValue);
 	if (vValue.vt != VT_NULL)
 	{
@@ -1016,10 +1523,53 @@ void CxbRw::doLoad_DcLine(CxbDevDcLine * vDev)
 		vDev->SetNodeName(1, vStr);
 	};
 
+	RwAdo->GetFieldValue("NodeName3", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vStr = (LPCTSTR)(_bstr_t)vValue; //字符型
+		vDev->SetNodeName(2, vStr);
+	};
+
+	RwAdo->GetFieldValue("NodeName4", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vStr = (LPCTSTR)(_bstr_t)vValue; //字符型
+		vDev->SetNodeName(3, vStr);
+	};
+
+
 	RwAdo->GetFieldValue("PosOrNeg", vValue);
 	if (vValue.vt != VT_NULL)
 	{
 		vDev->SetPosOrNeg(vValue.iVal);//整型
+	};
+
+
+	RwAdo->GetFieldValue("Ys11", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vDev->SetYs11(vValue.dblVal);//双精度
+	};
+
+
+	RwAdo->GetFieldValue("Ys12", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vDev->SetYs12(vValue.dblVal);//双精度
+	};
+	
+
+	RwAdo->GetFieldValue("Ym11", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vDev->SetYm11(vValue.dblVal);//双精度
+	};
+
+
+	RwAdo->GetFieldValue("Ym12", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vDev->SetYm12(vValue.dblVal);//双精度
 	};
 
 
@@ -1038,4 +1588,198 @@ void CxbRw::doLoad_DcLine(CxbDevDcLine * vDev)
 	*/
 
 	
+}
+
+
+void CxbRw::doSave_One(CxbDevOneDot * vDev)
+{
+
+	string vStr;
+	_variant_t vValue;
+	
+	vValue = _variant_t(vDev->GetObjGUID()); //整型
+	RwAdo->SetFieldValue("ID", vValue);
+	
+	
+	vValue = _variant_t(vDev->GetDeviceID().c_str());//文本型
+	RwAdo->SetFieldValue("DeviceID", vValue);
+	
+	
+	vValue = _variant_t(vDev->GetDeviceName().c_str());
+	RwAdo->SetFieldValue("DeviceName", vValue);
+	
+	vValue = _variant_t(vDev->GetDeviceType());
+	RwAdo->SetFieldValue("DeviceType", vValue);
+	
+	vValue = _variant_t(vDev->GetStationName().c_str());//文本型
+	RwAdo->SetFieldValue("StationName", vValue);
+	
+	vValue = _variant_t(vDev->GetNodeName(0).c_str());//文本型
+	RwAdo->SetFieldValue("NodeName", vValue);
+
+	vValue = _variant_t(vDev->GetPosOrNeg());
+	RwAdo->SetFieldValue("PosOrNeg", vValue);
+
+	vValue = _variant_t(vDev->GetNodeID(0));
+	RwAdo->SetFieldValue("NodeID", vValue);
+
+}
+
+
+void CxbRw::doSave_Two(CxbDevTwoDot* vDev)
+{
+
+	string vStr;
+	_variant_t vValue;
+	
+	vValue = _variant_t(vDev->GetObjGUID()); //整型
+	RwAdo->SetFieldValue("ID", vValue);
+	
+	vValue = _variant_t(vDev->GetDeviceID().c_str());//文本型
+	RwAdo->SetFieldValue("DeviceID", vValue);
+	
+	vValue = _variant_t(vDev->GetDeviceName().c_str());
+	RwAdo->SetFieldValue("DeviceName", vValue);
+	
+	vValue = _variant_t(vDev->GetDeviceType());
+	RwAdo->SetFieldValue("DeviceType", vValue);
+	
+	vValue = _variant_t(vDev->GetStationName().c_str());//文本型
+	RwAdo->SetFieldValue("StationName", vValue);
+	
+	vValue = _variant_t(vDev->GetNodeName(0).c_str());//文本型
+	RwAdo->SetFieldValue("NodeName1", vValue);
+	
+	vValue = _variant_t(vDev->GetNodeName(1).c_str());//文本型
+	RwAdo->SetFieldValue("NodeName2", vValue);
+	
+	vValue = _variant_t(vDev->GetPosOrNeg());
+	RwAdo->SetFieldValue("PosOrNeg", vValue);
+
+	
+	vValue = _variant_t(vDev->GetNodeID(0));
+	RwAdo->SetFieldValue("NodeID1", vValue);
+
+	vValue = _variant_t(vDev->GetNodeID(1));
+	RwAdo->SetFieldValue("NodeID2", vValue);
+	
+}
+
+
+void CxbRw::doSave_Shunt(CxbDevShunt* vDev)
+{
+
+	string vStr;
+	_variant_t vValue;
+	
+	doSave_One(vDev);
+	
+	//
+	vValue = _variant_t(vDev->GetZr()); //
+	RwAdo->SetFieldValue("Zr", vValue); //
+	
+	
+	vValue = _variant_t(vDev->GetZ_L()); //
+	RwAdo->SetFieldValue("Z_L", vValue); //
+	
+	vValue = _variant_t(vDev->GetZ_C()); //
+	RwAdo->SetFieldValue("Z_C", vValue); //
+	
+	vValue = _variant_t(vDev->GetZx_L()); //
+	RwAdo->SetFieldValue("Zx_L", vValue); //
+	
+	vValue = _variant_t(vDev->GetZx_C()); //
+	RwAdo->SetFieldValue("Zx_C", vValue); //
+	
+}
+
+
+void CxbRw::doSave_Branch(CxbDevBranch * vDev)
+{
+
+	string vStr;
+	_variant_t vValue;
+
+
+	doSave_Two(vDev);
+	
+	
+	vValue = _variant_t(vDev->GetZr()); //
+	RwAdo->SetFieldValue("Zr", vValue); //
+	
+	vValue = _variant_t(vDev->GetZ_L()); //
+	RwAdo->SetFieldValue("Z_L", vValue); //
+	
+	vValue = _variant_t(vDev->GetZ_C()); //
+	RwAdo->SetFieldValue("Z_C", vValue); //
+	
+	vValue = _variant_t(vDev->GetZx_L()); //
+	RwAdo->SetFieldValue("Zx_L", vValue); //
+	
+	vValue = _variant_t(vDev->GetZx_C()); //
+	RwAdo->SetFieldValue("Zx_C", vValue); //
+	
+										  //
+}
+
+void CxbRw::doSave_DcLine(CxbDevDcLine * vDev)
+{
+	string vStr;
+	_variant_t vValue;
+
+	vValue = _variant_t(vDev->GetObjGUID()); //整型
+	RwAdo->SetFieldValue("ID", vValue);
+
+	vValue = _variant_t(vDev->GetDeviceID().c_str());//文本型
+	RwAdo->SetFieldValue("DeviceID", vValue);
+
+	vValue = _variant_t(vDev->GetDeviceName().c_str());
+	RwAdo->SetFieldValue("DeviceName", vValue);
+
+	vValue = _variant_t(vDev->GetDeviceType());
+	RwAdo->SetFieldValue("DeviceType", vValue);
+
+
+	vValue = _variant_t(vDev->GetNodeName(0).c_str());//文本型
+	RwAdo->SetFieldValue("NodeName1", vValue);
+
+	vValue = _variant_t(vDev->GetNodeName(1).c_str());//文本型
+	RwAdo->SetFieldValue("NodeName2", vValue);
+
+
+	vValue = _variant_t(vDev->GetNodeName(2).c_str());//文本型
+	RwAdo->SetFieldValue("NodeName3", vValue);
+
+	vValue = _variant_t(vDev->GetNodeName(3).c_str());//文本型
+	RwAdo->SetFieldValue("NodeName4", vValue);
+
+	vValue = _variant_t(vDev->GetNodeID(0));
+	RwAdo->SetFieldValue("NodeID1", vValue);
+
+	vValue = _variant_t(vDev->GetNodeID(1));
+	RwAdo->SetFieldValue("NodeID2", vValue);
+
+	vValue = _variant_t(vDev->GetNodeID(2));
+	RwAdo->SetFieldValue("NodeID3", vValue);
+
+	vValue = _variant_t(vDev->GetNodeID(3));
+	RwAdo->SetFieldValue("NodeID4", vValue);
+
+	vValue = _variant_t(vDev->GetPosOrNeg());
+	RwAdo->SetFieldValue("PosOrNeg", vValue);							
+
+	vValue = _variant_t(vDev->GetYs11());
+	RwAdo->SetFieldValue("Ys11", vValue);
+
+	vValue = _variant_t(vDev->GetYs12());
+	RwAdo->SetFieldValue("Ys12", vValue);
+
+	vValue = _variant_t(vDev->GetYm11());
+	RwAdo->SetFieldValue("Ym11", vValue);
+
+	vValue = _variant_t(vDev->GetYm12());
+	RwAdo->SetFieldValue("Ym12", vValue);
+
+
+
 }

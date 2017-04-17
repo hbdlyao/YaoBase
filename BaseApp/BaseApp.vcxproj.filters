@@ -94,14 +94,20 @@
     <Filter Include="源文件\直流谐波">
       <UniqueIdentifier>{ffb9e1e5-474a-4f15-a527-b2173b9ded41}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\直流谐波\xbDevice">
-      <UniqueIdentifier>{1f153967-4d83-4914-ac43-17f24b360c49}</UniqueIdentifier>
-    </Filter>
     <Filter Include="源文件\直流谐波\xb计算">
       <UniqueIdentifier>{713e9ee3-eaea-49df-9503-e6befbe31c22}</UniqueIdentifier>
     </Filter>
     <Filter Include="源文件\直流谐波\xb计算Mvc">
       <UniqueIdentifier>{11ee593a-1991-4df7-b2ce-963393f59b5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\直流谐波\xbDevice">
+      <UniqueIdentifier>{1f153967-4d83-4914-ac43-17f24b360c49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\直流谐波\xb计算组合">
+      <UniqueIdentifier>{52b95b17-b168-487c-a2c9-a610702690f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\直流谐波\xb计算组合">
+      <UniqueIdentifier>{7c0c0a50-1bbd-41b6-85d8-6bc654b84d0f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -327,9 +333,6 @@
     <ClCompile Include="CxbCalCouple_C.cpp">
       <Filter>源文件\直流谐波\xb计算</Filter>
     </ClCompile>
-    <ClCompile Include="CxbCalculate.cpp">
-      <Filter>源文件\直流谐波\xb计算</Filter>
-    </ClCompile>
     <ClCompile Include="CxbCalDcF.cpp">
       <Filter>源文件\直流谐波\xb计算</Filter>
     </ClCompile>
@@ -398,6 +401,21 @@
     </ClCompile>
     <ClCompile Include="CProjectRwMDB.cpp">
       <Filter>源文件\HvdcApp</Filter>
+    </ClCompile>
+    <ClCompile Include="CxbCalDCF_N.cpp">
+      <Filter>源文件\直流谐波\xb计算组合</Filter>
+    </ClCompile>
+    <ClCompile Include="CxbCal_Leaf.cpp">
+      <Filter>源文件\直流谐波\xb计算组合</Filter>
+    </ClCompile>
+    <ClCompile Include="CxbCal_Composite.cpp">
+      <Filter>源文件\直流谐波\xb计算组合</Filter>
+    </ClCompile>
+    <ClCompile Include="CxbCalculate.cpp">
+      <Filter>源文件\直流谐波\xb计算</Filter>
+    </ClCompile>
+    <ClCompile Include="CxbDevRLCs.cpp">
+      <Filter>源文件\直流谐波\xbDevice</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -611,9 +629,6 @@
     <ClInclude Include="CxbDevGroundLine.h">
       <Filter>头文件\直流谐波\xbDevice</Filter>
     </ClInclude>
-    <ClInclude Include="CxbDeviceBase.h">
-      <Filter>头文件\直流谐波\xbDevice</Filter>
-    </ClInclude>
     <ClInclude Include="CxbDevMetalLine.h">
       <Filter>头文件\直流谐波\xbDevice</Filter>
     </ClInclude>
@@ -730,6 +745,18 @@
     </ClInclude>
     <ClInclude Include="CProjectRwMDB.h">
       <Filter>头文件\HvdcApp</Filter>
+    </ClInclude>
+    <ClInclude Include="CxbCalDCF_N.h">
+      <Filter>头文件\直流谐波\xb计算组合</Filter>
+    </ClInclude>
+    <ClInclude Include="CxbCal_Composite.h">
+      <Filter>头文件\直流谐波\xb计算组合</Filter>
+    </ClInclude>
+    <ClInclude Include="CxbCal_Leaf.h">
+      <Filter>头文件\直流谐波\xb计算组合</Filter>
+    </ClInclude>
+    <ClInclude Include="CxbDevRLCs.h">
+      <Filter>头文件\直流谐波\xbDevice</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

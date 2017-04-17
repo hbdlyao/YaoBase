@@ -175,6 +175,7 @@
     <ClCompile Include="CxbCalCouple_C.cpp" />
     <ClCompile Include="CxbCalculate.cpp" />
     <ClCompile Include="CxbCalDcF.cpp" />
+    <ClCompile Include="CxbCalDCF_N.cpp" />
     <ClCompile Include="CxbCalDcLine.cpp" />
     <ClCompile Include="CxbCalGround.cpp" />
     <ClCompile Include="CxbCalGroundLine.cpp" />
@@ -182,6 +183,8 @@
     <ClCompile Include="CxbCalOneDot.cpp" />
     <ClCompile Include="CxbCalPbDkq.cpp" />
     <ClCompile Include="CxbCalPulse_C.cpp" />
+    <ClCompile Include="CxbCal_Leaf.cpp" />
+    <ClCompile Include="CxbCal_Composite.cpp" />
     <ClCompile Include="CxbCalShunt.cpp" />
     <ClCompile Include="CxbCalTwoDot.cpp" />
     <ClCompile Include="CxbCalXf_C.cpp" />
@@ -197,6 +200,7 @@
     <ClCompile Include="CxbDevOneDot.cpp" />
     <ClCompile Include="CxbDevPbDkq.cpp" />
     <ClCompile Include="CxbDevPulse_C.cpp" />
+    <ClCompile Include="CxbDevRLCs.cpp" />
     <ClCompile Include="CxbDevShunt.cpp" />
     <ClCompile Include="CxbDevTwoDot.cpp" />
     <ClCompile Include="CxbDevXf_C.cpp" />
@@ -246,6 +250,7 @@
     <ClInclude Include="CxbCalCouple_C.h" />
     <ClInclude Include="CxbCalculate.h" />
     <ClInclude Include="CxbCalDcF.h" />
+    <ClInclude Include="CxbCalDCF_N.h" />
     <ClInclude Include="CxbCalDcLine.h" />
     <ClInclude Include="CxbCalGround.h" />
     <ClInclude Include="CxbCalGroundLine.h" />
@@ -253,6 +258,8 @@
     <ClInclude Include="CxbCalOneDot.h" />
     <ClInclude Include="CxbCalPbDkq.h" />
     <ClInclude Include="CxbCalPulse_C.h" />
+    <ClInclude Include="CxbCal_Leaf.h" />
+    <ClInclude Include="CxbCal_Composite.h" />
     <ClInclude Include="CxbCalShunt.h" />
     <ClInclude Include="CxbCalTwoDot.h" />
     <ClInclude Include="CxbCalXf_C.h" />
@@ -266,11 +273,11 @@
     <ClInclude Include="CxbDevDcLine.h" />
     <ClInclude Include="CxbDevGround.h" />
     <ClInclude Include="CxbDevGroundLine.h" />
-    <ClInclude Include="CxbDeviceBase.h" />
     <ClInclude Include="CxbDevMetalLine.h" />
     <ClInclude Include="CxbDevOneDot.h" />
     <ClInclude Include="CxbDevPbDkq.h" />
     <ClInclude Include="CxbDevPulse_C.h" />
+    <ClInclude Include="CxbDevRLCs.h" />
     <ClInclude Include="CxbDevShunt.h" />
     <ClInclude Include="CxbDevTwoDot.h" />
     <ClInclude Include="CxbDevXf_C.h" />

@@ -1,3 +1,12 @@
+
+==================2017-4-17=================
+
+CxbSolveMvc	增加 doPrepare_Line(),doPrepare_DCF() 用于 谐波电流计算之前计算出 线路参数和DCF各次谐波的导纳
+		Run()中，添加对doPrepare_Line(),doPrepare_DCF()的调用
+		selectU3p() 改名为 doSelectU3p()
+
+CxbSolve	doNewXbSolvers10(),doNewXbSolvers11(),doNewXbSolvers20(),doNewXbSolvers21(),
+
 ==================2017-4-16=================
 CHvdcParams 中添加 ProjectName，StationCount属性
 
@@ -13,15 +22,33 @@ CmcSolveMvc 中	增加 StaCount(),从工程属性中得到换流站数目
 
 删除 CHvdcGrid 中的 StaCount()
 
-CxbRw	doLoad()中补充了各设备的读取
-	增加 pHvdc属性，并用InitGrid()函数传入
+CxbRw	完善了 doLoad(),doSave() //xb3pVsrc,DCF,的读写还需进一步考虑
+
+	增加 pHvdc属性，并用InitGrid()函数传入	
+	完善了 OnLoad_Order(),doLoad_Order();
+
+
 
 CmcRw	增加 pHvdc属性，并用InitGrid()函数传入
 	每个设备读写中，增加字段ID的读写
+	完善了 OnLoad_Order(),doLoad_Order();
+
 
 CObjBase 的objGUID 从string 改为 int
 
 
 
+CmcSolveMvc 添加 InitOrder()
+
+CxbSolveMvc 添加 InitOrder()
+
+Main.CPP 中 mcCalculate(),mcCalculateNormal(),xbCalculate(), 中增加 vMvc->InitOrder()调用
+
 ===============================================
 直流线路 的Zr,Zrmax zrmin ?
+
+直流预设
+
+单负荷点 Id
+
+结果输出 Sac。。。

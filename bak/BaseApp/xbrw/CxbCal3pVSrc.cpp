@@ -10,6 +10,9 @@
 
 void CxbCal3pVSrc::Prepare()
 {
+	//CxbDev3pVSrc * vDev;
+
+	//vDev = dynamic_cast<CxbDev3pVSrc *>(pDevice);
 
 }
 

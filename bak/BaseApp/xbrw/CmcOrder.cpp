@@ -23,7 +23,7 @@ void CmcOrder::Init()
 
 	Flag_Ground = "1111";  //单极大地/金属回线/双极/双极并联
 	Flag_Ud = "111";  //全压/80%/70%
-	Flag_Rd = "11";    //高阻/低阻
+	Flag_Rd = "11";    //高阻/低阻（额定）
 	Flag_Uac = "1111";  //最大/额定/最小/极小
 	
 	IsUdCustom = false;//直流电压预设情况，如预设则使用UdCustom作为电压指令，否则使用UdLevel
@@ -34,6 +34,8 @@ void CmcOrder::Init()
 	PdIncrePer = 5;//功率水平增量
 	PdSize =2;//功率水平数
 
+	//Is6p = false;
+	//Is12pDouble = false;
 }
 
 void CmcOrder::InitNormal()
@@ -43,9 +45,9 @@ void CmcOrder::InitNormal()
 	//
 	nValNum = 2;
 
-	Flag_Ground = "0010";  //单极大地/金属回线/双极/双极并联
+	Flag_Ground = "1000";  //单极大地/金属回线/双极/双极并联
 	Flag_Ud = "100";  //全压/80%/70%
-	Flag_Rd = "10";    //高阻/低阻
+	Flag_Rd = "01";    //高阻/低阻（额定）
 	Flag_Uac = "0100";  //最大/额定/最小/极小
 
 	IsUdCustom = false;//直流电压预设情况，如预设则使用UdCustom作为电压指令，否则使用UdLevel

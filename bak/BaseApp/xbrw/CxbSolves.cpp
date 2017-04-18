@@ -32,21 +32,6 @@ void CxbSolves::Init(CPowerProfile* vProfile, CPowerGrid* vGrid)
 
 }
 
-void CxbSolves::doPrepare()
-{
-	//
-	pxbProfile->ReSetData();
-
-	//
-	for each (pPowerCal_Pair vPair in pItems)
-	{
-		vPair.second->Prepare();
-	}
-
-
-}
-
-
 void CxbSolves::NewSolves(int vGndType)
 {
 	GroundType = vGndType;
@@ -79,10 +64,10 @@ void CxbSolves::doNewXbSolvers10()
 	//单极大地	
 	doNewItem(xb_3pVSrc);
 	doNewItem(xb_PbDKQ);
-	doNewItem(xb_DcF);
+	//doNewItem(xb_DcF);
 	doNewItem(xb_DcLine);
 	doNewItem(xb_GroundLine);
-	//doNewItem(xb_Ground);
+	doNewItem(xb_Ground);
 	//doNewItem(xb_MetalLine);
 	doNewItem(xb_XfC);
 	doNewItem(xb_CoupleC);
@@ -98,7 +83,7 @@ void CxbSolves::doNewXbSolvers11()
 	//单极金属回线	
 	doNewItem(xb_3pVSrc);
 	doNewItem(xb_PbDKQ);
-	doNewItem(xb_DcF);
+	//doNewItem(xb_DcF);
 	doNewItem(xb_DcLine);
 	//doNewItem(xb_GroundLine);
 	//doNewItem(xb_Ground);
@@ -118,7 +103,7 @@ void CxbSolves::doNewXbSolvers20()
 	doNewItem(xb_3pVSrc);
 
 	doNewItem(xb_PbDKQ);
-	doNewItem(xb_DcF);
+	//doNewItem(xb_DcF);
 	doNewItem(xb_DcLine);
 	//doNewItem(xb_Ground);
 	//doNewItem(xb_GroundLine);
@@ -138,7 +123,7 @@ void CxbSolves::doNewXbSolvers21()
 	doNewItem(xb_3pVSrc);
 
 	doNewItem(xb_PbDKQ);
-	doNewItem(xb_DcF);
+	//doNewItem(xb_DcF);
 	doNewItem(xb_DcLine);
 	//doNewItem(xb_GroundLine);
 	//doNewItem(xb_Ground);
@@ -164,10 +149,10 @@ void CxbSolves::doNewItem(int vtblType)
 	{
 		vDev = dynamic_cast<CxbDevBase *>(vPair.second);
 
-		if ((vDev->GetPosOrNeg())==1) //正极设备
+		if ((vDev->GetPosOrNeg())==xb_Pos) //正极设备
 			doNewCal(vDev, vIndex);
 		
-		if ((vDev->GetPosOrNeg()) == 2) //负极设备
+		if ((vDev->GetPosOrNeg()) == xb_Neg) //负极设备
 			switch (GroundType)
 			{
 			case xb_Ground20: //双极中性点
@@ -245,13 +230,18 @@ void CxbSolves::doNewCal(CDeviceBase * vDev, int vIndex)
 		vCal = new CxbCalBranch();
 		break;
 
+		/*
+	case xb_Branch:
+		vCal = new CxbCalBranch();
+		break;
+		*/
 
 	default:
 		break;
 
 	}//switch
 	
-	vName = vDev->GetDeviceID();//to-do
+	vName = vDev->GetDeviceName();//to-do
 	vCal->SelfID = vName;
 	vCal->SelfType = vType;
 	vCal->DevType = vType;
@@ -260,6 +250,7 @@ void CxbSolves::doNewCal(CDeviceBase * vDev, int vIndex)
 	vCal->Init(vDev);
 	vCal->Init(pxbProfile, pxbHvdc);
 
+	//
 	pItems[vName] = vCal;
 
 }
@@ -281,6 +272,21 @@ void CxbSolves::doSovle()
 	doUpdateI();
 	//
 	doSolveU();
+
+}
+
+
+void CxbSolves::doPrepare()
+{
+	//
+	pxbProfile->ReSetData();
+
+	//
+	for each (pPowerCal_Pair vPair in pItems)
+	{
+		vPair.second->Prepare();
+	}
+
 
 }
 

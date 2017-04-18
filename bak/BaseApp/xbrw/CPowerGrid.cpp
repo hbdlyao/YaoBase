@@ -17,7 +17,8 @@ CPowerGrid::~CPowerGrid()
 }
 
 
-string CPowerGrid::TypeToName(int vType){
+string CPowerGrid::TypeToName(int vType)
+{
 	
 	return "CPowerGrid.TypeToName";
 
@@ -65,8 +66,6 @@ void CPowerGrid::Release()
 
 void CPowerGrid::ClearNodeID()
 {
-	int i, vdotCount;
-
 	CDeviceTBL * vTBL;
 	CDeviceBase * vDev;
 
@@ -78,19 +77,17 @@ void CPowerGrid::ClearNodeID()
 		for each (pObj_Pair  vPair2 in  vTBL->GetItems())
 		{
 			vDev = dynamic_cast<CDeviceBase *>(vPair2.second);
-			vdotCount = vDev->GetDotCount();
 
-			for (i = 0; i < vdotCount; i++)
-			{
-				vDev->SetNodeID(i, -2);
-			}//for i
+			vDev->ClearNodeID();
+			
 
 		}//for each
 	}
 
 }
 
-CDeviceTBL * CPowerGrid::DeviceTBL(int vType){
+CDeviceTBL * CPowerGrid::DeviceTBL(int vType)
+{
 
 	return pItems[vType];
 }

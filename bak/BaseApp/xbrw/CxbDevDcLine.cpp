@@ -17,7 +17,6 @@ void CxbDevDcLine::Init()
 	Ym = new CComplex[4 * H_CAL_NUM]; //2x2
 
 }
-
 //Âí¿¥Åô
 void CxbDevDcLine::SetYs(int hOrder, CComplex *newVal) {
 	if (hOrder >= H_CAL_NUM) {
@@ -35,6 +34,7 @@ void CxbDevDcLine::SetYm(int hOrder, CComplex *newVal) {
 	for (int i = 0; i < 4; i++)
 		*(Ym + (hOrder - 1) * 4 + i) = *(newVal + i);
 }
+
 /**
  * ·µ»ØYÕó
  */
@@ -53,21 +53,6 @@ CMatrix CxbDevDcLine::GetYMatrix(int hOrder) {
 			vY._mat[i + 2][j + 2] = *(Ys + (hOrder - 1) * 4 + i * 2 + j);
 		}
 	return vY;
-}
-//·µ»ØYs£¬Ym
-CComplex* CxbDevDcLine::GetYs(int hOrder) {
-	if (hOrder >= H_CAL_NUM) {
-		cout << "hOrder out of Range" << endl;
-		return 0;
-	}
-	return Ys + (hOrder - 1) * 4;
-}
-CComplex* CxbDevDcLine::GetYm(int hOrder) {
-	if (hOrder >= H_CAL_NUM) {
-		cout << "hOrder out of Range" << endl;
-		return 0;
-	}
-	return Ym + (hOrder - 1) * 4;
 }
 
 
@@ -101,49 +86,97 @@ void CxbDevDcLine::SetStationName2(string newVal){
 }
 
 
-double CxbDevDcLine::GetYs11(){
+void CxbDevDcLine::SetYm12re(double newVal){
 
-	return Ys11;
+	Ym12re = newVal;
 }
 
 
-void CxbDevDcLine::SetYs11(double newVal){
+double CxbDevDcLine::GetYm11re(){
 
-	Ys11 = newVal;
+	return Ym11re;
 }
 
 
-double CxbDevDcLine::GetYs12(){
+double CxbDevDcLine::GetYs11im(){
 
-	return Ys12;
+	return Ys11im;
 }
 
 
-void CxbDevDcLine::SetYs12(double newVal){
+void CxbDevDcLine::SetYm11re(double newVal){
 
-	Ys12 = newVal;
+	Ym11re = newVal;
 }
 
 
-double CxbDevDcLine::GetYm11(){
+void CxbDevDcLine::SetYs11im(double newVal){
 
-	return Ym11;
+	Ys11im = newVal;
 }
 
 
-void CxbDevDcLine::SetYm11(double newVal){
+double CxbDevDcLine::GetYs12im(){
 
-	Ym11 = newVal;
+	return Ys12im;
 }
 
 
-double CxbDevDcLine::GetYm12(){
+void CxbDevDcLine::SetYs12im(double newVal){
 
-	return Ym12;
+	Ys12im = newVal;
 }
 
 
-void CxbDevDcLine::SetYm12(double newVal){
+double CxbDevDcLine::GetYm11im(){
 
-	Ym12 = newVal;
+	return Ym11im;
+}
+
+
+double CxbDevDcLine::GetYs11re(){
+
+	return Ys11re;
+}
+
+
+void CxbDevDcLine::SetYm11im(double newVal){
+
+	Ym11im = newVal;
+}
+
+
+void CxbDevDcLine::SetYs11re(double newVal){
+
+	Ys11re = newVal;
+}
+
+
+double CxbDevDcLine::GetYm12im(){
+
+	return Ym12im;
+}
+
+
+double CxbDevDcLine::GetYs12re(){
+
+	return Ys12re;
+}
+
+
+void CxbDevDcLine::SetYm12im(double newVal){
+
+	Ym12im = newVal;
+}
+
+
+void CxbDevDcLine::SetYs12re(double newVal){
+
+	Ys12re = newVal;
+}
+
+
+double CxbDevDcLine::GetYm12re(){
+
+	return Ym12re;
 }

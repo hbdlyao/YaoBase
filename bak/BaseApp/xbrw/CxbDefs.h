@@ -29,8 +29,16 @@ enum Enum_xbDeviceType
 	xb_CoupleC,
 	xb_PulseC,
 	xb_Shunt,
-	xb_Branch
+	xb_Branch,
+	xb_Trap,
+	xb_Monitor
 	
+};
+
+enum Enum_xbPosOrNeg
+{
+	xb_Pos = 0,
+	xb_Neg
 };
 
 enum Enum_DCFType

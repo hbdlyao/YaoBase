@@ -109,6 +109,14 @@ string CHvdcFunc::xbTypeToName(int vType)
 		return "´®ÁªÖ§Â·";
 		break;
 
+	case xb_Trap:
+		return "×è²¨Æ÷";
+		break;
+
+	case xb_Monitor:
+		return "¼à¿Ø×°ÖÃ";
+		break;
+
 	default:
 		return "xbDevice";
 		break;

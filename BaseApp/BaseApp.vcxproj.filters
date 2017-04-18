@@ -109,6 +109,21 @@
     <Filter Include="头文件\直流谐波\xb计算组合">
       <UniqueIdentifier>{7c0c0a50-1bbd-41b6-85d8-6bc654b84d0f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\直流谐波\xb读写">
+      <UniqueIdentifier>{87bd1df7-8491-4964-b9ac-e3bd1193ca1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\直流谐波\xb读写">
+      <UniqueIdentifier>{85d1ea35-ee69-41eb-b600-0f18d7895f53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\gbHead">
+      <UniqueIdentifier>{b28f0859-8cea-410b-b41c-43bef4d7e58e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\主回路\mc读写">
+      <UniqueIdentifier>{8dc7ab2f-f5cf-49a5-940f-759cba54b907}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\主回路\mc读写">
+      <UniqueIdentifier>{8c1f9489-79bb-43a8-bb5b-78aa6b214e20}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPowerGrid.cpp">
@@ -237,9 +252,6 @@
     <ClCompile Include="CmcOrder.cpp">
       <Filter>源文件\主回路\mc计算MVC</Filter>
     </ClCompile>
-    <ClCompile Include="CmcRw.cpp">
-      <Filter>源文件\主回路</Filter>
-    </ClCompile>
     <ClCompile Include="CPowerMath.cpp">
       <Filter>源文件\数学计算</Filter>
     </ClCompile>
@@ -274,9 +286,6 @@
       <Filter>源文件\数学计算</Filter>
     </ClCompile>
     <ClCompile Include="CxbHvdcGrid.cpp">
-      <Filter>源文件\直流谐波</Filter>
-    </ClCompile>
-    <ClCompile Include="CxbRw.cpp">
       <Filter>源文件\直流谐波</Filter>
     </ClCompile>
     <ClCompile Include="CxbDev3pVSrc.cpp">
@@ -399,9 +408,6 @@
     <ClCompile Include="CmcDevTwoDot.cpp">
       <Filter>源文件\主回路\mcDevice</Filter>
     </ClCompile>
-    <ClCompile Include="CProjectRwMDB.cpp">
-      <Filter>源文件\HvdcApp</Filter>
-    </ClCompile>
     <ClCompile Include="CxbCalDCF_N.cpp">
       <Filter>源文件\直流谐波\xb计算组合</Filter>
     </ClCompile>
@@ -416,6 +422,99 @@
     </ClCompile>
     <ClCompile Include="CxbDevRLCs.cpp">
       <Filter>源文件\直流谐波\xbDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="CxbDevMonitor.cpp">
+      <Filter>源文件\直流谐波\xbDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="CxbDevTrap.cpp">
+      <Filter>源文件\直流谐波\xbDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="CxbRwBranch.cpp">
+      <Filter>源文件\直流谐波\xb读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CxbRwDcLine.cpp">
+      <Filter>源文件\直流谐波\xb读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CxbRwOne.cpp">
+      <Filter>源文件\直流谐波\xb读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CxbRwRLCs.cpp">
+      <Filter>源文件\直流谐波\xb读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CxbRwShunt.cpp">
+      <Filter>源文件\直流谐波\xb读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CxbRwTwo.cpp">
+      <Filter>源文件\直流谐波\xb读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CxbRw3pVSrc.cpp">
+      <Filter>源文件\直流谐波\xb读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CxbRw.cpp">
+      <Filter>源文件\直流谐波\xb读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CRwMvc.cpp">
+      <Filter>源文件\基本框架\数据库</Filter>
+    </ClCompile>
+    <ClCompile Include="CxbRwMvc.cpp">
+      <Filter>源文件\直流谐波\xb读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CmcRwBranch.cpp">
+      <Filter>源文件\主回路\mc读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CmcRwOne.cpp">
+      <Filter>源文件\主回路\mc读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CmcRwShunt.cpp">
+      <Filter>源文件\主回路\mc读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CmcRwTwo.cpp">
+      <Filter>源文件\主回路\mc读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CmcRw.cpp">
+      <Filter>源文件\主回路\mc读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CmcRwMvc.cpp">
+      <Filter>源文件\主回路\mc读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CmcRwXf2.cpp">
+      <Filter>源文件\主回路\mc读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CmcRwConvertor.cpp">
+      <Filter>源文件\主回路\mc读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CmcRwAcfilter.cpp">
+      <Filter>源文件\主回路\mc读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CmcRwAcSys.cpp">
+      <Filter>源文件\主回路\mc读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CmcRwDcLine.cpp">
+      <Filter>源文件\主回路\mc读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CmcRwGroundLine.cpp">
+      <Filter>源文件\主回路\mc读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CmcRwGround.cpp">
+      <Filter>源文件\主回路\mc读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CmcRwMetalLine.cpp">
+      <Filter>源文件\主回路\mc读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CProjectRwMvc.cpp">
+      <Filter>源文件\HvdcApp</Filter>
+    </ClCompile>
+    <ClCompile Include="CmcRwResultMvc.cpp">
+      <Filter>源文件\主回路\mc读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CmcRwOrderMvc.cpp">
+      <Filter>源文件\主回路\mc读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CxbRwResultMvc.cpp">
+      <Filter>源文件\直流谐波\xb读写</Filter>
+    </ClCompile>
+    <ClCompile Include="CxbRwOrderMvc.cpp">
+      <Filter>源文件\直流谐波\xb读写</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -488,9 +587,6 @@
     <ClInclude Include="CmcCalXf2.h">
       <Filter>头文件\主回路\mc计算</Filter>
     </ClInclude>
-    <ClInclude Include="gbHead_mcCal.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="CObjBase.h">
       <Filter>头文件\基本框架\对象基类</Filter>
     </ClInclude>
@@ -527,28 +623,10 @@
     <ClInclude Include="CmcDevXf2.h">
       <Filter>头文件\主回路\mcDevice</Filter>
     </ClInclude>
-    <ClInclude Include="gbHead_mcDevice.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="gbHead_Var.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="gbHead_SysVar.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="CDeviceBase.h">
       <Filter>头文件\DeviceBase</Filter>
     </ClInclude>
-    <ClInclude Include="gbHead_xbDevice.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="CMyDefs.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CmcRw.h">
-      <Filter>头文件\主回路</Filter>
-    </ClInclude>
-    <ClInclude Include="gbHead_xbCal.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="CmcSolves.h">
@@ -600,9 +678,6 @@
       <Filter>头文件\数学计算</Filter>
     </ClInclude>
     <ClInclude Include="CxbHvdcGrid.h">
-      <Filter>头文件\直流谐波</Filter>
-    </ClInclude>
-    <ClInclude Include="CxbRw.h">
       <Filter>头文件\直流谐波</Filter>
     </ClInclude>
     <ClInclude Include="CxbDev3pVSrc.h">
@@ -728,9 +803,6 @@
     <ClInclude Include="CxbDefs.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="gbHead_Def.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="CmcDefs.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -743,9 +815,6 @@
     <ClInclude Include="CxbU3pData.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="CProjectRwMDB.h">
-      <Filter>头文件\HvdcApp</Filter>
-    </ClInclude>
     <ClInclude Include="CxbCalDCF_N.h">
       <Filter>头文件\直流谐波\xb计算组合</Filter>
     </ClInclude>
@@ -757,6 +826,126 @@
     </ClInclude>
     <ClInclude Include="CxbDevRLCs.h">
       <Filter>头文件\直流谐波\xbDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="CxbDevTrap.h">
+      <Filter>头文件\直流谐波\xbDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="CxbDevMonitor.h">
+      <Filter>头文件\直流谐波\xbDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="CxbRw.h">
+      <Filter>头文件\直流谐波\xb读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CxbRwBranch.h">
+      <Filter>头文件\直流谐波\xb读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CxbRwDcLine.h">
+      <Filter>头文件\直流谐波\xb读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CxbRwOne.h">
+      <Filter>头文件\直流谐波\xb读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CxbRwRLCs.h">
+      <Filter>头文件\直流谐波\xb读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CxbRwShunt.h">
+      <Filter>头文件\直流谐波\xb读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CxbRwTwo.h">
+      <Filter>头文件\直流谐波\xb读写</Filter>
+    </ClInclude>
+    <ClInclude Include="gbHead_Def.h">
+      <Filter>头文件\gbHead</Filter>
+    </ClInclude>
+    <ClInclude Include="gbHead_mcCal.h">
+      <Filter>头文件\gbHead</Filter>
+    </ClInclude>
+    <ClInclude Include="gbHead_mcDevice.h">
+      <Filter>头文件\gbHead</Filter>
+    </ClInclude>
+    <ClInclude Include="gbHead_SysVar.h">
+      <Filter>头文件\gbHead</Filter>
+    </ClInclude>
+    <ClInclude Include="gbHead_Var.h">
+      <Filter>头文件\gbHead</Filter>
+    </ClInclude>
+    <ClInclude Include="gbHead_xbCal.h">
+      <Filter>头文件\gbHead</Filter>
+    </ClInclude>
+    <ClInclude Include="gbHead_xbDevice.h">
+      <Filter>头文件\gbHead</Filter>
+    </ClInclude>
+    <ClInclude Include="gbHead_xbRw.h">
+      <Filter>头文件\gbHead</Filter>
+    </ClInclude>
+    <ClInclude Include="CxbRw3pVSrc.h">
+      <Filter>头文件\直流谐波\xb读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CRwMvc.h">
+      <Filter>头文件\基本框架\数据库</Filter>
+    </ClInclude>
+    <ClInclude Include="CxbRwMvc.h">
+      <Filter>头文件\直流谐波\xb读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CmcRwBranch.h">
+      <Filter>头文件\主回路\mc读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CmcRwOne.h">
+      <Filter>头文件\主回路\mc读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CmcRwShunt.h">
+      <Filter>头文件\主回路\mc读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CmcRwTwo.h">
+      <Filter>头文件\主回路\mc读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CmcRw.h">
+      <Filter>头文件\主回路\mc读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CmcRwMvc.h">
+      <Filter>头文件\主回路\mc读写</Filter>
+    </ClInclude>
+    <ClInclude Include="gbHead_mcRw.h">
+      <Filter>头文件\gbHead</Filter>
+    </ClInclude>
+    <ClInclude Include="CmcRwAcfilter.h">
+      <Filter>头文件\主回路\mc读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CmcRwAcSys.h">
+      <Filter>头文件\主回路\mc读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CmcRwConvertor.h">
+      <Filter>头文件\主回路\mc读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CmcRwXf2.h">
+      <Filter>头文件\主回路\mc读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CmcRwDcLine.h">
+      <Filter>头文件\主回路\mc读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CmcRwGroundLine.h">
+      <Filter>源文件\主回路\mc读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CmcRwMetalLine.h">
+      <Filter>头文件\主回路\mc读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CmcRwGround.h">
+      <Filter>头文件\主回路\mc读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CProjectRwMvc.h">
+      <Filter>头文件\HvdcApp</Filter>
+    </ClInclude>
+    <ClInclude Include="CmcRwOrderMvc.h">
+      <Filter>头文件\主回路\mc读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CmcRwResultMvc.h">
+      <Filter>头文件\主回路\mc读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CxbRwOrderMvc.h">
+      <Filter>头文件\直流谐波\xb读写</Filter>
+    </ClInclude>
+    <ClInclude Include="CxbRwResultMvc.h">
+      <Filter>头文件\直流谐波\xb读写</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

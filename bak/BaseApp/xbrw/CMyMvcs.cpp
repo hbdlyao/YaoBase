@@ -10,7 +10,7 @@
 
 //
 
-CRwDbf CMyMvcs::RwMvc;
+CRwMvc CMyMvcs::RwMvc;
 //
 void CMyMvcs::Release()
 {

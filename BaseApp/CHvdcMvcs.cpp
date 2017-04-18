@@ -10,69 +10,75 @@
 
 #include "CHvdcVars.h"
 
-CProjectRwMDB *  CHvdcMvcs::pProjectRw = nullptr;
+CProjectRwMvc *  CHvdcMvcs::pProjectRwMvc = nullptr;
 
-CmcRw * CHvdcMvcs::pmcRws=nullptr;
-CxbRw * CHvdcMvcs::pxbRws = nullptr;
+CmcRwMvc * CHvdcMvcs::pmcRwMvc=nullptr;
+CxbRwMvc * CHvdcMvcs::pxbRwMvc = nullptr;
 
 
 void CHvdcMvcs::Init()
 {
-	pProjectRw = new CProjectRwMDB();
-	pProjectRw->InitAdo(CMyParams::dbf_mdb);
-
-
-	pmcRws = new CmcRw();
-	pmcRws->InitAdo(CMyParams::dbf_mdb);
-	pmcRws->InitGrid(CHvdcVars::pmcHvdcGrid);
-
-
-	pxbRws = new CxbRw();
-	pxbRws->InitAdo(CMyParams::dbf_mdb);
-	pxbRws->InitGrid(CHvdcVars::pxbHvdcGrid);
 	
+	pProjectRwMvc = new CProjectRwMvc();
+	pProjectRwMvc->InitAdo(CMyParams::dbf_mdb);
+
+
+	pmcRwMvc = new CmcRwMvc();
+	pmcRwMvc->InitAdo(CMyParams::dbf_mdb);
+	pmcRwMvc->InitGrid(CHvdcVars::pmcHvdcGrid);
+	
+	
+	pxbRwMvc = new CxbRwMvc();
+	pxbRwMvc->InitAdo(CMyParams::dbf_mdb);
+	pxbRwMvc->InitGrid(CHvdcVars::pxbHvdcGrid);
+	
+
 }
 
 
 void CHvdcMvcs::Clear()
 {
-	pProjectRw->Clear();
+	//pProjectRw->Clear();
 
-	pmcRws->Clear();
+	//pmcRws->Clear();
 
-	pxbRws->Clear();
+	//pxbRws->Clear();
 
 
 }
 
 void CHvdcMvcs::Release()
 {
-	delete pProjectRw;
-	pProjectRw = nullptr;
+	
+	delete pProjectRwMvc;
+	pProjectRwMvc = nullptr;
+	
+
+	delete pmcRwMvc;
+	pmcRwMvc = nullptr;
+
 	//
-	delete pmcRws;
-	pmcRws = nullptr;
-	//
-	delete pxbRws;
-	pxbRws = nullptr;
+	delete pxbRwMvc;
+	pxbRwMvc = nullptr;
 	//
 
 }
 
 void CHvdcMvcs::OnLoad()
 {
-	pProjectRw->OnLoad();
+	pProjectRwMvc->OnLoad();
 
-	pmcRws->OnLoad();
+	pmcRwMvc->OnLoad();
 
-	pxbRws->OnLoad();
+	pxbRwMvc->OnLoad();
 }
 
 void CHvdcMvcs::OnSave()
 {
-	pProjectRw->OnSave();
+	//pProjectRwMvc->OnSave();
 
-	pmcRws->OnSave();
+	pmcRwMvc->OnSave();
 
-	pxbRws->OnSave();
+
+	pxbRwMvc->OnSave();
 }

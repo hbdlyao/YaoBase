@@ -14,7 +14,7 @@ CDeviceBase::CDeviceBase()
 }
 
 
-CDeviceBase::CDeviceBase(const CDeviceBase& theCDeviceBaseVo)
+CDeviceBase::CDeviceBase(const CDeviceBase & theCDeviceBaseVo)
 {
 
 	Init();
@@ -146,3 +146,57 @@ void CDeviceBase::SetdotCount(int newVal){
 
 	dotCount = newVal;
 }
+
+
+void CDeviceBase::ClearNodeID()
+{
+	for (int i = 0; i < GetDotCount(); i++)
+	{
+		SetNodeID(i, -2);
+	}//for i
+
+}
+
+
+void CDeviceBase::NodeSort(NodeMap& vNodeMap)
+{
+	int i, vN, vID;
+	string vName;
+
+	for (i = 0; i < GetDotCount(); i++)
+	{
+		vName = GetNodeName(i);
+		vN = static_cast<int > (vNodeMap.count(vName));
+
+		if (vN == 0)
+		{//²»´æÔÚ vName
+			vID = static_cast<int> (vNodeMap.size());
+			vNodeMap[vName] = vID;
+		}
+
+	}//for i
+
+}
+
+
+void CDeviceBase::NodeGround(NodeMap& vNodeMap)
+{
+
+}
+
+void CDeviceBase::NodeID(NodeMap & vNodeID)
+{
+	int i, vID;
+	string vName;
+
+	for (i = 0; i < GetDotCount(); i++)
+	{
+		vName = GetNodeName(i);
+		vID = vNodeID[vName];
+
+		SetNodeID(i, vID);
+
+	}//for i
+
+}
+

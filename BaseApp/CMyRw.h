@@ -9,24 +9,21 @@ using namespace std;
 
 class CRwDbf
 {
-
 public:
-	~CRwDbf();
 	virtual void OnLoad();
 	virtual void OnSave();
-	virtual void InitAdo(string vDbf);
-	/**
-	 * virtual void InitAdo(string vDbf);
-	 */
-	virtual void Clear();
-	virtual void Release();
+
+	virtual void InitAdo(CRwAdo * vAdo);
+	virtual void InitTable(string vtblName, int vtblType, int vDevType);
 
 protected:
+	
 	string dbfName;
 	CRwAdo* RwAdo;
+	string tblName;
+	int tblType;
+	int devType;
 
-	virtual void doLoad();
-	virtual void doSave();
 	virtual bool doOpenDBF();
 	virtual bool doCloseDBF();
 

@@ -50,7 +50,6 @@ void mcCalculateNormal()
 	vMvc = new CmcSolveMvcNormal();
 	vMvc->Init();
 	vMvc->Init(CHvdcVars::pmcHvdcGrid);
-	//vMvc->InitOrder();
 
 	vMvc->Run();
 
@@ -65,17 +64,11 @@ void xbCalculate()
 	//
 	vMvc = new CxbSolveMvc();
 	vMvc->Init();
-
-	//
 	vMvc->Init(CHvdcVars::pxbHvdcGrid);
 	vMvc->InitOrder();
 
 	//
-	//vMvc->Prepare_Line();
-	//vMvc->Prepare_DCF();
-
-	//
-	vMvc->Run();
+	//vMvc->Run();
 
 	//
 	delete vMvc;
@@ -91,9 +84,9 @@ int main()
 
 	//
 	//mcCalculateNormal();
-	//mcCalculate();
-
-	xbCalculate();
+	mcCalculate();
+	
+	//xbCalculate();
 
 	//
 	CHvdcInitApp::Exit();

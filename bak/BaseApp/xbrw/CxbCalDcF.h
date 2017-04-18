@@ -8,9 +8,9 @@
 #if !defined(EA_9ACDB07F_4B0F_4900_8A8D_3935DE6479A6__INCLUDED_)
 #define EA_9ACDB07F_4B0F_4900_8A8D_3935DE6479A6__INCLUDED_
 
-#include "CxbCalculate.h"
+#include "CxbCal_Leaf.h"
 
-class CxbCalDCF : public CxbCalculate
+class CxbCalDCF : public CxbCal_Leaf
 {
 
 protected:

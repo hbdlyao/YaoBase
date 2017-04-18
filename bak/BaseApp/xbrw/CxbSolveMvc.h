@@ -19,6 +19,8 @@ public:
 	virtual void Init();
 	virtual void Init(CPowerGrid* vGrid);
 	virtual void Clear();
+	virtual void InitOrder();
+
 
 public:
 	virtual void NodeID(int vGNDType);
@@ -30,17 +32,23 @@ protected:
 protected:
 	int StaCount();
 
-	void doDCF();
 
-	void selectU3P(string vCondition);
+	//马骏鹏
+	//形成各器件导纳参数
+	void InitDevY();
 
+	void doPrepare_U3p(string vCondition);
+	void doPrepare_Line();
+	void doPrepare_DCF();
+
+	//
 	void doInitRun();
 	void doInitMatrix();
 
-	
+
 	virtual void doRecordResult();
 	virtual void doRun();
-	
+
 	void doRun_Ground(string vFlag);
 	void doRun_Rd(string vFlag);
 	void doRun_Ud(string vFlag);
@@ -48,6 +56,9 @@ protected:
 	void doRun_Uac(string vFlag);
 	void doRun_UacSwap(string vFlag, int vIndex, int vStaCount);
 	void doRun_Pd();
+
+	//
+	void doRun_DCF();
 
 
 };

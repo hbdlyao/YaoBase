@@ -12,25 +12,74 @@
 void CxbDevDCF::InitDev(int vDCFType, int vTimes)
 {
 	DCFType = vDCFType;
+	RandTimes = vTimes;
 	switch (DCFType)
 	{
 	case DCF_Single:
+		if (OneTuned.ConstDev != nullptr)
+			delete OneTuned.ConstDev;
+		if (OneTuned.RandDev != nullptr)
+			delete OneTuned.RandDev;
+		if (OneTuned.ConstDevYg != nullptr)
+			delete OneTuned.ConstDevYg;
+		if (OneTuned.ConstDevYg != nullptr)
+			delete OneTuned.RandDevYb;
+		if (OneTuned.RandDevYg != nullptr)
+			delete OneTuned.ConstDevYg;
+		if (OneTuned.RandDevYg != nullptr)
+			delete OneTuned.RandDevYb;
 		OneTuned.ConstDev = new CxbDCFOneTunedDev[3];
 		OneTuned.RandDev = new CxbDCFOneTunedDev[vTimes];
+		OneTuned.ConstDevYg = new double[H_CAL_NUM * 3];
+		OneTuned.ConstDevYb = new double[H_CAL_NUM * 3];
+		OneTuned.RandDevYg = new double[H_CAL_NUM * vTimes];
+		OneTuned.RandDevYb = new double[H_CAL_NUM * vTimes];
 		SetOneConstDev();
 		SetOneRandDev(vTimes);
 		return;
 	case DCF_Double:
+		if (TwoTuned.ConstDev != nullptr)
+			delete TwoTuned.ConstDev;
+		if (TwoTuned.RandDev != nullptr)
+			delete TwoTuned.RandDev;
+		if (TwoTuned.ConstDevYg != nullptr)
+			delete TwoTuned.ConstDevYg;
+		if (TwoTuned.ConstDevYg != nullptr)
+			delete TwoTuned.ConstDevYb;
+		if (TwoTuned.RandDevYg != nullptr)
+			delete TwoTuned.ConstDevYg;
+		if (TwoTuned.RandDevYg != nullptr)
+			delete TwoTuned.RandDevYb;
 		TwoTuned.ConstDev = new CxbDCFTwoTunedDev[3];
 		TwoTuned.RandDev = new CxbDCFTwoTunedDev[vTimes];
+		TwoTuned.ConstDevYg = new double[H_CAL_NUM * 3];
+		TwoTuned.ConstDevYb = new double[H_CAL_NUM * 3];
+		TwoTuned.RandDevYg = new double[H_CAL_NUM * vTimes];
+		TwoTuned.RandDevYb = new double[H_CAL_NUM * vTimes];
 		SetTwoConstDev();
 		SetTwoRandDev(vTimes);
 		return;
 	case DCF_Triple:
-		TwoTuned.ConstDev = new CxbDCFTwoTunedDev[3];
-		TwoTuned.RandDev = new CxbDCFTwoTunedDev[vTimes];
-		SetTwoConstDev();
-		SetTwoRandDev(vTimes);
+		if (ThreeTuned.ConstDev != nullptr)
+			delete ThreeTuned.ConstDev;
+		if (ThreeTuned.RandDev != nullptr)
+			delete ThreeTuned.RandDev;
+		if (ThreeTuned.ConstDevYg != nullptr)
+			delete ThreeTuned.ConstDevYg;
+		if (ThreeTuned.ConstDevYg != nullptr)
+			delete ThreeTuned.ConstDevYb;
+		if (ThreeTuned.RandDevYg != nullptr)
+			delete ThreeTuned.ConstDevYg;
+		if (ThreeTuned.RandDevYg != nullptr)
+			delete ThreeTuned.RandDevYb;
+		ThreeTuned.ConstDev = new CxbDCFThreeTunedDev[3];
+		ThreeTuned.RandDev = new CxbDCFThreeTunedDev[vTimes];
+		ThreeTuned.ConstDevYg = new double[H_CAL_NUM * 3];
+		ThreeTuned.ConstDevYb = new double[H_CAL_NUM * 3];
+		ThreeTuned.RandDevYg = new double[H_CAL_NUM * vTimes];
+		ThreeTuned.RandDevYb = new double[H_CAL_NUM * vTimes];
+		SetThreeConstDev();
+		SetThreeRandDev(vTimes);
 		return;
 	}
 
@@ -172,175 +221,245 @@ void CxbDevDCF::SetThreeRandDev(int vTimes) {
 	}
 }
 
-void CxbDevDCF::InitY()
+void CxbDevDCF::InitY(int vDevType)
 {
+	DevType = vDevType;
+
+	switch (DevType)
+	{
+	case DCF_NoneDev:
+		InitYNoneDev();
+	case DCF_ConsDev:
+		InitYConsDev();
+	case DCF_RandDev:
+		InitYRandDev();
+	}
 
 }
 
 //形成一次的导纳参数
-void CxbDevDCF::InitYNoneDev(int vhOrder)
+void CxbDevDCF::InitYNoneDev()
 {
-	//CComplex vZ, vY;
-	//double vw = PI * 2 * get_f() * vhOrder;
-	//switch (DCFType)
-	//{
-	//case DCF_None:
-	//	Yg = 0;
-	//	Yb = 0;
-	//	return;
-	//case DCF_Single:
-	//	vY = CComplex(get_R1(), vw * get_L3() - 1.0 / vw / get_C3()).inverse();
-	//	Yg = vY.real();
-	//	Yb = vY.image();
-	//	return;
-	//case DCF_Double:
-	//	vY = CComplex(0, vw * get_C2() - 1.0 / vw / get_L2());
-	//	vZ = vY.inverse() + CComplex(0, vw * get_L1() - 1.0 / vw / get_C1());
-	//	Yg = 0;
-	//	Yb = vZ.inverse().image();
-	//	return;
-	//case DCF_DoubleHighPass:
-	//	vY = CComplex(0, vw * get_C2() - 1.0 / vw / get_L2());
-	//	vZ = vY.inverse() + CComplex(0, vw * get_L1());
-	//	vY = vZ.inverse() + CComplex(1.0 / get_R1(), 0);
-	//	vZ = vY.inverse() + CComplex(0, -1.0 / vw / get_C1());
-	//	vY = vZ.inverse();
-	//	Yg = vY.real();
-	//	Yb = vY.image();
-	//	return;
-	//case DCF_Triple:
-	//	Yg = 0;
-	//	Yb = -1.0 / (vw*get_L1() - 1.0 / vw / get_C1()) - 1.0 / (vw*get_C2() - 1.0 / vw / get_L2()) - 1.0 / (vw*get_C2() - 1.0 / vw / get_L2());
-	//	return;
-	//case DCF_TripleHighPass:
-	//	vZ = CComplex(0, vw*get_L1() - 1.0 / vw / get_C1());
-	//	vY = CComplex(1.0 / get_R1(), vw*get_C2() - 1.0 / vw / get_L2());
-	//	vZ += vY.inverse();
-	//	vY = CComplex(1.0 / get_R2(), vw*get_C3() - 1.0 / vw / get_L3());
-	//	vZ += vY.inverse();
-	//	vY = vZ.inverse();
-	//	return;
+	CComplex vZ, vY;
+	double vw;
+	for (int vhOrder = 1; vhOrder <= H_CAL_NUM; vhOrder++)
+	{
+		//double vw = PI * 2 * (Frequency + OneTuned.ConstDev->ddf) * vhOrder;
+		switch (DCFType)
+		{
+		case DCF_Single:
+			vw = PI * 2 * (Frequency)* vhOrder;
+			vY = CComplex((OneTuned.R1 + OneTuned.ConstDev->ddR1), vw *(OneTuned.L1 + OneTuned.ConstDev->ddL1) - 1.0 / vw / (OneTuned.C1 + OneTuned.ConstDev->ddC1)).inverse();
+			OneTuned.ConstDevYg[vhOrder - 1] = vY.real();
+			OneTuned.ConstDevYb[vhOrder - 1] = vY.image();
+			break;
+		case DCF_Double:
+			vw = PI * 2 * (Frequency)* vhOrder;
+			if (TwoTuned.R1 == 0)
+			{
+				vY = CComplex(0, vw * (TwoTuned.C2 + TwoTuned.ConstDev->ddC2) - 1.0 / vw / (TwoTuned.L2 + TwoTuned.ConstDev->ddL2));
+				vZ = vY.inverse() + CComplex(0, vw * (TwoTuned.L1 + TwoTuned.ConstDev->ddL1) - 1.0 / vw / (TwoTuned.C1 + TwoTuned.ConstDev->ddC1));
+				vY = vZ.inverse();
+				TwoTuned.ConstDevYg[vhOrder - 1] = vY.real();
+				TwoTuned.ConstDevYb[vhOrder - 1] = vY.image();
+			}
+			else
+			{
+				vY = CComplex(1.0 / (TwoTuned.R1 + TwoTuned.ConstDev->ddR1), vw * (TwoTuned.C2 + TwoTuned.ConstDev->ddC2) - 1.0 / vw / (TwoTuned.L2 + TwoTuned.ConstDev->ddL2));
+				vZ = vY.inverse() + CComplex(0, vw * (TwoTuned.L1 + TwoTuned.ConstDev->ddL1) - 1.0 / vw / (TwoTuned.C1 + TwoTuned.ConstDev->ddC1));
+				vY = vZ.inverse();
+				TwoTuned.ConstDevYg[vhOrder - 1] = vY.real();
+				TwoTuned.ConstDevYb[vhOrder - 1] = vY.image();
+			}
 
+			break;
 
-	//default:return;
-	//}
+		case DCF_Triple:
+			vw = PI * 2 * (Frequency)* vhOrder;
+			if (ThreeTuned.R1 == 0)
+			{
+				vY = CComplex(0, vw * (ThreeTuned.C3 + ThreeTuned.ConstDev->ddC3) - 1.0 / vw / (ThreeTuned.L2 + ThreeTuned.ConstDev->ddL3));
+				vZ = vY.inverse();
+				vY = CComplex(0, vw * (ThreeTuned.C2 + ThreeTuned.ConstDev->ddC2) - 1.0 / vw / (ThreeTuned.L2 + ThreeTuned.ConstDev->ddL2));
+				vZ += vY.inverse() + CComplex(0, vw * (ThreeTuned.L1 + ThreeTuned.ConstDev->ddL1) - 1.0 / vw / (ThreeTuned.C1 + ThreeTuned.ConstDev->ddC1));
+				vY = vZ.inverse();
+				ThreeTuned.ConstDevYg[vhOrder - 1] = vY.real();
+				ThreeTuned.ConstDevYb[vhOrder - 1] = vY.image();
+			}
+			else
+			{
+				vY = CComplex(1.0 / (ThreeTuned.R2 + ThreeTuned.ConstDev->ddR2), vw * (ThreeTuned.C3 + ThreeTuned.ConstDev->ddC3) - 1.0 / vw / (ThreeTuned.L2 + ThreeTuned.ConstDev->ddL3));
+				vZ = vY.inverse();
+				vY = CComplex(1.0 / (ThreeTuned.R1 + ThreeTuned.ConstDev->ddR1), vw * (ThreeTuned.C2 + ThreeTuned.ConstDev->ddC2) - 1.0 / vw / (ThreeTuned.L2 + ThreeTuned.ConstDev->ddL2));
+				vZ = vY.inverse() + CComplex(0, vw * (ThreeTuned.L1 + ThreeTuned.ConstDev->ddL1) - 1.0 / vw / (ThreeTuned.C1 + ThreeTuned.ConstDev->ddC1));
+				vY = vZ.inverse();
+				ThreeTuned.ConstDevYg[vhOrder - 1] = vY.real();
+				ThreeTuned.ConstDevYb[vhOrder - 1] = vY.image();
+			}
+
+			break;
+		default:return;
+		}
+
+	}
 
 }
-void CxbDevDCF::InitYConsDev(int vhOrder, int vCount)
+void CxbDevDCF::InitYConsDev()
 {
-	//CComplex vZ, vY;
-	//double vw = PI * 2 * get_f() * vhOrder;
-	//switch (DCFType)
-	//{
-	//case DCF_None:
-	//	Yg = 0;
-	//	Yb = 0;
-	//	return;
-	//case DCF_Single:
-	//	vY = CComplex(get_R1(), vw * get_L3() - 1.0 / vw / get_C3()).inverse();
-	//	Yg = vY.real();
-	//	Yb = vY.image();
-	//	return;
-	//case DCF_Double:
-	//	vY = CComplex(0, vw * get_C2() - 1.0 / vw / get_L2());
-	//	vZ = vY.inverse() + CComplex(0, vw * get_L1() - 1.0 / vw / get_C1());
-	//	Yg = 0;
-	//	Yb = vZ.inverse().image();
-	//	return;
-	//case DCF_DoubleHighPass:
-	//	vY = CComplex(0, vw * get_C2() - 1.0 / vw / get_L2());
-	//	vZ = vY.inverse() + CComplex(0, vw * get_L1());
-	//	vY = vZ.inverse() + CComplex(1.0 / get_R1(), 0);
-	//	vZ = vY.inverse() + CComplex(0, -1.0 / vw / get_C1());
-	//	vY = vZ.inverse();
-	//	Yg = vY.real();
-	//	Yb = vY.image();
-	//	return;
-	//case DCF_Triple:
-	//	Yg = 0;
-	//	Yb = -1.0 / (vw*get_L1() - 1.0 / vw / get_C1()) - 1.0 / (vw*get_C2() - 1.0 / vw / get_L2()) - 1.0 / (vw*get_C2() - 1.0 / vw / get_L2());
-	//	return;
-	//case DCF_TripleHighPass:
-	//	vZ = CComplex(0, vw*get_L1() - 1.0 / vw / get_C1());
-	//	vY = CComplex(1.0 / get_R1(), vw*get_C2() - 1.0 / vw / get_L2());
-	//	vZ += vY.inverse();
-	//	vY = CComplex(1.0 / get_R2(), vw*get_C3() - 1.0 / vw / get_L3());
-	//	vZ += vY.inverse();
-	//	vY = vZ.inverse();
-	//	return;
+	CComplex vZ, vY;
+	double vw;
+	for (int vCount = 0; vCount < 3; vCount++)
+		for (int vhOrder = 1; vhOrder <= H_CAL_NUM; vhOrder++)
+		{
+			//double vw = PI * 2 * (Frequency + OneTuned.ConstDev->ddf) * vhOrder;
+			switch (DCFType)
+			{
+			case DCF_Single:
+				vw = PI * 2 * (Frequency)* vhOrder;
+				vY = CComplex((OneTuned.R1 + OneTuned.ConstDev->ddR1), vw *(OneTuned.L1 + OneTuned.ConstDev->ddL1) - 1.0 / vw / (OneTuned.C1 + OneTuned.ConstDev->ddC1)).inverse();
+				OneTuned.ConstDevYg[vhOrder - 1 + H_CAL_NUM * vCount] = vY.real();
+				OneTuned.ConstDevYb[vhOrder - 1 + H_CAL_NUM * vCount] = vY.image();
+				break;
+			case DCF_Double:
+				vw = PI * 2 * (Frequency)* vhOrder;
+				if (TwoTuned.R1 == 0)
+				{
+					vY = CComplex(0, vw * (TwoTuned.C2 + TwoTuned.ConstDev->ddC2) - 1.0 / vw / (TwoTuned.L2 + TwoTuned.ConstDev->ddL2));
+					vZ = vY.inverse() + CComplex(0, vw * (TwoTuned.L1 + TwoTuned.ConstDev->ddL1) - 1.0 / vw / (TwoTuned.C1 + TwoTuned.ConstDev->ddC1));
+					vY = vZ.inverse();
+					TwoTuned.ConstDevYg[vhOrder - 1 + H_CAL_NUM * vCount] = vY.real();
+					TwoTuned.ConstDevYb[vhOrder - 1 + H_CAL_NUM * vCount] = vY.image();
+				}
+				else
+				{
+					vY = CComplex(1.0 / (TwoTuned.R1 + TwoTuned.ConstDev->ddR1), vw * (TwoTuned.C2 + TwoTuned.ConstDev->ddC2) - 1.0 / vw / (TwoTuned.L2 + TwoTuned.ConstDev->ddL2));
+					vZ = vY.inverse() + CComplex(0, vw * (TwoTuned.L1 + TwoTuned.ConstDev->ddL1) - 1.0 / vw / (TwoTuned.C1 + TwoTuned.ConstDev->ddC1));
+					vY = vZ.inverse();
+					TwoTuned.ConstDevYg[vhOrder - 1 + H_CAL_NUM * vCount] = vY.real();
+					TwoTuned.ConstDevYb[vhOrder - 1 + H_CAL_NUM * vCount] = vY.image();
+				}
 
+				break;
 
-	//default:return;
-	//}
+			case DCF_Triple:
+				vw = PI * 2 * (Frequency)* vhOrder;
+				if (ThreeTuned.R1 == 0)
+				{
+					vY = CComplex(0, vw * (ThreeTuned.C3 + ThreeTuned.ConstDev->ddC3) - 1.0 / vw / (ThreeTuned.L2 + ThreeTuned.ConstDev->ddL3));
+					vZ = vY.inverse();
+					vY = CComplex(0, vw * (ThreeTuned.C2 + ThreeTuned.ConstDev->ddC2) - 1.0 / vw / (ThreeTuned.L2 + ThreeTuned.ConstDev->ddL2));
+					vZ += vY.inverse() + CComplex(0, vw * (ThreeTuned.L1 + ThreeTuned.ConstDev->ddL1) - 1.0 / vw / (ThreeTuned.C1 + ThreeTuned.ConstDev->ddC1));
+					vY = vZ.inverse();
+					ThreeTuned.ConstDevYg[vhOrder - 1 + H_CAL_NUM * vCount] = vY.real();
+					ThreeTuned.ConstDevYb[vhOrder - 1 + H_CAL_NUM * vCount] = vY.image();
+				}
+				else
+				{
+					vY = CComplex(1.0 / (ThreeTuned.R2 + ThreeTuned.ConstDev->ddR2), vw * (ThreeTuned.C3 + ThreeTuned.ConstDev->ddC3) - 1.0 / vw / (ThreeTuned.L2 + ThreeTuned.ConstDev->ddL3));
+					vZ = vY.inverse();
+					vY = CComplex(1.0 / (ThreeTuned.R1 + ThreeTuned.ConstDev->ddR1), vw * (ThreeTuned.C2 + ThreeTuned.ConstDev->ddC2) - 1.0 / vw / (ThreeTuned.L2 + ThreeTuned.ConstDev->ddL2));
+					vZ = vY.inverse() + CComplex(0, vw * (ThreeTuned.L1 + ThreeTuned.ConstDev->ddL1) - 1.0 / vw / (ThreeTuned.C1 + ThreeTuned.ConstDev->ddC1));
+					vY = vZ.inverse();
+					ThreeTuned.ConstDevYg[vhOrder - 1 + H_CAL_NUM * vCount] = vY.real();
+					ThreeTuned.ConstDevYb[vhOrder - 1 + H_CAL_NUM * vCount] = vY.image();
+				}
+
+				break;
+			default:return;
+			}
+
+		}
 }
-void CxbDevDCF::InitYRandDev(int vhOrder, int vCount)
+void CxbDevDCF::InitYRandDev()
 {
-	//CComplex vZ, vY;
-	//double vw = PI * 2 * get_f() * vhOrder;
-	//switch (DCFType)
-	//{
-	//case DCF_None:
-	//	Yg = 0;
-	//	Yb = 0;
-	//	return;
-	//case DCF_Single:
-	//	vY = CComplex(get_R1(), vw * get_L3() - 1.0 / vw / get_C3()).inverse();
-	//	Yg = vY.real();
-	//	Yb = vY.image();
-	//	return;
-	//case DCF_Double:
-	//	vY = CComplex(0, vw * get_C2() - 1.0 / vw / get_L2());
-	//	vZ = vY.inverse() + CComplex(0, vw * get_L1() - 1.0 / vw / get_C1());
-	//	Yg = 0;
-	//	Yb = vZ.inverse().image();
-	//	return;
-	//case DCF_DoubleHighPass:
-	//	vY = CComplex(0, vw * get_C2() - 1.0 / vw / get_L2());
-	//	vZ = vY.inverse() + CComplex(0, vw * get_L1());
-	//	vY = vZ.inverse() + CComplex(1.0 / get_R1(), 0);
-	//	vZ = vY.inverse() + CComplex(0, -1.0 / vw / get_C1());
-	//	vY = vZ.inverse();
-	//	Yg = vY.real();
-	//	Yb = vY.image();
-	//	return;
-	//case DCF_Triple:
-	//	Yg = 0;
-	//	Yb = -1.0 / (vw*get_L1() - 1.0 / vw / get_C1()) - 1.0 / (vw*get_C2() - 1.0 / vw / get_L2()) - 1.0 / (vw*get_C2() - 1.0 / vw / get_L2());
-	//	return;
-	//case DCF_TripleHighPass:
-	//	vZ = CComplex(0, vw*get_L1() - 1.0 / vw / get_C1());
-	//	vY = CComplex(1.0 / get_R1(), vw*get_C2() - 1.0 / vw / get_L2());
-	//	vZ += vY.inverse();
-	//	vY = CComplex(1.0 / get_R2(), vw*get_C3() - 1.0 / vw / get_L3());
-	//	vZ += vY.inverse();
-	//	vY = vZ.inverse();
-	//	return;
+	CComplex vZ, vY;
+	double vw;
+	for (int vCount = 0; vCount < RandTimes; vCount++)
+		for (int vhOrder = 1; vhOrder <= H_CAL_NUM; vhOrder++)
+		{
+			//double vw = PI * 2 * (Frequency + OneTuned.ConstDev->ddf) * vhOrder;
+			switch (DCFType)
+			{
+			case DCF_Single:
+				vw = PI * 2 * (Frequency)* vhOrder;
+				vY = CComplex((OneTuned.R1 + OneTuned.RandDev->ddR1), vw *(OneTuned.L1 + OneTuned.RandDev->ddL1) - 1.0 / vw / (OneTuned.C1 + OneTuned.RandDev->ddC1)).inverse();
+				OneTuned.RandDevYg[vhOrder - 1 + H_CAL_NUM * vCount] = vY.real();
+				OneTuned.RandDevYb[vhOrder - 1 + H_CAL_NUM * vCount] = vY.image();
+				break;
+			case DCF_Double:
+				vw = PI * 2 * (Frequency)* vhOrder;
+				if (TwoTuned.R1 == 0)
+				{
+					vY = CComplex(0, vw * (TwoTuned.C2 + TwoTuned.RandDev->ddC2) - 1.0 / vw / (TwoTuned.L2 + TwoTuned.RandDev->ddL2));
+					vZ = vY.inverse() + CComplex(0, vw * (TwoTuned.L1 + TwoTuned.RandDev->ddL1) - 1.0 / vw / (TwoTuned.C1 + TwoTuned.RandDev->ddC1));
+					vY = vZ.inverse();
+					TwoTuned.RandDevYg[vhOrder - 1 + H_CAL_NUM * vCount] = vY.real();
+					TwoTuned.RandDevYb[vhOrder - 1 + H_CAL_NUM * vCount] = vY.image();
+				}
+				else
+				{
+					vY = CComplex(1.0 / (TwoTuned.R1 + TwoTuned.RandDev->ddR1), vw * (TwoTuned.C2 + TwoTuned.RandDev->ddC2) - 1.0 / vw / (TwoTuned.L2 + TwoTuned.RandDev->ddL2));
+					vZ = vY.inverse() + CComplex(0, vw * (TwoTuned.L1 + TwoTuned.RandDev->ddL1) - 1.0 / vw / (TwoTuned.C1 + TwoTuned.RandDev->ddC1));
+					vY = vZ.inverse();
+					TwoTuned.RandDevYg[vhOrder - 1 + H_CAL_NUM * vCount] = vY.real();
+					TwoTuned.RandDevYb[vhOrder - 1 + H_CAL_NUM * vCount] = vY.image();
+				}
 
+				break;
 
-	//default:return;
-	//}
+			case DCF_Triple:
+				vw = PI * 2 * (Frequency)* vhOrder;
+				if (ThreeTuned.R1 == 0)
+				{
+					vY = CComplex(0, vw * (ThreeTuned.C3 + ThreeTuned.RandDev->ddC3) - 1.0 / vw / (ThreeTuned.L2 + ThreeTuned.RandDev->ddL3));
+					vZ = vY.inverse();
+					vY = CComplex(0, vw * (ThreeTuned.C2 + ThreeTuned.RandDev->ddC2) - 1.0 / vw / (ThreeTuned.L2 + ThreeTuned.RandDev->ddL2));
+					vZ += vY.inverse() + CComplex(0, vw * (ThreeTuned.L1 + ThreeTuned.RandDev->ddL1) - 1.0 / vw / (ThreeTuned.C1 + ThreeTuned.RandDev->ddC1));
+					vY = vZ.inverse();
+					ThreeTuned.RandDevYg[vhOrder - 1 + H_CAL_NUM * vCount] = vY.real();
+					ThreeTuned.RandDevYb[vhOrder - 1 + H_CAL_NUM * vCount] = vY.image();
+				}
+				else
+				{
+					vY = CComplex(1.0 / (ThreeTuned.R2 + ThreeTuned.RandDev->ddR2), vw * (ThreeTuned.C3 + ThreeTuned.RandDev->ddC3) - 1.0 / vw / (ThreeTuned.L2 + ThreeTuned.RandDev->ddL3));
+					vZ = vY.inverse();
+					vY = CComplex(1.0 / (ThreeTuned.R1 + ThreeTuned.RandDev->ddR1), vw * (ThreeTuned.C2 + ThreeTuned.RandDev->ddC2) - 1.0 / vw / (ThreeTuned.L2 + ThreeTuned.RandDev->ddL2));
+					vZ = vY.inverse() + CComplex(0, vw * (ThreeTuned.L1 + ThreeTuned.RandDev->ddL1) - 1.0 / vw / (ThreeTuned.C1 + ThreeTuned.RandDev->ddC1));
+					vY = vZ.inverse();
+					ThreeTuned.RandDevYg[vhOrder - 1 + H_CAL_NUM * vCount] = vY.real();
+					ThreeTuned.RandDevYb[vhOrder - 1 + H_CAL_NUM * vCount] = vY.image();
+				}
+
+				break;
+			default:return;
+			}
+
+		}
 }
 
 void CxbDevDCF::selectNoneDevY()
 {
-
+	Yg = OneTuned.ConstDevYg;
+	Yb = OneTuned.ConstDevYb;
 }
 
 void CxbDevDCF::selectConsDevY(int vCount)
 {
-
+	Yg = OneTuned.ConstDevYg + vCount * H_CAL_NUM;
+	Yb = OneTuned.ConstDevYb + vCount * H_CAL_NUM;
 }
 
 void CxbDevDCF::selectRandDevY(int vCount)
 {
-
+	Yg = OneTuned.RandDevYg + vCount * H_CAL_NUM;
+	Yb = OneTuned.RandDevYb + vCount * H_CAL_NUM;
 }
 
 double CxbDevDCF::GetYg(int vhOrder)
 {
 	//马俊鹏
 
-	return Yg[vhOrder];
+	return Yg[vhOrder - 1];
 
 }
 
@@ -348,6 +467,6 @@ double CxbDevDCF::GetYb(int vhOrder)
 {
 	//马俊鹏
 
-	return Yb[vhOrder];
+	return Yb[vhOrder - 1];
 }
 

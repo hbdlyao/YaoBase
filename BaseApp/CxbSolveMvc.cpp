@@ -10,7 +10,8 @@
 #include "CMyParams.h"
 #include "CHvdcParams.h"
 #include "CxbDev3pVSrc.h"
-#include "CxbRw.h"
+
+#include "CxbRwOrderMvc.h"
 
 
 CxbSolveMvc::~CxbSolveMvc()
@@ -61,16 +62,13 @@ void CxbSolveMvc::Init(CPowerGrid* vGrid)
 
 void CxbSolveMvc::InitOrder()
 {
+	CxbRwOrderMvc  vRwMvc;
 
-	CxbRw * vRw = new CxbRw();
-	vRw->InitAdo(CMyParams::dbf_mdb);
+	vRwMvc.InitAdo(CMyParams::dbf_mdb);
+	vRwMvc.Init(pxbProfile->pxbOrder);
 
-	vRw->OnLoad_Order(pxbProfile->pxbOrder);
-
-	//
-	delete vRw;
-	vRw = nullptr;
-
+	vRwMvc.OnLoad();
+	
 }
 //马骏鹏
 void CxbSolveMvc::InitDevY()
@@ -104,7 +102,7 @@ void CxbSolveMvc::doNewSolves(int vGNDType)
 int CxbSolveMvc::StaCount()
 {
 	//应该从工程属性中读取
-	return CHvdcParams::StationCount;
+	return CHvdcParams::xbStationCount;
 
 	//return 3;
 

@@ -28,5 +28,7 @@ public:
 	 * 所属拓扑类型  单极大地 单极金属 双极
 	 */
 	void SetPosOrNeg(int newVal);
+	virtual void Add(CxbDevBase * vItem) ;
+	virtual void Remove(CxbDevBase * vItem) ;
 };
 #endif // !defined(EA_14923168_F51E_4cf5_A176_85172044F6D2__INCLUDED_)

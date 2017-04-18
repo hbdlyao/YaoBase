@@ -7,6 +7,7 @@
 
 #include "CPowerCalculate.h"
 
+
 void CPowerCalculate::Init(CDeviceBase * vDev)
 {
 	pDevice = vDev;
@@ -28,46 +29,19 @@ void CPowerCalculate::Prepare()
 
 void CPowerCalculate::NodeGround(NodeMap& vNodeMap)
 {
-
+	pDevice->NodeGround(vNodeMap);
 }
 
 
 void CPowerCalculate::NodeSort(NodeMap& vNodeMap)
-{
-	int i, vN,vID,vdotCount;
-	string vName;
-	
-	vdotCount = pDevice->GetDotCount();	
-	for (i = 0; i < vdotCount; i++)
-	{
-		vName = pDevice->GetNodeName(i);
-		vN = static_cast<int > (vNodeMap.count(vName));
-	
-		if (vN == 0)
-		{//²»´æÔÚ vName
-			vID = static_cast<int> (vNodeMap.size());
-			vNodeMap[vName] = vID;
-		}
-	
-	}//for i
-	
+{	
+	pDevice->NodeSort(vNodeMap);	
 }
 
 
 void CPowerCalculate::NodeID(NodeMap& vNodeID)
 {
-	int i, vID,vdotCount;
-	string vName;
-		
-	vdotCount = pDevice->GetDotCount();
-	for (i = 0; i < vdotCount; i++)
-	{
-		vName = pDevice->GetNodeName(i);
-		vID = vNodeID[vName];
-	
-		pDevice->SetNodeID(i,vID);
-	
-	}//for i
+	pDevice->NodeID(vNodeID);
 	
 }
 

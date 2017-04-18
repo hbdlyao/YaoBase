@@ -28,15 +28,17 @@ void PowerCalculate()
 void mcCalculate()
 {
 	CmcSolveMvc * vMvc;
-
+	
 	//
 	vMvc = new CmcSolveMvc();
 	vMvc->Init();
-	vMvc->Init(CHvdcVars::pmcHvdcGrid);
+	vMvc->Init(CHvdcVars::pmcHvdcGrid);	
+	vMvc->InitOrder();
 
 	vMvc->Run();
 
 	delete vMvc;
+
 
 }
 
@@ -63,9 +65,12 @@ void xbCalculate()
 	vMvc = new CxbSolveMvc();
 	vMvc->Init();
 	vMvc->Init(CHvdcVars::pxbHvdcGrid);
+	vMvc->InitOrder();
 
+	//
 	//vMvc->Run();
 
+	//
 	delete vMvc;
 
 }
@@ -79,10 +84,9 @@ int main()
 
 	//
 	//mcCalculateNormal();
-
-	//mcCalculate();
-
-	xbCalculate();
+	mcCalculate();
+	
+	//xbCalculate();
 
 	//
 	CHvdcInitApp::Exit();

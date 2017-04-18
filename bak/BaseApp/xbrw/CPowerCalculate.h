@@ -28,11 +28,14 @@ public:
 	int SelfType;
 	string SelfID;
 
-	virtual void Init(CDeviceBase * vDev);
+	virtual void Init(CDeviceBase * vDev) ;
+
 	virtual void Init(CPowerProfile * vProfile, CPowerGrid * vGrid);
 
+
+public:
 	virtual void Prepare();
-	
+
 	virtual void StationSort(StationMap& vStaMap);
 
 	virtual void NodeSort(NodeMap& vNodeMap);
@@ -41,9 +44,16 @@ public:
 
 protected:
 	CPowerProfile * pProfile;
+	/**
+	 * CPowerGrid * pGrid;
+	 */
 	CDeviceBase* pDevice;
 
 };
+
+
+
+typedef vector<CPowerCalculate*> pPowerCalVector;
 
 typedef map<string, CPowerCalculate*> pPowerCalMap;
 typedef pair<string, CPowerCalculate*> pPowerCal_Pair;

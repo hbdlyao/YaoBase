@@ -39,7 +39,8 @@ unsigned long CObjBase::GetObjGUID(){
 }
 
 
-void CObjBase::SetObjGUID(unsigned long newVal){
+void CObjBase::SetObjGUID(unsigned long newVal)
+{
 
 	objGUID = newVal;
 }

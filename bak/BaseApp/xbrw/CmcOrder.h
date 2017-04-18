@@ -34,7 +34,7 @@ public:
 	int nValNum = 1;   //阀组数
 	string Flag_Ground = "1111";  //单极大地/金属回线/双极/双极并联
 	string Flag_Ud = "111";  //全压/80%/70%
-	string Flag_Rd = "11";    //高阻/低阻
+	string Flag_Rd = "11";   //高阻/低阻（额定）
 	string Flag_Uac = "1111";  //额定/最大/最小/极小
 	bool IsUdCustom = false;//直流电压预设情况，如预设则使用UdCustom作为电压指令，否则使用UdLevel
 	bool IsUacSwap  = false;//是否交流电压交叉

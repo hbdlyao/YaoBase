@@ -15,9 +15,28 @@
  */
 class CxbDevTwoDot : public CxbDevBase
 {
+public:
+	/**
+	 * Âí¿¥Åô
+	 */
+	string StationName1;
+	string StationName2;
+
 
 protected:
 	virtual void Init();
 
+
+public:
+	/**
+	 * Âí¿¥Åô
+	 */
+	string GetStationName1();
+	string GetStationName2();
+	/**
+	 * Âí¿¥Åô
+	 */
+	void SetStationName1(string newVal);
+	void SetStationName2(string newVal);
 };
 #endif // !defined(EA_8E88760C_D6CE_419f_A916_6E2E357A1B1E__INCLUDED_)

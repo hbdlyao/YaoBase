@@ -8,106 +8,47 @@
 #include "CMyRw.h"
 #include <iostream>
 
+void CRwDbf::InitAdo(CRwAdo * vAdo)
+{
+	RwAdo = vAdo;
+}
 
-CRwDbf::~CRwDbf(){
-
-	Release();
+void CRwDbf::InitTable(string vtblName, int vtblType, int vDevType) 
+{
+	tblName = vtblName;
+	tblType = vtblType;
+	devType = vDevType;
 }
 
 
-void CRwDbf::OnLoad(){
-
-	try
-	{
-		if (doOpenDBF())
-		{
-			doLoad();
-	
-			//
-			doCloseDBF();
-	
-		}//if 
-	}
-	catch (_com_error & vErr)
-	{
-		cout << vErr.Description() << endl;
-	}
-}
-
-
-void CRwDbf::OnSave(){
-
-	try
-	{
-		if (doOpenDBF())
-		{
-			
-			doSave();
-	
-			//
-			doCloseDBF();
-	
-		}//if 
-	}
-	catch (_com_error & vErr)
-	{
-		cout << vErr.Description() << endl;
-	}
-}
-
-
-void CRwDbf::InitAdo(string vDbf)
+void CRwDbf::OnLoad() 
 {
 
-	dbfName = vDbf;
-	
-	RwAdo = new CRwAdo();
-	RwAdo->InitDbf(dbfName,"","","false");
 }
 
 
-/**
- * virtual void InitAdo(string vDbf);
- */
-void CRwDbf::Clear(){
+void CRwDbf::OnSave()
+{
 
 }
 
 
-void CRwDbf::Release(){
-
-	Clear();
-	//
-	delete RwAdo;
-	RwAdo = nullptr;
-}
-
-
-void CRwDbf::doLoad(){
-
-}
-
-
-void CRwDbf::doSave(){
-
-}
-
-
-bool CRwDbf::doOpenDBF(){
-
+bool CRwDbf::doOpenDBF()
+{
 	bool vOk;
 	
-		vOk=RwAdo->OpenDBF();
+	vOk=RwAdo->OpenDBF();
 	
-		return vOk;
+	return vOk;
 }
 
 
-bool CRwDbf::doCloseDBF(){
-
+bool CRwDbf::doCloseDBF()
+{
 	bool vOk;
 	
-		vOk=RwAdo->CloseDBF();
+	vOk=RwAdo->CloseDBF();
 	
-		return vOk;
+	return vOk;
 }
+

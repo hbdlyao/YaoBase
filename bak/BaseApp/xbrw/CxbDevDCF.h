@@ -36,9 +36,13 @@ protected:
 	CxbDCFThreeTunedData ThreeTuned;
 
 	//类型
+	double Frequency;
+
 	int DCFType;
 
 	int DevType;
+
+	int RandTimes;
 public:
 	//初始化
 	void InitDev(int DCFType, int vTimes);
@@ -53,11 +57,11 @@ public:
 	void SetThreeConstDev();
 	void SetThreeRandDev(int vTimes);
 
-	void InitY();
+	void InitY(int vDevType);
 	//形成一次的导纳参数
-	void InitYNoneDev(int vhOrder);
-	void InitYConsDev(int vhOrder, int vCount);
-	void InitYRandDev(int vhOrder, int vCount);
+	void InitYNoneDev();
+	void InitYConsDev();
+	void InitYRandDev();
 
 	void selectNoneDevY();
 	void selectConsDevY(int vCount);

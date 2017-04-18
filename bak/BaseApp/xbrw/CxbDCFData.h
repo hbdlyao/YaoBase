@@ -47,6 +47,7 @@ struct CxbDCFThreeTunedDev
 	double ddf = 0;
 };
 
+
 struct CxbDCFOneTunedData
 {
 public:
@@ -67,6 +68,12 @@ public:
 
 	CxbDCFOneTunedDev * ConstDev;
 	CxbDCFOneTunedDev * RandDev;
+
+	double * ConstDevYg;
+	double * ConstDevYb;
+
+	double * RandDevYg;
+	double * RandDevYb;
 };
 
 
@@ -96,6 +103,12 @@ public:
 
 	CxbDCFTwoTunedDev * ConstDev;
 	CxbDCFTwoTunedDev * RandDev;
+
+	double * ConstDevYg;
+	double * ConstDevYb;
+
+	double * RandDevYg;
+	double * RandDevYb;
 };
 
 
@@ -134,7 +147,14 @@ public:
 
 	CxbDCFThreeTunedDev * ConstDev;
 	CxbDCFThreeTunedDev * RandDev;
+
+	double * ConstDevYg;
+	double * ConstDevYb;
+
+	double * RandDevYg;
+	double * RandDevYb;
 };
+
 
 
 

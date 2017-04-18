@@ -20,8 +20,11 @@ class CxbDeviceTBL : public CDeviceTBL
 public:
 	virtual string TypeToName(int vDevType);
 
+	static CDeviceBase * xbNewDevice(int vDevType);
+
 protected:
 	virtual CDeviceBase * doNewDevice(int vDevType);
+
 
 };
 
@@ -32,6 +35,8 @@ public:
 	virtual void Init();
 	virtual string TypeToName(int vType);
 	virtual CDeviceTBL * NewDeviceTBL(int vType);
+
+
 
 };
 #endif // !defined(EA_5F53B9B8_946F_4870_BD12_E3D539C4E2BC__INCLUDED_)

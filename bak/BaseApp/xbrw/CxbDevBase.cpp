@@ -24,3 +24,15 @@ void CxbDevBase::SetPosOrNeg(int newVal){
 
 	PosOrNeg = newVal;
 }
+
+
+void CxbDevBase::Add(CxbDevBase * vItem)
+{
+
+}
+
+
+void CxbDevBase::Remove(CxbDevBase * vItem)
+{
+
+}

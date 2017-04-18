@@ -17,8 +17,20 @@
 #include "CxbDevCouple_C.h" 
 #include "CxbDevPulse_C.h" 
 
-#include "CxbDevPbDkq.h" 
+#include "CxbDevPbDkq.h"
+
+
+#include "CxbCal_Leaf.h" 
+#include "CxbCal_Composite.h" 
+
 #include "CxbDevDCF.h" 
+#include "CxbCalDCF_N.h" 
+
+#include "CxbDevTrap.h"
+#include "CxbDevMonitor.h"
+
+
+
 
 
 

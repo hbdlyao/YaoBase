@@ -9,9 +9,9 @@
 #define EA_A00BA6C1_D91B_4183_95AF_CE02940C554C__INCLUDED_
 
 
-#include "CxbCalculate.h"
+#include "CxbCal_Leaf.h"
 
-class CxbCalOneDot : public CxbCalculate
+class CxbCalOneDot : public CxbCal_Leaf
 {
 
 };

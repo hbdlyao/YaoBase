@@ -86,15 +86,15 @@ void CxbDevBranch::SetZx_L(double vValue) {
 
 
 /**
- * Âí¿¥Åô
- */
+* Âí¿¥Åô
+*/
 void CxbDevBranch::InitY(double vFre)
 {
 	CComplex vY;
 	double vOmega;
-	if (Yg == nullptr)
+	if (Yg != nullptr)
 		delete Yg;
-	if (Yb == nullptr)
+	if (Yb != nullptr)
 		delete Yg;
 	Yg = new double[H_CAL_NUM];
 	Yb = new double[H_CAL_NUM];

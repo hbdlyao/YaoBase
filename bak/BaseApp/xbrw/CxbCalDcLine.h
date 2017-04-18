@@ -8,12 +8,12 @@
 #if !defined(EA_3A0DCF80_8780_4abc_9525_28CDE31950EE__INCLUDED_)
 #define EA_3A0DCF80_8780_4abc_9525_28CDE31950EE__INCLUDED_
 
-#include "CxbCalculate.h"
+#include "CxbCal_Leaf.h"
 
 /**
  * 主回路 直流极线
  */
-class CxbCalDcLine : public CxbCalculate
+class CxbCalDcLine : public CxbCal_Leaf
 {
 public:
 	virtual void StationSort(StationMap& vStaMap);

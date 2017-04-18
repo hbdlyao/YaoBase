@@ -28,16 +28,23 @@ protected:
 	* 复数型2X2矩阵
 	*/
 	CComplex * Ys;
-	//double * Ysr;
-	//double * Ysm;
-	/**
-	* 复数型2X2矩阵
-	*/
 	CComplex *  Ym;
-	double Ys11;
-	double Ys12;
-	double Ym11;
-	double Ym12;
+
+	CComplex* GetYs(int hOrder);
+	CComplex* GetYm(int hOrder);
+
+	void SetYs(int hOrder, CComplex *newVal);
+	void SetYm(int hOrder, CComplex *newVal);
+	
+
+	double Ys11re;
+	double Ys12re;
+	double Ym11re;
+	double Ys11im;
+	double Ym12re;
+	double Ys12im;
+	double Ym11im;
+	double Ym12im;
 
 	//马骏鹏
 public:
@@ -46,14 +53,8 @@ public:
 	 */
 	string StationName1;
 	string StationName2;
-	//
-	void SetYs(int hOrder, CComplex *newVal);
-	void SetYm(int hOrder, CComplex *newVal);
 	//返回Y阵
 	CMatrix GetYMatrix(int hOrder);
-	//返回Ys，Ym
-	CComplex* GetYs(int hOrder);
-	CComplex* GetYm(int hOrder);
 	/**
 	 * 马骏鹏
 	 */
@@ -64,13 +65,21 @@ public:
 	 */
 	void SetStationName1(string newVal);
 	void SetStationName2(string newVal);
-	double GetYs11();
-	void SetYs11(double newVal);
-	double GetYs12();
-	void SetYs12(double newVal);
-	double GetYm11();
-	void SetYm11(double newVal);
-	double GetYm12();
-	void SetYm12(double newVal);
+	void SetYm12re(double newVal);
+	double GetYm11re();
+	double GetYs11im();
+	void SetYm11re(double newVal);
+	void SetYs11im(double newVal);
+	double GetYs12im();
+	void SetYs12im(double newVal);
+	double GetYm11im();
+	double GetYs11re();
+	void SetYm11im(double newVal);
+	void SetYs11re(double newVal);
+	double GetYm12im();
+	double GetYs12re();
+	void SetYm12im(double newVal);
+	void SetYs12re(double newVal);
+	double GetYm12re();
 };
 #endif // !defined(EA_8F46C231_3B03_492f_AF91_2960C3884C16__INCLUDED_)

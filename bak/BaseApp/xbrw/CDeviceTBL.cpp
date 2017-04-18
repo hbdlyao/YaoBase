@@ -53,8 +53,6 @@ CDeviceBase * CDeviceTBL::NewDevice(int vDevType)
 	string vID,vName;
 	CDeviceBase * vDev;
 
-	vDev = doNewDevice(vDevType);
-
 	vID = CMyFunc::CreateObjID();
 	vName = TypeToName(vDevType) + to_string(GetItemCount()) + "_" + vID;
 

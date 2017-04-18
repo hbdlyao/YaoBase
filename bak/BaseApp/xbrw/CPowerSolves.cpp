@@ -174,7 +174,7 @@ void CPowerSolves::doNewCal(CDeviceBase * vDev, int vIndex)
 
 	}//switch
 
-	vName = vDev->GetDeviceID();//to-do
+	vName = vDev->GetDeviceName();//to-do
 	vCal->SelfID = vName;
 	vCal->SelfType = vType;
 	vCal->DevType = vType;

@@ -11,18 +11,19 @@ private:
 
 protected:
 	CxbProfile * pxbProfile;
-	//CxbHvdcGrid * pxbHvdc;
 
 public:
-	virtual void Init(CPowerProfile* vProfile, CPowerGrid* vGrid) override;
 
-	/**
-	 * void Init(CPowerProfile * vProfile, CPowerGrid * vGrid) override;
-	 */
+	virtual void Add(CxbCalculate * vItem);
+	virtual void Remove(CxbCalculate * vItem);
+
+public:
 	virtual void UpdateY();
-	virtual void Prepare();
 	virtual void UpdateI();
+
+	virtual void Init(CPowerProfile* vProfile, CPowerGrid* vGrid);
 	virtual void StationSort(StationMap& vStaMap) override;
 	
 };
+
 

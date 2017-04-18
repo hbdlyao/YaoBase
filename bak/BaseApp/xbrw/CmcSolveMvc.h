@@ -19,6 +19,8 @@ public:
 
 	virtual void Init();
 	virtual void Init(CPowerGrid* vGrid);
+	virtual void InitOrder();
+
 	virtual void Clear();
 
 public:

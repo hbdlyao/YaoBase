@@ -6,6 +6,10 @@
 ///////////////////////////////////////////////////////////
 
 #include "CmcSolveMvc.h"
+
+#include "CmcRwOrderMvc.h"
+
+#include "CMyParams.h"
 #include "CHvdcParams.h"
 
 #include <iostream>
@@ -59,6 +63,19 @@ void CmcSolveMvc::Init(CPowerGrid* vGrid)
 
 }
 
+void CmcSolveMvc::InitOrder()
+{
+
+	CmcRwOrderMvc vRwMvc;
+
+	vRwMvc.InitAdo(CMyParams::dbf_mdb);
+	vRwMvc.Init(pmcProfile->pmcOrder);
+
+	vRwMvc.OnLoad();
+
+	
+}
+
 
 void CmcSolveMvc::NodeID(int vGNDType)
 {
@@ -85,7 +102,7 @@ void CmcSolveMvc::doNewSolves(int vGNDType)
 int CmcSolveMvc::StaCount() 
 {
 	//应该从工程属性中读取
-	return CHvdcParams::StationCount;
+	return CHvdcParams::mcStationCount;
 
 }
 /**

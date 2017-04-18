@@ -7,8 +7,11 @@
 
 #include "CxbSolveMvc.h"
 #include "CxbDevDCF.h"
+#include "CMyParams.h"
 #include "CHvdcParams.h"
 #include "CxbDev3pVSrc.h"
+
+#include "CxbRwOrderMvc.h"
 
 
 CxbSolveMvc::~CxbSolveMvc()
@@ -57,6 +60,21 @@ void CxbSolveMvc::Init(CPowerGrid* vGrid)
 
 }
 
+void CxbSolveMvc::InitOrder()
+{
+	CxbRwOrderMvc  vRwMvc;
+
+	vRwMvc.InitAdo(CMyParams::dbf_mdb);
+	vRwMvc.Init(pxbProfile->pxbOrder);
+
+	vRwMvc.OnLoad();
+	
+}
+//马骏鹏
+void CxbSolveMvc::InitDevY()
+{
+
+}
 
 void CxbSolveMvc::NodeID(int vGNDType)
 {
@@ -84,7 +102,7 @@ void CxbSolveMvc::doNewSolves(int vGNDType)
 int CxbSolveMvc::StaCount()
 {
 	//应该从工程属性中读取
-	return CHvdcParams::StationCount;
+	return CHvdcParams::xbStationCount;
 
 	//return 3;
 
@@ -92,42 +110,47 @@ int CxbSolveMvc::StaCount()
 
 void CxbSolveMvc::Run()
 {
+	//
+	doPrepare_Line();
+
+	doPrepare_DCF();
+
+	doInitRun();
 
 	//多工况运行
-		
-		doInitRun();
-		
-		//
-		doRun_Ground(pxbProfile->pxbOrder->Flag_Ground);
+	doRun_Ground(pxbProfile->pxbOrder->Flag_Ground);
 }
+
 
 void CxbSolveMvc::doRecordResult()
 {
 
 	//崔康生：
-	
+
 	//测试用
 	static int vN = 1;
 	string vCaseID = pxbProfile->pxbOrder->CreateCaseID();
-	
+
 	//pxbResult->mcResultMap[vCaseID]=
-	
+
 	cout << "谐波:";
 	cout << vCaseID;
 	cout << "%";
 	cout << pxbProfile->pxbOrder->PdPer;
-	
+
 	cout << "======" << vN++;
-	
+
 	cout << endl;
 }
 
 
 void CxbSolveMvc::doRun()
 {
-	//考虑工况(功率水平)、DCF偏差类型、谐波次数
-	selectU3P(pxbProfile->pxbOrder->CreateCaseID());
 	//马俊鹏
+
+	//考虑工况(功率水平)、DCF偏差类型、谐波次数
+	doPrepare_U3p(pxbProfile->pxbOrder->CreateCaseID());
+	
 
 	//谐波次数1-H_CAL_NUM
 	for (int i = 1; i <= H_CAL_NUM; i++)
@@ -153,7 +176,7 @@ void CxbSolveMvc::doInitRun()
 
 	pxbProfile->pxbOrder->Clear();
 	pxbProfile->pxbOrder->InitMatrix(vStaCount);
-	
+
 	//
 	int vCaseCount = pxbProfile->pxbOrder->CaseCount();
 	pxbResult->Clear();
@@ -161,91 +184,91 @@ void CxbSolveMvc::doInitRun()
 }
 
 
-void CxbSolveMvc::doInitMatrix(){
+void CxbSolveMvc::doInitMatrix() {
 
 	int vN;
-	
+
 	vN = StaCount();
-	
+
 	//
 	pxbProfile->InitMatrix(vN);
 }
 
 
-void CxbSolveMvc::doRun_Ground(string vFlag){
+void CxbSolveMvc::doRun_Ground(string vFlag) {
 
 	int vN = static_cast<int> (vFlag.size());
-	
+
 	//单极大地/金属回线/双极/双极并联
 	for (int i = 0; i < vN; i++)
 	{
 		if (vFlag[i] == '1') //"1111"
 		{
 			pxbProfile->pxbOrder->GroundType = mc_GndTypeArr[i];
-			
+
 			//根据接地类型生成 mcCalculate,与设备一一对应
 			doNewSolves(mc_GndTypeArr[i]);
-	
+
 			//节点编号
 			doNodeID();
-	
+
 			//换流站排序
 			doStationSort();
-	
+
 			//初始化计算用矩阵
 			doInitMatrix();
-		
+
 			//
 			doRun_Rd(pxbProfile->pxbOrder->Flag_Rd);
-	
+
 		}//if
-	
+
 	}//for
 }
 
 
-void CxbSolveMvc::doRun_Rd(string vFlag){
+void CxbSolveMvc::doRun_Rd(string vFlag) {
 
 	int vN = static_cast<int> (vFlag.size());
-	
+
 	//高阻、低阻
-	for (int i = 0; i < vN; i++) 
+	for (int i = 0; i < vN; i++)
 	{
 		if (vFlag[i] == '1') //
 		{
 			pxbProfile->pxbOrder->RdLevel = mc_RdLevelArr[i];
-			
+
 			//
 			if (pxbProfile->pxbOrder->IsUdCustom) //指定Ud
 				doRun_UdCustom();
 			else
 				doRun_Ud(pxbProfile->pxbOrder->Flag_Ud);
-	
+
 		}//if vFlag
-	
+
 	}//for
 }
 
 
-void CxbSolveMvc::doRun_Ud(string vFlag){
+void CxbSolveMvc::doRun_Ud(string vFlag) {
 
 	int vN = static_cast<int> (vFlag.size());
 	int vStaCount = StaCount();
-	
+
 	//全压/80%/70%
-	for (int i = 0; i < vN; i++) 
+	for (int i = 0; i < vN; i++)
 	{
 		if (vFlag[i] == '1')
 		{
 			pxbProfile->pxbOrder->UdLevel = mc_UdLevelArr[i];
-	
+
 			if (pxbProfile->pxbOrder->IsUacSwap)
-				doRun_UacSwap(pxbProfile->pxbOrder->Flag_Uac, 0 ,vStaCount);
+				doRun_UacSwap(pxbProfile->pxbOrder->Flag_Uac, 0, vStaCount);
 			else
 				doRun_Uac(pxbProfile->pxbOrder->Flag_Uac);
-	
+
 		}//if
-	
+
 	}//for
 }
 
@@ -254,12 +277,12 @@ void CxbSolveMvc::doRun_UdCustom()
 {
 
 	int vStaCount = StaCount();
-	
+
 	pxbProfile->pxbOrder->UdLevel = Ud_Custom;
-	
+
 	//Ud处理
 	//崔康生......
-	
+
 	//
 	if (pxbProfile->pxbOrder->IsUacSwap)
 		doRun_UacSwap(pxbProfile->pxbOrder->Flag_Uac, 0, vStaCount);
@@ -268,16 +291,16 @@ void CxbSolveMvc::doRun_UdCustom()
 }
 
 
-void CxbSolveMvc::doRun_Uac(string vFlag){
+void CxbSolveMvc::doRun_Uac(string vFlag) {
 
 	int vN = static_cast<int> (vFlag.size());
 	int vStaCount = StaCount();
-	
+
 	//最大/额定/最小/极小
 	for (int i = 0; i < vN; i++)
 		if (vFlag[i] == '1')
 		{
-			for (int j=0;j<vStaCount;j++)
+			for (int j = 0; j<vStaCount; j++)
 				pxbProfile->pxbOrder->UacLevel[j] = mc_UacLevelArr[i];
 			//
 			doRun_Pd();
@@ -285,13 +308,13 @@ void CxbSolveMvc::doRun_Uac(string vFlag){
 }
 
 
-void CxbSolveMvc::doRun_UacSwap(string vFlag, int vIndex, int vStaCount){
+void CxbSolveMvc::doRun_UacSwap(string vFlag, int vIndex, int vStaCount) {
 
 	int vN = static_cast<int> (vFlag.size());
-	
+
 
 	//vIndex从0开始,当vIndex==vStaCount,说明所有的换流站都已设置Uac
-	if (vIndex ==vStaCount)
+	if (vIndex == vStaCount)
 		doRun_Pd();
 	else
 	{//最大/额定/最小/极小
@@ -299,15 +322,15 @@ void CxbSolveMvc::doRun_UacSwap(string vFlag, int vIndex, int vStaCount){
 			if (vFlag[i] == '1')
 			{
 				pxbProfile->pxbOrder->UacLevel[vIndex] = mc_UacLevelArr[i];
-	
-				doRun_UacSwap(vFlag, vIndex +1,vStaCount);
+
+				doRun_UacSwap(vFlag, vIndex + 1, vStaCount);
 			}//if
-	
+
 	}//else
 }
 
 
-void CxbSolveMvc::doRun_Pd() 
+void CxbSolveMvc::doRun_Pd()
 {
 
 	int vPdSize;
@@ -318,12 +341,12 @@ void CxbSolveMvc::doRun_Pd()
 	{
 		pxbProfile->pxbOrder->UpdatePdPercent(i);
 
-		doDCF();
+		doRun_DCF();
 
 	}//for
 }
 
-void CxbSolveMvc::doDCF()
+void CxbSolveMvc::doRun_DCF()
 {
 	//马俊鹏
 	static int vCount = 1;
@@ -368,7 +391,8 @@ void CxbSolveMvc::doDCF()
 	return;
 }
 
-void CxbSolveMvc::selectU3P(string  vCondition)
+
+void CxbSolveMvc::doPrepare_U3p(string  vCondition)
 {
 	static int vCount = 1;
 	int i, vDevN;
@@ -385,3 +409,13 @@ void CxbSolveMvc::selectU3P(string  vCondition)
 	}
 }
 
+
+void CxbSolveMvc::doPrepare_Line()
+{
+
+}
+
+void CxbSolveMvc::doPrepare_DCF()
+{
+
+}

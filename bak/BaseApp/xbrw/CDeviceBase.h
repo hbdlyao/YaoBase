@@ -1,5 +1,9 @@
 #pragma once
+
+#include "CMyDefs.h"
+
 #include "CObjBase.h"
+
 
 class CDeviceBase : public CObjBase
 {
@@ -25,6 +29,13 @@ public:
 	virtual void Init();
 	int GetdotCount();
 	void SetdotCount(int newVal);
+
+public:
+	virtual void ClearNodeID();
+	virtual void NodeSort(NodeMap& vNodeMap);
+	virtual void NodeGround(NodeMap& vNodeMap);
+	virtual void NodeID(NodeMap & vNodeID);
+
 
 protected:
 	string DeviceID;

@@ -32,31 +32,35 @@ void CProjectRwMDB::doLoad()
 	vOk = RwAdo->OpenSQL(vSQL);
 
 	if (vOk)
-	{
-		cout << "Load---Hvdc_Project---" << endl;
+		if (vOk)
+			while (!RwAdo->IsEOF())
+			{
+				cout << "Load---Hvdc_Project---" << endl;
 
-		RwAdo->GetFieldValue("ProjectName", vValue);
-		if (vValue.vt != VT_NULL)
-		{
-			vStr = (LPCTSTR)(_bstr_t)vValue; //×Ö·ûÐÍ
-			CHvdcParams::ProjectName = vStr;
-		};
+				RwAdo->GetFieldValue("ProjectName", vValue);
+				if (vValue.vt != VT_NULL)
+				{
+					vStr = (LPCTSTR)(_bstr_t)vValue; //×Ö·ûÐÍ
+					CHvdcParams::ProjectName = vStr;
+				};
 
-		RwAdo->GetFieldValue("ID", vValue);
-		if (vValue.vt != VT_NULL)
-		{
-			CHvdcParams::ProjectID = vValue.iVal;
-		};
+				RwAdo->GetFieldValue("ID", vValue);
+				if (vValue.vt != VT_NULL)
+				{
+					CHvdcParams::ProjectID = vValue.iVal;
+				};
 
-		RwAdo->GetFieldValue("StationCount", vValue);
-		if (vValue.vt != VT_NULL)
-		{
-			CHvdcParams::StationCount = vValue.iVal;
-		};
+				RwAdo->GetFieldValue("StationCount", vValue);
+				if (vValue.vt != VT_NULL)
+				{
+					CHvdcParams::StationCount = vValue.iVal;
+				};
 
-		cout << "   Finished " << endl;
+				cout << "   Finished " << endl;
 
-	}//if
+				RwAdo->Record_MoveNext();
+
+			}//while
 		
 	RwAdo->CloseTBL();
 

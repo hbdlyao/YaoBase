@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CMyRw.h"
+#include "CRwMvc.h"
 
 class CMyMvcs
 {
@@ -15,7 +15,7 @@ public:
 	static void Clear();
 	static void Init();
 
-	static CRwDbf RwMvc;
+	static CRwMvc RwMvc;
 };
 
 

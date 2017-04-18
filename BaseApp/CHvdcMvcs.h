@@ -1,11 +1,11 @@
 #pragma once
 
-#include "CProjectRwMDB.h"
+#include "CProjectRwMvc.h"
 
-#include "CmcRw.h"
+#include "CmcRwMvc.h"
 #include "CmcSolveMvc.h"
 
-#include "CxbRw.h"
+#include "CxbRwMvc.h"
 #include "CxbSolveMvc.h"
 
 
@@ -14,10 +14,10 @@ class CHvdcMvcs
 public:
 	//
 
-	static CProjectRwMDB *  pProjectRw;
+	static CProjectRwMvc *  pProjectRwMvc;
 
-	static CmcRw *  pmcRws;
-	static CxbRw *  pxbRws;
+	static CmcRwMvc *  pmcRwMvc;
+	static CxbRwMvc *  pxbRwMvc;
 
 		
 	static void Init();

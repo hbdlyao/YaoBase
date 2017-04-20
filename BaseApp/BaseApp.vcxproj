@@ -118,6 +118,7 @@
     <ClCompile Include="CHvdcInitApp.cpp" />
     <ClCompile Include="CHvdcMvcs.cpp" />
     <ClCompile Include="CHvdcParams.cpp" />
+    <ClCompile Include="CLU.cpp" />
     <ClCompile Include="CMath.cpp" />
     <ClCompile Include="CMath_NL.cpp" />
     <ClCompile Include="CMatrix.cpp" />
@@ -191,7 +192,7 @@
     <ClCompile Include="CxbCalCouple_C.cpp" />
     <ClCompile Include="CxbCalculate.cpp" />
     <ClCompile Include="CxbCalDcF.cpp" />
-    <ClCompile Include="CxbCalDCF_N.cpp" />
+    <ClCompile Include="CxbCalDCF_RLC.cpp" />
     <ClCompile Include="CxbCalDcLine.cpp" />
     <ClCompile Include="CxbCalGround.cpp" />
     <ClCompile Include="CxbCalGroundLine.cpp" />
@@ -199,8 +200,7 @@
     <ClCompile Include="CxbCalOneDot.cpp" />
     <ClCompile Include="CxbCalPbDkq.cpp" />
     <ClCompile Include="CxbCalPulse_C.cpp" />
-    <ClCompile Include="CxbCal_Leaf.cpp" />
-    <ClCompile Include="CxbCal_Composite.cpp" />
+    <ClCompile Include="CxbCal_Tree.cpp" />
     <ClCompile Include="CxbCalShunt.cpp" />
     <ClCompile Include="CxbCalTwoDot.cpp" />
     <ClCompile Include="CxbCalXf_C.cpp" />
@@ -209,6 +209,7 @@
     <ClCompile Include="CxbDevBranch.cpp" />
     <ClCompile Include="CxbDevCouple_C.cpp" />
     <ClCompile Include="CxbDevDCF.cpp" />
+    <ClCompile Include="CxbDevDCF_RLC.cpp" />
     <ClCompile Include="CxbDevDcLine.cpp" />
     <ClCompile Include="CxbDevGround.cpp" />
     <ClCompile Include="CxbDevGroundLine.cpp" />
@@ -217,7 +218,7 @@
     <ClCompile Include="CxbDevOneDot.cpp" />
     <ClCompile Include="CxbDevPbDkq.cpp" />
     <ClCompile Include="CxbDevPulse_C.cpp" />
-    <ClCompile Include="CxbDevRLCs.cpp" />
+    <ClCompile Include="CxbDev_Tree.cpp" />
     <ClCompile Include="CxbDevShunt.cpp" />
     <ClCompile Include="CxbDevTrap.cpp" />
     <ClCompile Include="CxbDevTwoDot.cpp" />
@@ -229,14 +230,17 @@
     <ClCompile Include="CxbRw.cpp" />
     <ClCompile Include="CxbRw3pVSrc.cpp" />
     <ClCompile Include="CxbRwBranch.cpp" />
+    <ClCompile Include="CxbRwDCF.cpp" />
     <ClCompile Include="CxbRwDcLine.cpp" />
+    <ClCompile Include="CxbRwMonitor.cpp" />
     <ClCompile Include="CxbRwMvc.cpp" />
     <ClCompile Include="CxbRwOne.cpp" />
     <ClCompile Include="CxbRwOrderMvc.cpp" />
     <ClCompile Include="CxbRwResultMvc.cpp" />
-    <ClCompile Include="CxbRwRLCs.cpp" />
     <ClCompile Include="CxbRwShunt.cpp" />
+    <ClCompile Include="CxbRwTrap.cpp" />
     <ClCompile Include="CxbRwTwo.cpp" />
+    <ClCompile Include="CxbRw_Tree.cpp" />
     <ClCompile Include="CxbSolveMvc.cpp" />
     <ClCompile Include="CxbSolves.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -246,6 +250,7 @@
     <ClInclude Include="CDeviceBase.h" />
     <ClInclude Include="CDeviceTBL.h" />
     <ClInclude Include="CHvdcDefs.h" />
+    <ClInclude Include="CLU.h" />
     <ClInclude Include="CmcDefs.h" />
     <ClInclude Include="CHvdcFunc.h" />
     <ClInclude Include="CHvdcInitApp.h" />
@@ -294,7 +299,7 @@
     <ClInclude Include="CxbCalCouple_C.h" />
     <ClInclude Include="CxbCalculate.h" />
     <ClInclude Include="CxbCalDcF.h" />
-    <ClInclude Include="CxbCalDCF_N.h" />
+    <ClInclude Include="CxbCalDCF_RLC.h" />
     <ClInclude Include="CxbCalDcLine.h" />
     <ClInclude Include="CxbCalGround.h" />
     <ClInclude Include="CxbCalGroundLine.h" />
@@ -302,8 +307,7 @@
     <ClInclude Include="CxbCalOneDot.h" />
     <ClInclude Include="CxbCalPbDkq.h" />
     <ClInclude Include="CxbCalPulse_C.h" />
-    <ClInclude Include="CxbCal_Leaf.h" />
-    <ClInclude Include="CxbCal_Composite.h" />
+    <ClInclude Include="CxbCal_Tree.h" />
     <ClInclude Include="CxbCalShunt.h" />
     <ClInclude Include="CxbCalTwoDot.h" />
     <ClInclude Include="CxbCalXf_C.h" />
@@ -314,6 +318,7 @@
     <ClInclude Include="CxbDevBranch.h" />
     <ClInclude Include="CxbDevCouple_C.h" />
     <ClInclude Include="CxbDevDCF.h" />
+    <ClInclude Include="CxbDevDCF_RLC.h" />
     <ClInclude Include="CxbDevDcLine.h" />
     <ClInclude Include="CxbDevGround.h" />
     <ClInclude Include="CxbDevGroundLine.h" />
@@ -322,7 +327,7 @@
     <ClInclude Include="CxbDevOneDot.h" />
     <ClInclude Include="CxbDevPbDkq.h" />
     <ClInclude Include="CxbDevPulse_C.h" />
-    <ClInclude Include="CxbDevRLCs.h" />
+    <ClInclude Include="CxbDev_Tree.h" />
     <ClInclude Include="CxbDevShunt.h" />
     <ClInclude Include="CxbDevTrap.h" />
     <ClInclude Include="CxbDevTwoDot.h" />
@@ -334,13 +339,16 @@
     <ClInclude Include="CxbRw.h" />
     <ClInclude Include="CxbRw3pVSrc.h" />
     <ClInclude Include="CxbRwBranch.h" />
+    <ClInclude Include="CxbRwDCF.h" />
     <ClInclude Include="CxbRwDcLine.h" />
+    <ClInclude Include="CxbRwMonitor.h" />
     <ClInclude Include="CxbRwMvc.h" />
     <ClInclude Include="CxbRwOne.h" />
     <ClInclude Include="CxbRwOrderMvc.h" />
     <ClInclude Include="CxbRwResultMvc.h" />
-    <ClInclude Include="CxbRwRLCs.h" />
+    <ClInclude Include="CxbRw_Tree.h" />
     <ClInclude Include="CxbRwShunt.h" />
+    <ClInclude Include="CxbRwTrap.h" />
     <ClInclude Include="CxbRwTwo.h" />
     <ClInclude Include="CxbSolveMvc.h" />
     <ClInclude Include="CxbSolves.h" />

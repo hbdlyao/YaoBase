@@ -68,17 +68,15 @@ void CHvdcMvcs::OnLoad()
 {
 	pProjectRwMvc->OnLoad();
 
-	pmcRwMvc->OnLoad();
-
-	pxbRwMvc->OnLoad();
+	//pmcRwMvc->OnLoad();
+	//pxbRwMvc->OnLoad();
 }
 
 void CHvdcMvcs::OnSave()
 {
 	//pProjectRwMvc->OnSave();
 
-	pmcRwMvc->OnSave();
+	//pmcRwMvc->OnSave();
+	//pxbRwMvc->OnSave();
 
-
-	pxbRwMvc->OnSave();
 }

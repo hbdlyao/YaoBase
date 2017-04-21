@@ -31,6 +31,8 @@ protected:
 public:	
 	virtual void Run();
 	virtual void PrepareNormal();
+	int StaCount();
+	void StationSort() override;
 	//************************************
 	// *南方电网主回路及谐波计算软件*
 	// 改动对象:  RecordMeasureNode

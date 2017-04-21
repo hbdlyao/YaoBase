@@ -8,6 +8,8 @@
 #include "CmcSolves.h"
 #include "gbHead_mcCal.h"
 #include "CHvdcFunc.h"
+#include "CHvdcParams.h"
+
 #include <iostream>
 
 #include "time.h"
@@ -263,10 +265,43 @@ void CmcSolves::PrepareNormal()
 	}
 }
 
+
+int CmcSolves::StaCount()
+{
+	//应该从工程属性中读取
+	return CHvdcParams::mcStationCount;
+
+}
+
+void CmcSolves::StationSort()
+{
+	StationMap vStaMap;
+
+	for each (pPowerCal_Pair vPair in pItems)
+	{
+		//变电站编号
+		vPair.second->StationSort(vStaMap);
+	}//
+
+	int vK, vN;
+
+	vK = static_cast<int>(vStaMap.size());
+	vN= StaCount();
+
+	pmcProfile->StaCount = vN;
+
+	pmcProfile->kDim = vK;
+	pmcProfile->iDim = vN-vK;
+
+
+}
+
+
 void CmcSolves::RecordMeasureNode()
 {//
 	CmcCalConvertor * vCalself;
 	CmcCalConvertor * vCalmmr;
+
 	for each (pPowerCal_Pair vPairself in pItems)
 	{
 		if (vPairself.second->SelfType == mc_Convertor)

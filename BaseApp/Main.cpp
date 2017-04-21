@@ -27,7 +27,7 @@ void mcNodeID(int vGnd)
 }
 
 
-void xbNodeID(int vGnd)
+void xbTest(int vGnd)
 {
 	CxbSolveMvc * vMvc;
 
@@ -36,7 +36,7 @@ void xbNodeID(int vGnd)
 	vMvc->Init(CHvdcVars::pxbHvdcGrid);
 	vMvc->InitOrder();
 
-	vMvc->NodeID(vGnd);
+	vMvc->Test(vGnd);
 
 	delete vMvc;
 
@@ -87,7 +87,7 @@ void xbCalculate()
 	vMvc = new CxbSolveMvc();
 	vMvc->Init();
 	vMvc->Init(CHvdcVars::pxbHvdcGrid);
-	//vMvc->InitOrder();
+	vMvc->InitOrder();
 
 	vMvc->Run();
 
@@ -117,7 +117,7 @@ int main()
 	///////////////////////////////////////////
 	CHvdcMvcs::pxbRwMvc->OnLoad();
 	
-	xbNodeID(xb_Ground10);
+	xbTest(xb_Ground10);
 
 	//xbCalculate();
 	

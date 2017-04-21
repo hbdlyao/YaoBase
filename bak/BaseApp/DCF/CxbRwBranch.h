@@ -12,7 +12,6 @@
 
 class CxbRwBranch : public CxbRwTwo
 {
-
 protected:
 	void doLoad(CxbDevBase * vDevice) override;
 	void doSave(CxbDevBase * vDevice) override;

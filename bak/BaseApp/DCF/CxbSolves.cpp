@@ -269,7 +269,7 @@ void CxbSolves::doNewCal(CDeviceBase * vDev, int vIndex)
 		break;
 
 	case xb_DCF:
-		vCal = new CxbCalDCF();
+		vCal = new CxbCalDCF();//组合设备已分解到自设备,目前不New组合设备
 		break;
 
 	case xb_DCF_RLC:

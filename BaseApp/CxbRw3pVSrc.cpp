@@ -20,7 +20,7 @@ void CxbRw3pVSrc::OnSave()
 {
 	doSave();
 
-	//doSave_hData();
+	doSave_hData();
 }
 
 void CxbRw3pVSrc::doLoad()
@@ -136,10 +136,10 @@ void CxbRw3pVSrc::doLoad_hData(CxbDev3pVSrc * vDev)
 			{
 				vDev->Set_hAngle(vh, vValue.dblVal);
 			};
-			RwAdo->GetFieldValue("hY_L", vValue);
+			RwAdo->GetFieldValue("hYb", vValue);
 			if (vValue.vt != VT_NULL)
 			{
-				vDev->Set_hYL(vh, vValue.dblVal);
+				vDev->Set_hYb(vh, vValue.dblVal);
 			};
 
 
@@ -268,6 +268,7 @@ void CxbRw3pVSrc::doSave_hData(CxbDev3pVSrc * vDev)
 
 		for (i = 0; i<vDev->hMax(); i++)
 		{
+			RwAdo->Record_AddNew();
 			//
 			vValue = _variant_t(i);//整型
 			RwAdo->SetFieldValue("hOrder", vValue);
@@ -278,8 +279,8 @@ void CxbRw3pVSrc::doSave_hData(CxbDev3pVSrc * vDev)
 			vValue = _variant_t(vDev->Get_hAngle(i));//双精度
 			RwAdo->SetFieldValue("hAngle", vValue);
 			
-			vValue = _variant_t(vDev->Get_hYL(i));//双精度
-			RwAdo->SetFieldValue("hY_L", vValue);
+			vValue = _variant_t(vDev->Get_hYb(i));//双精度
+			RwAdo->SetFieldValue("hYb", vValue);
 			
 			//
 			RwAdo->Record_Update();

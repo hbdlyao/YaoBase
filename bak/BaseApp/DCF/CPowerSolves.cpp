@@ -230,6 +230,8 @@ void CPowerSolves::StationSort()
 		vPair.second->StationSort(vStaMap);
 	}//
 
+	
 	pProfile->StaCount = static_cast<int>(vStaMap.size());
+
 
 }

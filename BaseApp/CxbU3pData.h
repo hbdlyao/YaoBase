@@ -19,14 +19,13 @@ public:
 
 	string PowLevel;
 
-	double * Urms;
-	double * Angle;
+	double * Urms =nullptr;
+	double * Angle = nullptr;
 
-	double * Ire;
-	double * Iim;
+	double * Ire = nullptr;
+	double * Iim = nullptr;
 
-	double * Yb;
-	double * Y_L;
+	double * Yb = nullptr;
 
 };
 

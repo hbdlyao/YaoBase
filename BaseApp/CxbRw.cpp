@@ -111,137 +111,68 @@ void CxbRw::OnSave()
 
 void CxbRw::doLoad(CxbDevBase * vDevice)
 {
+	string vStr;
+	_variant_t vValue;
+	CxbDevBase * vDev;
 
+	vDev = dynamic_cast<CxbDevBase *>(vDevice);
+
+
+	RwAdo->GetFieldValue("ID", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vDev->SetObjGUID(vValue.iVal);
+	};
+
+	RwAdo->GetFieldValue("DeviceID", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vStr = (LPCTSTR)(_bstr_t)vValue; //字符型
+		vDev->SetDeviceID(vStr);
+	};
+
+	RwAdo->GetFieldValue("DeviceName", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vStr = (LPCTSTR)(_bstr_t)vValue;
+		vDev->SetDeviceName(vStr);
+	};
+
+	RwAdo->GetFieldValue("DeviceType", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vDev->SetDeviceType(vValue.iVal);//整型
+	};
+
+	RwAdo->GetFieldValue("PosOrNeg", vValue);
+	if (vValue.vt != VT_NULL)
+	{
+		vDev->SetPosOrNeg(vValue.iVal);//整型
+	};
 }
 
 
 void CxbRw::doSave(CxbDevBase * vDevice)
 {
-
-}
-
-void CxbRw::OnLoad_Order(CxbOrder* vOrder){
-
-	string vSQL, vStr;
+	string vStr;
 	_variant_t vValue;
-	bool vOk;
-	
-	//
-	vSQL = "select * from xbOrder ";
-	vOk = RwAdo->OpenSQL(vSQL);
-	
-	if (vOk)
-		while (!RwAdo->IsEOF())
-		{
-			cout << "Load---xbOrder---" << endl;
-	
-			RwAdo->GetFieldValue("Flag_Ground", vValue);
-			if (vValue.vt != VT_NULL)
-			{
-				vStr = (LPCTSTR)(_bstr_t)vValue; //字符型
-				vOrder->Flag_Ground = vStr;
-			};
-	
-			RwAdo->GetFieldValue("Flag_Ud", vValue);
-			if (vValue.vt != VT_NULL)
-			{
-				vStr = (LPCTSTR)(_bstr_t)vValue; //字符型
-				vOrder->Flag_Ud = vStr;
-			};
-	
-			RwAdo->GetFieldValue("Flag_Rd", vValue);
-			if (vValue.vt != VT_NULL)
-			{
-				vStr = (LPCTSTR)(_bstr_t)vValue; //字符型
-				vOrder->Flag_Rd = vStr;
-			};
-	
-			RwAdo->GetFieldValue("Flag_Uac", vValue);
-			if (vValue.vt != VT_NULL)
-			{
-				vStr = (LPCTSTR)(_bstr_t)vValue; //字符型
-				vOrder->Flag_Uac = vStr;
-			};
-	
-			RwAdo->GetFieldValue("IsUdCustom", vValue);
-			if (vValue.vt != VT_NULL)
-			{
-				vOrder->IsUdCustom = (vValue.iVal == 1);
-			};
-	
-			RwAdo->GetFieldValue("IsUacSwap", vValue);
-			if (vValue.vt != VT_NULL)
-			{
-				vOrder->IsUacSwap = (vValue.iVal == 1);
-			};
-	
-			RwAdo->GetFieldValue("IsUdToGround", vValue);
-			if (vValue.vt != VT_NULL)
-			{
-				vOrder->IsUdToGround = (vValue.iVal == 1);
-			};
-	
-			/*
-			RwAdo->GetFieldValue("Is6p", vValue);
-			if (vValue.vt != VT_NULL)
-			{
-			vOrder->Is6p = (vValue.iVal == 1);
-			};
-	
-			RwAdo->GetFieldValue("Is12pDouble", vValue);
-			if (vValue.vt != VT_NULL)
-			{
-			vOrder->Is12pDouble = (vValue.iVal == 1);
-			};
-			*/
-	
-			RwAdo->GetFieldValue("nValvor", vValue);
-			if (vValue.vt != VT_NULL)
-			{
-				vOrder->nValNum = vValue.iVal;
-			};
-	
-			RwAdo->GetFieldValue("PdStartPercent", vValue);
-			if (vValue.vt != VT_NULL)
-			{
-				vOrder->PdStartPer = vValue.dblVal;
-			};
-	
-			RwAdo->GetFieldValue("PdPercent", vValue);
-			if (vValue.vt != VT_NULL)
-			{
-				vOrder->PdPer = vValue.dblVal;
-			};
-	
-			RwAdo->GetFieldValue("PdSize", vValue);
-			if (vValue.vt != VT_NULL)
-			{
-				vOrder->PdSize = vValue.iVal;
-			};
-	
-			RwAdo->Record_MoveNext();
-	
-			cout << "   Finished " << endl;
-	
-		}//while
-	
-	RwAdo->CloseTBL();
-}
+	CxbDevBase * vDev;
 
+	vDev = dynamic_cast<CxbDevBase *>(vDevice);
 
-void CxbRw::OnSave_Order(CxbOrder* vOrder)
-{
+	vValue = _variant_t(vDev->GetObjGUID()); //整型
+	RwAdo->SetFieldValue("ID", vValue);
 
-}
+	vValue = _variant_t(vDev->GetDeviceID().c_str());//文本型
+	RwAdo->SetFieldValue("DeviceID", vValue);
 
+	vValue = _variant_t(vDev->GetDeviceName().c_str());
+	RwAdo->SetFieldValue("DeviceName", vValue);
 
-void CxbRw::OnLoad_Result(CxbResult* vRes)
-{
+	vValue = _variant_t(vDev->GetDeviceType());
+	RwAdo->SetFieldValue("DeviceType", vValue);
 
-}
-
-
-void CxbRw::OnSave_Result(CxbResult* vRes)
-{
+	vValue = _variant_t(vDev->GetPosOrNeg());
+	RwAdo->SetFieldValue("PosOrNeg", vValue);
 
 }

@@ -10,7 +10,8 @@
 
 
 
-void CxbDevOneDot::Init(){
+void CxbDevOneDot::Init()
+{
 
 	SetDotCount(1);
 }

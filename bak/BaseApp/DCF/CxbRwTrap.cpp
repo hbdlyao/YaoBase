@@ -6,3 +6,18 @@
 ///////////////////////////////////////////////////////////
 
 #include "CxbRwTrap.h"
+
+
+
+void CxbRwTrap::doLoad_Leaf(CxbDevBase* vLeaf, int vIndex)
+{
+
+	CxbRwBranch::doLoad(vLeaf);
+}
+
+
+void CxbRwTrap::doSave_Leaf(CxbDevBase* vLeaf, int vIndex)
+{
+
+	CxbRwBranch::doSave(vLeaf);
+}

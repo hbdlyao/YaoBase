@@ -17,7 +17,10 @@
 class CxbDevDcLine : public CxbDevTwoDot
 {
 public:
-	virtual void Init();
+	virtual ~CxbDevDcLine();
+	void Clear() override;
+	void Init() override;
+	void InitData() override;
 
 protected:
 	struct_LineParam * pLineParam;

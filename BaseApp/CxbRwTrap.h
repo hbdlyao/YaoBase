@@ -13,5 +13,8 @@
 class CxbRwTrap : public CxbRw_Tree
 {
 
+protected:
+	 void doLoad_Leaf(CxbDevBase* vLeaf, int vIndex) override;
+	 void doSave_Leaf(CxbDevBase* vLeaf, int vIndex) override;
 };
 #endif // !defined(EA_329292BB_5B26_4364_AF85_BD1139BC3598__INCLUDED_)

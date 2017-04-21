@@ -304,6 +304,7 @@ void CxbRwDcLine::doSave_hData(CxbDevDcLine * vDev)
 
 		for (i = 0; i<vDev->hMax(); i++)
 		{
+			RwAdo->Record_AddNew();
 			//
 			vValue = _variant_t(i);//ÕûÐÍ
 			RwAdo->SetFieldValue("hOrder", vValue);

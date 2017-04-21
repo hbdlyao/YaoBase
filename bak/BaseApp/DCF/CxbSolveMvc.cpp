@@ -69,14 +69,13 @@ void CxbSolveMvc::InitOrder()
 	vRwMvc.OnLoad();
 	
 }
-//Âí¿¥Åô
-void CxbSolveMvc::InitDevY()
-{
 
-}
-
-void CxbSolveMvc::NodeID(int vGNDType)
+void CxbSolveMvc::Test(int vGNDType)
 {
+	doPrepare_hRLC();
+
+	/*
+
 	pxbProfile->pxbOrder->GroundType = vGNDType;
 
 	//
@@ -93,6 +92,8 @@ void CxbSolveMvc::NodeID(int vGNDType)
 	//doInitMatrix();
 
 	//doRun();
+
+	*/
 
 }
 
@@ -378,7 +379,9 @@ void CxbSolveMvc::doRun_Pd()
 
 void CxbSolveMvc::doRun_DCF()
 {
-	//Âí¿¡Åô
+
+/*
+//Âí¿¡Åô
 	static int vCount = 1;
 	int i, vDevN;
 	CDeviceTBL * vTBL;
@@ -419,6 +422,8 @@ void CxbSolveMvc::doRun_DCF()
 		return;
 	}
 	return;
+*/
+
 }
 
 

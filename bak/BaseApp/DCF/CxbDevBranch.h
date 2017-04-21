@@ -19,17 +19,21 @@
 class CxbDevBranch : public CxbDevTwoDot
 {
 
+public:
+	virtual ~CxbDevBranch();
+
+	void Clear() override;
+	void InitData() override;
+	void Init() override;
+
 protected:
 	/**
 	* 支路数据
 	*/
 	struct_Branch structBranch;
 
-	/**
-	 * 马骏鹏
-	 */
-	double* Yg;
-	double* Yb;
+	double* Yg = nullptr;
+	double* Yb = nullptr;
 
 public:
 	double GetZr();
@@ -42,14 +46,13 @@ public:
 	void SetZ_L(double vValue);
 	void SetZx_C(double vValue);
 	void SetZx_L(double vValue);
-	/**
-	 * 马骏鹏
-	 */
+
 	double GetYg(int vhOrder);
 	double GetYb(int vhOrder);
-	virtual void Prepare_hRLC() override;
-	virtual void Init();
 
+
+public:
+	void Prepare_hRLC() override;
 
 };
 #endif // !defined(EA_F7542C88_E67C_4caf_93AE_BD4165C49F6E__INCLUDED_)

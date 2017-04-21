@@ -237,10 +237,10 @@
     <ClCompile Include="CxbRwOne.cpp" />
     <ClCompile Include="CxbRwOrderMvc.cpp" />
     <ClCompile Include="CxbRwResultMvc.cpp" />
-    <ClCompile Include="CxbRw_Tree.cpp" />
     <ClCompile Include="CxbRwShunt.cpp" />
     <ClCompile Include="CxbRwTrap.cpp" />
     <ClCompile Include="CxbRwTwo.cpp" />
+    <ClCompile Include="CxbRw_Tree.cpp" />
     <ClCompile Include="CxbSolveMvc.cpp" />
     <ClCompile Include="CxbSolves.cpp" />
     <ClCompile Include="Main.cpp" />

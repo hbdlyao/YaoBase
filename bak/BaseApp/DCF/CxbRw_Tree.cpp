@@ -120,49 +120,34 @@ void CxbRw_Tree::doSave_Root(){
 }
 
 
-void CxbRw_Tree::doLoad_Tree(){
-
+void CxbRw_Tree::doLoad_Tree()
+{
 	///////////////////////////////////////////
 	CDeviceTBL * vTBL;
-	CxbDev_Tree * vDev;
 	
-	
-	vTBL = pHvdc->DeviceTBL(tblType);
-	
-	for each (pObj_Pair  vPair in  vTBL->GetItems())
-	{
-		vDev = dynamic_cast<CxbDev_Tree *>(vPair.second);
-	
-		//
-		doLoad_Node(vDev, 1);
-	
-	
+	//
+	vTBL = pHvdc->DeviceTBL(tblType);	
+	for each (CxbDev_Tree * vDev in vTBL->ItemVect())
+	{	
+		doLoad_Node(vDev, 1);	
 	}//for each
 }
 
 
-void CxbRw_Tree::doSave_Tree(){
-
-	///////////////////////////////////////////
+void CxbRw_Tree::doSave_Tree()
+{
 	CDeviceTBL * vTBL;
-	CxbDev_Tree * vDev;
-	
-	
+
 	vTBL = pHvdc->DeviceTBL(tblType);
-	
-	for each (pObj_Pair  vPair in  vTBL->GetItems())
+	for each (CxbDev_Tree * vDev in vTBL->ItemVect())
 	{
-		vDev = dynamic_cast<CxbDev_Tree *>(vPair.second);
-	
-		//
 		doSave_Node(vDev, 1);
-	
-	
 	}//for each
 }
 
 
-void CxbRw_Tree::doLoad_Root(CxbDevBase* vRoot){
+void CxbRw_Tree::doLoad_Root(CxbDevBase* vRoot)
+{
 
 	string vStr;
 	_variant_t vValue;
@@ -170,11 +155,13 @@ void CxbRw_Tree::doLoad_Root(CxbDevBase* vRoot){
 	
 	vDev = dynamic_cast<CxbDev_Tree *>(vRoot);
 	
-	CxbRwTwo::doLoad(vDev);
+	CxbRw::doLoad(vDev);
+
 }
 
 
-void CxbRw_Tree::doSave_Root(CxbDevBase* vRoot){
+void CxbRw_Tree::doSave_Root(CxbDevBase* vRoot)
+{
 
 	string vStr;
 	_variant_t vValue;
@@ -182,7 +169,7 @@ void CxbRw_Tree::doSave_Root(CxbDevBase* vRoot){
 	
 	vDev = dynamic_cast<CxbDev_Tree *>(vRoot);
 	
-	CxbRwTwo::doSave(vDev);
+	CxbRw::doSave(vDev);
 	
 	//
 }
@@ -308,13 +295,13 @@ void CxbRw_Tree::doSave_Node(CxbDev_Tree* vNode, int vIndex){
 }
 
 
-void CxbRw_Tree::doLoad_Leaf(CxbDevBase* vLeaf, int vIndex){
-
-	CxbRwBranch::doLoad(vLeaf);
+void CxbRw_Tree::doLoad_Leaf(CxbDevBase* vLeaf, int vIndex)
+{
+	CxbRw::doLoad(vLeaf);
 }
 
 
-void CxbRw_Tree::doSave_Leaf(CxbDevBase* vLeaf, int vIndex){
-
-	CxbRwBranch::doSave(vLeaf);
+void CxbRw_Tree::doSave_Leaf(CxbDevBase* vLeaf, int vIndex)
+{
+	CxbRw::doSave(vLeaf);
 }

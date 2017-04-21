@@ -8,55 +8,60 @@
 #include "CDeviceBase.h"
 
 
-
-
-CDeviceBase::CDeviceBase(){
-
-	Init();
-}
-
-
-CDeviceBase::CDeviceBase(const CDeviceBase& theCDeviceBaseVo){
+CDeviceBase::CDeviceBase()
+{
 
 	Init();
 }
 
 
-CDeviceBase::~CDeviceBase(){
+CDeviceBase::CDeviceBase(const CDeviceBase& theCDeviceBaseVo)
+{
 
+	Init();
+}
+
+
+CDeviceBase::~CDeviceBase()
+{
 	delete[] NodeIDs;  //删除数组类型的指针
 	delete[] NodeNames;//删除数组类型的指针
 }
 
 
-void CDeviceBase::Init(){
+void CDeviceBase::Init()
+{
 
 }
 
 
-bool CDeviceBase::IsLeaf(){
-
+bool CDeviceBase::IsLeaf()
+{
 	return true;
 }
 
 
-void CDeviceBase::Add(CDeviceBase* vItem){
+void CDeviceBase::Add(CDeviceBase* vItem)
+{
 
 }
 
 
-void CDeviceBase::Remove(CDeviceBase* vItem){
+void CDeviceBase::Remove(CDeviceBase* vItem)
+{
 
 }
 
 
-string CDeviceBase::GetDeviceID(){
+string CDeviceBase::GetDeviceID()
+{
 
 	return DeviceID;
 }
 
 
-void CDeviceBase::SetDeviceID(string newVal){
+void CDeviceBase::SetDeviceID(string newVal)
+{
 
 	DeviceID = newVal;
 	
@@ -64,13 +69,15 @@ void CDeviceBase::SetDeviceID(string newVal){
 }
 
 
-string CDeviceBase::GetDeviceName(){
+string CDeviceBase::GetDeviceName()
+{
 
 	return DeviceName;
 }
 
 
-void CDeviceBase::SetDeviceName(string newVal){
+void CDeviceBase::SetDeviceName(string newVal)
+{
 
 	DeviceName = newVal;
 	
@@ -78,13 +85,14 @@ void CDeviceBase::SetDeviceName(string newVal){
 }
 
 
-int CDeviceBase::GetDeviceType(){
-
+int CDeviceBase::GetDeviceType()
+{
 	return DeviceType;
 }
 
 
-void CDeviceBase::SetDeviceType(int newVal){
+void CDeviceBase::SetDeviceType(int newVal)
+{
 
 	DeviceType = newVal;
 	
@@ -92,13 +100,15 @@ void CDeviceBase::SetDeviceType(int newVal){
 }
 
 
-int CDeviceBase::GetDotCount(){
+int CDeviceBase::GetDotCount()
+{
 
 	return dotCount;
 }
 
 
-void CDeviceBase::SetDotCount(int newVal){
+void CDeviceBase::SetDotCount(int newVal)
+{
 
 	dotCount = newVal;
 	
@@ -114,19 +124,22 @@ void CDeviceBase::SetDotCount(int newVal){
 }
 
 
-string CDeviceBase::GetNodeName(int vIndex){
+string CDeviceBase::GetNodeName(int vIndex)
+{
 
 	return  NodeNames[vIndex];
 }
 
 
-void CDeviceBase::SetNodeName(int vIndex, string vName){
+void CDeviceBase::SetNodeName(int vIndex, string vName)
+{
 
 	NodeNames[vIndex] = vName;
 }
 
 
-int CDeviceBase::GetNodeID(int vIndex){
+int CDeviceBase::GetNodeID(int vIndex)
+{
 
 	return  NodeIDs[vIndex];
 }
@@ -150,19 +163,22 @@ string CDeviceBase::BusName(int vIndex)
 }
 
 
-string CDeviceBase::GetStationName(){
+string CDeviceBase::GetStationName()
+{
 
 	return StationName;
 }
 
 
-void CDeviceBase::SetStationName(string newVal){
+void CDeviceBase::SetStationName(string newVal)
+{
 
 	StationName = newVal;
 }
 
 
-void CDeviceBase::ClearNodeID(){
+void CDeviceBase::ClearNodeID()
+{
 
 	for (int i = 0; i < GetDotCount(); i++)
 	{

@@ -7,12 +7,33 @@
 
 #include "CxbDev3pVSrc.h"
 
-
-void CxbDev3pVSrc::Init() 
+CxbDev3pVSrc::~CxbDev3pVSrc()
 {
-	SetDotCount(2);
+	//Clear();
+}
 
-	pU3pData.Urms  = new double[hMax()];
+void CxbDev3pVSrc::Clear()
+{
+	if (pU3pData.Urms !=nullptr)
+		delete[] pU3pData.Urms;
+	
+	if (pU3pData.Angle != nullptr)
+		delete[] pU3pData.Angle;
+
+	if (pU3pData.Ire != nullptr)
+		delete[] pU3pData.Ire;
+
+	if (pU3pData.Iim != nullptr)
+		delete[] pU3pData.Iim;
+
+	if (pU3pData.Yb != nullptr)
+		delete[] pU3pData.Yb;
+}
+
+void CxbDev3pVSrc::InitData()
+{
+	//
+	pU3pData.Urms = new double[hMax()];
 	pU3pData.Angle = new double[hMax()];
 
 	//pU3pData.Ure = new double[hMax()];
@@ -21,21 +42,31 @@ void CxbDev3pVSrc::Init()
 	pU3pData.Ire = new double[hMax()];
 	pU3pData.Iim = new double[hMax()];
 
-	pU3pData.Yb    = new double[hMax()];
-	pU3pData.Y_L   = new double[hMax()];
+	pU3pData.Yb = new double[hMax()];
+
+}
+
+void CxbDev3pVSrc::Init() 
+{
+	SetDotCount(2);
+
+	InitData();
 
 }
 
 void CxbDev3pVSrc::Prepare_hRLC()
 {
-	//Clear()
-	//Y_L为各次谐波(1/电感)
+	//Clear();
+
+	//InitData();
+
+	//
 	for (int i = 0; i < hMax(); i++)
 	{
-		pU3pData.Ire[i] =  hUim(i)*Get_hYL(i) / Omega();
-		pU3pData.Iim[i] = -hUre(i)*Get_hYL(i) / Omega();
+		pU3pData.Ire[i] =  hUim(i)*Get_hYb(i);
+		pU3pData.Iim[i] = -hUre(i)*Get_hYb(i);
 
-		pU3pData.Yb[i]  = -Get_hYL(i) / Omega();
+		//pU3pData.Yb[i]  = -Get_hYL(i) / Omega();
 	}
 
 }
@@ -46,6 +77,7 @@ void CxbDev3pVSrc::PrepareData(string vCondition)
 	//if (DataMap.count(vCondition))
 	//	pU3pData = DataMap.find(vCondition)->second;
 }
+
 /*
 *3P的电压实部
 */
@@ -107,14 +139,14 @@ void CxbDev3pVSrc::Set_hAngle(int vhOrder, double vX)
 	pU3pData.Angle[vhOrder] = vX;
 }
 
-double CxbDev3pVSrc::Get_hYL(int vhOrder)
+double CxbDev3pVSrc::Get_hYb(int vhOrder)
 {
-	return pU3pData.Y_L[vhOrder];
+	return pU3pData.Yb[vhOrder];
 }
 
-void CxbDev3pVSrc::Set_hYL(int vhOrder, double vX)
+void CxbDev3pVSrc::Set_hYb(int vhOrder, double vX)
 {
-	pU3pData.Y_L[vhOrder] = vX;
+	pU3pData.Yb[vhOrder] = vX;
 }
 
 

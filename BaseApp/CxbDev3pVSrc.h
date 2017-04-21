@@ -29,8 +29,16 @@ protected:
 	struct_xbU3PData  pU3pData;
 
 public:
+	virtual ~CxbDev3pVSrc();
+
+	void Clear() override;
+
+	void Init()  override;
+	void InitData();
+
+
+public:
 	virtual void Prepare_hRLC();
-	virtual void Init();
 
 public:
 
@@ -53,8 +61,9 @@ public:
 	double Get_hAngle(int vhOrder);
 	void   Set_hAngle(int vhOrder, double vX);
 
-	double Get_hYL(int vhOrder);
-	void   Set_hYL(int vhOrder, double vX);
+	double Get_hYb(int vhOrder);
+	void   Set_hYb(int vhOrder, double vX);
+
 };
 
 #endif // !defined(EA_CD558F52_2A30_4c74_926D_B8EF9068AC59__INCLUDED_)

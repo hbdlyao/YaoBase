@@ -7,19 +7,35 @@
 
 #include "CxbDevDcLine.h"
 
+CxbDevDcLine::~CxbDevDcLine()
+{
+	delete[] pLineParam;
+}
+
+void CxbDevDcLine::Clear()
+{
+	delete[] pLineParam;
+}
+
+void CxbDevDcLine::InitData()
+{
+	pLineParam = new struct_LineParam[hMax()];
+}
 
 void CxbDevDcLine::Init()
 {
 	SetDotCount(4);
 
-	pLineParam = new struct_LineParam[hMax()];
+	InitData();
 
 }
 
 
-
 void CxbDevDcLine::Prepare_hRLC()
 {
+	Clear();
+	
+	InitData();
 
 }
 

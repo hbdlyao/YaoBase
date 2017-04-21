@@ -9,12 +9,58 @@
 #include "CComplex.h"
 
 
+CxbDevShunt::~CxbDevShunt()
+{
+	delete[] Yg;
+	delete[] Yb;
+}
+
+void CxbDevShunt::Clear()
+{
+	delete[] Yg;
+	delete[] Yb;
+}
+
+void CxbDevShunt::InitData()
+{
+	Yg = new double[hMax()];
+	Yb = new double[hMax()];
+}
+
 void CxbDevShunt::Init()
 {
 	SetDotCount(1);
 
-	Yg = new double[hMax()];
-	Yb = new double[hMax()];
+	InitData();
+}
+
+void CxbDevShunt::Prepare_hRLC()
+{
+	Clear();
+
+	InitData();
+
+	CComplex vY;
+	double vZg, vZb;
+
+
+	//
+	for (int vh = 0; vh < hMax(); vh++)
+	{
+		vZg = GetZr();
+		vZb = (vh + 1) * Omega() * GetZ_L();
+
+		if (GetZ_C() == 0)
+			vZb = vZb + -1.0 / ((vh + 1) * Omega() * GetZ_C());
+
+		//
+		vY = CComplex(vZg, vZb).inverse();
+
+		///////////////////////
+		Yg[vh] = vY.real();
+		Yb[vh] = vY.image();
+
+	}
 }
 
 
@@ -93,41 +139,6 @@ double CxbDevShunt::GetYb(int vhOrder)
 	//谐波次数从1开始
 	return Yb[vhOrder - 1];
 }
-
-void CxbDevShunt::Prepare_hRLC() 
-{
-	CComplex vY;
-
-	double vOmega;
-
-	if (Yg != nullptr)
-		delete Yg;
-	if (Yb != nullptr)
-		delete Yg;
-
-	Yg = new double[hMax()];
-	Yb = new double[hMax()];
-
-	double vFre = FreqRef();
-
-	for (int i = 0; i < hMax(); i++)
-	{
-		//马俊鹏:to-do
-		//RLC串联
-
-		vOmega = vFre * 2 * PI;
-		if (structBranch.Zx_C)
-			vY = (CComplex(structBranch.Zr, vOmega*structBranch.Zx_L) + CComplex(0, -1.0 / vOmega / structBranch.Zx_C)).inverse();
-		else
-			vY = CComplex(structBranch.Zr, vOmega*structBranch.Zx_L).inverse();
-		
-	///////////////////////
-		Yg[i] = vY.real();
-		Yb[i] = vY.image();
-
-	}
-}
-
 
 
 

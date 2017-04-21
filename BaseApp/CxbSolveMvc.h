@@ -23,7 +23,7 @@ public:
 
 
 public:
-	virtual void NodeID(int vGNDType);
+	virtual void Test(int vGNDType);
 	virtual void Run();
 
 protected:
@@ -35,15 +35,9 @@ protected:
 	double Frequence();
 
 
-	//马骏鹏
-	//形成各器件导纳参数
-	void InitDevY();
-
 	void doPrepare_U3p(string vCondition);
 	void doPrepare_hRLC();
 
-
-	
 	//
 	void doInitRun();
 	void doInitMatrix();

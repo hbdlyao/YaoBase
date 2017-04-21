@@ -9,7 +9,6 @@
 
 void CxbDevTwoDot::Init()
 {
-
 	SetDotCount(2);
 }
 

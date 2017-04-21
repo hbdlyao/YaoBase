@@ -22,6 +22,9 @@ protected:
 	void doLoad(CxbDevBase* vDevice) override;
 	void doSave(CxbDevBase* vDevice) override;
 
+	/**
+	 * void CxbRw_Tree::OnSave() { doSave_Root();  doSave_Tree(); }
+	 */
 	virtual void doLoad_Root();
 	virtual void doSave_Root();
 

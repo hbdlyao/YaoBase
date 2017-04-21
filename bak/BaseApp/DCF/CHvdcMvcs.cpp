@@ -74,7 +74,7 @@ void CHvdcMvcs::OnLoad()
 
 void CHvdcMvcs::OnSave()
 {
-	pProjectRwMvc->OnSave();
+	//pProjectRwMvc->OnSave();
 
 	//pmcRwMvc->OnSave();
 	//pxbRwMvc->OnSave();

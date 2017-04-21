@@ -64,7 +64,8 @@ void CPowerCalculate::StationSort(StationMap& vStaMap)
 }
 
 
-void CPowerCalculate::Add(CPowerCalculate* vItem){
+void CPowerCalculate::Add(CPowerCalculate* vItem)
+{
 
 }
 

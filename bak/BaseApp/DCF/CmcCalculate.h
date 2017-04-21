@@ -64,10 +64,8 @@ public:
 	virtual void CalACSide();//计算交流系统、交流滤波器的状态
 
 public:	
-	int StaionCtrlType;
 
 protected:	
-	virtual bool IsFixed_I();
 
 };
 

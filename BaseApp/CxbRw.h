@@ -19,11 +19,6 @@ public:
 public:
 	virtual void OnLoad() override;
 	virtual void OnSave() override;
-
-	void OnLoad_Order(CxbOrder* vOrder);
-	void OnSave_Order(CxbOrder* vOrder);
-	void OnLoad_Result(CxbResult* vRes);
-	void OnSave_Result(CxbResult* vRes);
 	
 
 protected:

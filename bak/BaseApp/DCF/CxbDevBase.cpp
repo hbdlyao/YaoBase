@@ -8,6 +8,10 @@
 #include "CxbDevBase.h"
 #include "CHvdcParams.h"
 
+void CxbDevBase::InitData()
+{
+}
+
 /**
  * 所属拓扑类型  单极大地 单极金属 双极
  */

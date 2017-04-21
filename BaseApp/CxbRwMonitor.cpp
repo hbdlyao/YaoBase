@@ -6,3 +6,16 @@
 ///////////////////////////////////////////////////////////
 
 #include "CxbRwMonitor.h"
+
+void CxbRwMonitor::doLoad_Leaf(CxbDevBase* vLeaf, int vIndex)
+{
+
+	CxbRwBranch::doLoad(vLeaf);
+}
+
+
+void CxbRwMonitor::doSave_Leaf(CxbDevBase* vLeaf, int vIndex)
+{
+
+	CxbRwBranch::doSave(vLeaf);
+}

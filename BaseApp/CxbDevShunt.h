@@ -8,15 +8,21 @@
 */
 class CxbDevShunt : public CxbDevOneDot
 {
+public:
+	virtual ~CxbDevShunt();
+
+	void Clear() override;
+	void InitData() override;
+	void Init() override;
+
 protected:
 	/**
 	* 支路数据
 	*/
 	struct_Branch structBranch;
 
-	//马骏鹏
-	double * Yg = nullptr;
-	double * Yb = nullptr;
+	double* Yg = nullptr;
+	double* Yb = nullptr;
 
 public:
 	double GetZr();
@@ -24,20 +30,17 @@ public:
 	double GetZ_L();
 	double GetZx_C();
 	double GetZx_L();
-
 	void SetZr(double vValue);
 	void SetZ_C(double vValue);
 	void SetZ_L(double vValue);
 	void SetZx_C(double vValue);
 	void SetZx_L(double vValue);
 
-	//马骏鹏	
 	double GetYg(int vhOrder);
 	double GetYb(int vhOrder);
 
-public:
-	virtual void Prepare_hRLC() override;
-	virtual void Init();
 
+public:
+	void Prepare_hRLC() override;
 
 };

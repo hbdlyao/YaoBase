@@ -7,6 +7,7 @@
 
 #include "CxbRwDCF.h"
 #include "CxbDevDCF.h"
+#include "CxbDevDCF_RLC.h"
 
 
 void CxbRwDCF::doLoad_Root(CxbDevBase* vRoot)
@@ -17,7 +18,7 @@ void CxbRwDCF::doLoad_Root(CxbDevBase* vRoot)
 	
 	vDev = dynamic_cast<CxbDevDCF *>(vRoot);
 	
-	CxbRwTwo::doLoad(vDev);
+	CxbRw::doLoad(vDev);
 	
 	RwAdo->GetFieldValue("DcfType", vValue);
 	if (vValue.vt != VT_NULL)
@@ -36,7 +37,7 @@ void CxbRwDCF::doSave_Root(CxbDevBase* vRoot)
 
 	vDev = dynamic_cast<CxbDevDCF *>(vRoot);
 
-	CxbRwTwo::doSave(vDev);
+	CxbRw::doSave(vDev);
 
 	vValue = _variant_t(vDev->GetDCFType()); //ÕûÐÍ
 	RwAdo->SetFieldValue("DcfType", vValue);
@@ -48,9 +49,9 @@ void CxbRwDCF::doLoad_Leaf(CxbDevBase * vLeaf, int vIndex)
 {
 	string vStr;
 	_variant_t vValue;
-	CxbDevBranch * vDev;
+	CxbDevDCF_RLC * vDev;
 
-	vDev = dynamic_cast<CxbDevBranch *>(vLeaf);
+	vDev = dynamic_cast<CxbDevDCF_RLC *>(vLeaf);
 
 	CxbRwBranch::doLoad(vDev);
 
@@ -60,9 +61,9 @@ void CxbRwDCF::doSave_Leaf(CxbDevBase * vLeaf, int vIndex)
 {
 	string vStr;
 	_variant_t vValue;
-	CxbDevBranch * vDev;
+	CxbDevDCF_RLC * vDev;
 
-	vDev = dynamic_cast<CxbDevBranch *>(vLeaf);
+	vDev = dynamic_cast<CxbDevDCF_RLC *>(vLeaf);
 
 	CxbRwBranch::doSave(vDev);
 

@@ -1,0 +1,8 @@
+///////////////////////////////////////////////////////////
+//  CxbDevGroundLine.cpp
+//  Implementation of the Class CxbDevGroundLine
+//  Created on:      05-4ÔÂ-2017 16:58:43
+//  Original author: open2
+///////////////////////////////////////////////////////////
+
+#include "CxbDevGroundLine.h"

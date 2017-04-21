@@ -125,9 +125,9 @@ void CxbDevDCF_RLC::doDelta_Ref_None()
 
 void CxbDevDCF_RLC::doDelta_Ref_Max()
 {
-	ddC = PdC;
-	ddL = PdL;
-	ddR = PdR;
+	ddC = MaxCDelta;
+	ddL = MaxLDelta;
+	ddR = MaxRDelta;
 
 	ddf = MaxFreqDelta;
 
@@ -145,9 +145,9 @@ void CxbDevDCF_RLC::doDelta_Ref_Max()
 
 void CxbDevDCF_RLC::doDelta_Ref_Min()
 {
-	ddC = NdC;
-	ddL = NdL;
-	ddR = NdR;
+	ddC = MinCDelta;
+	ddL = MinLDelta;
+	ddR = MinRDelta;
 
 	ddf = MinFreqDelta;
 
@@ -165,9 +165,9 @@ void CxbDevDCF_RLC::doDelta_Ref_Min()
 
 void CxbDevDCF_RLC::doDelta_Rand()
 {
-	CRand randC1(NdC, PdC, Real_Dis);
-	CRand randL1(NdL, PdL, Real_Dis);
-	CRand randR1(NdR, PdR, Real_Dis);
+	CRand randC1(MinCDelta, MaxCDelta, Real_Dis);
+	CRand randL1(MinLDelta, MaxLDelta, Real_Dis);
+	CRand randR1(MinRDelta, MaxRDelta, Real_Dis);
 
 	CRand randf(MinFreqDelta, MaxFreqDelta, Real_Dis);
 
@@ -289,4 +289,82 @@ int CxbDevDCF_RLC::GetSampleNum(){
 void CxbDevDCF_RLC::SetSampleNum(int newVal){
 
 	SampleNum = newVal;
+}
+
+
+/**
+ * 输入参数，正负偏差
+ */
+double CxbDevDCF_RLC::GetMaxCDelta(){
+
+	return MaxCDelta;
+}
+
+
+/**
+ * 输入参数，正负偏差
+ */
+void CxbDevDCF_RLC::SetMaxCDelta(double newVal){
+
+	MaxCDelta = newVal;
+}
+
+
+double CxbDevDCF_RLC::GetMaxLDelta(){
+
+	return MaxLDelta;
+}
+
+
+void CxbDevDCF_RLC::SetMaxLDelta(double newVal){
+
+	MaxLDelta = newVal;
+}
+
+
+double CxbDevDCF_RLC::GetMaxRDelta(){
+
+	return MaxRDelta;
+}
+
+
+void CxbDevDCF_RLC::SetMaxRDelta(double newVal){
+
+	MaxRDelta = newVal;
+}
+
+
+double CxbDevDCF_RLC::GetMinCDelta(){
+
+	return MinCDelta;
+}
+
+
+void CxbDevDCF_RLC::SetMinCDelta(double newVal){
+
+	MinCDelta = newVal;
+}
+
+
+double CxbDevDCF_RLC::GetMinLDelta(){
+
+	return MinLDelta;
+}
+
+
+void CxbDevDCF_RLC::SetMinLDelta(double newVal){
+
+	MinLDelta = newVal;
+}
+
+
+double CxbDevDCF_RLC::GetMinRDelta(){
+
+	return MinRDelta;
+}
+
+
+void CxbDevDCF_RLC::SetMinRDelta(double newVal){
+
+	MinRDelta = newVal;
 }

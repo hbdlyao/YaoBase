@@ -17,13 +17,13 @@ public:
 
 protected:
 	//输入参数，正负偏差
-	double PdC;
-	double PdL;
-	double PdR;
+	double MaxCDelta;
+	double MaxLDelta;
+	double MaxRDelta;
 
-	double NdC;
-	double NdL;
-	double NdR;
+	double MinCDelta;
+	double MinLDelta;
+	double MinRDelta;
 	//
 	double ddC;
 	double ddL;
@@ -74,12 +74,32 @@ public:
 	void selectNoneDevY();
 	void selectConsDevY(int vCount);
 	void selectRandDevY(int vCount);
+
+	//
 	double GetMaxFreqDelta();
 	void SetMaxFreqDelta(double newVal);
 	double GetMinFreqDelta();
 	void SetMinFreqDelta(double newVal);
 	int GetSampleNum();
 	void SetSampleNum(int newVal);
+	/**
+	 * 输入参数，正负偏差
+	 */
+	double GetMaxCDelta();
+	/**
+	 * 输入参数，正负偏差
+	 */
+	void SetMaxCDelta(double newVal);
+	double GetMaxLDelta();
+	void SetMaxLDelta(double newVal);
+	double GetMaxRDelta();
+	void SetMaxRDelta(double newVal);
+	double GetMinCDelta();
+	void SetMinCDelta(double newVal);
+	double GetMinLDelta();
+	void SetMinLDelta(double newVal);
+	double GetMinRDelta();
+	void SetMinRDelta(double newVal);
 };
 
 #endif // !defined(EA_4E0FBC44_2648_4346_97EE_4A20734B4B7F__INCLUDED_)

@@ -68,7 +68,7 @@ void CPowerGrid::ClearNodeID()
 {
 	CDeviceTBL * vTBL;
 
-	NodeCount = 0;
+	//NodeCount = 0;
 
 	for each (pDevTBL_Pair  vPair in  pItems)
 	{

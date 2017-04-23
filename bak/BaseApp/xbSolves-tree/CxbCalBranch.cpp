@@ -30,7 +30,9 @@ void CxbCalBranch::UpdateY()
 	vYg = vDev->GetYg(vhOrder);
 	vYb = vDev->GetYb(vhOrder);
 
-
+	if ((iNode == -1) && (jNode == -1)) //接地
+		int v = 0;
+		
 	//数组从0开始
 	if ((iNode != -1) && (jNode != -1)) //接地
 		pxbProfile->UpdateY(iNode, jNode, vYg, vYb);

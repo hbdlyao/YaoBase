@@ -399,7 +399,8 @@ void CmcSolveMvcNormal::Init()
 // 改动对象:  Run
 // 改动者:    崔康生
 // 改动类型:  修改
-// 改动内容:  1.InitNormal()改为InitNormal(dynamic_cast<CmcDevConvertor *>(vDev->second)->GetValvor12Count())
+// 改动内容:  1.InitNormal()改为
+//InitNormal(dynamic_cast<CmcDevConvertor *>(vDev->second)->GetValvor12Count())
 // 改动时间:  2017/04/17
 //************************************
 void CmcSolveMvcNormal::Run()

@@ -21,7 +21,7 @@ public:
 	virtual void DeviceAdd(int vType, string vID, CDeviceBase* vDev);
 
 public:	
-	int NodeCount = 0;
+	//int NodeCount = 0;
 	pDeviceTBL GetDevTBLs() { return pItems; };
 
 	virtual void ClearNodeID();

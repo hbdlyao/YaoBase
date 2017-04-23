@@ -14,6 +14,11 @@
 
 CxbCal_Tree::~CxbCal_Tree()
 {
+	Clear();
+}
+
+void CxbCal_Tree::Clear()
+{
 	for each (CxbCalculate * vCal in pChildren)
 	{
 		delete vCal;
@@ -21,14 +26,6 @@ CxbCal_Tree::~CxbCal_Tree()
 	}
 
 	pChildren.clear();
-}
-
-void CxbCal_Tree::Clear()
-{
-	for each (CxbCalculate * vCal in pChildren)
-	{
-		vCal->Clear();
-	}
 
 }
 
@@ -72,16 +69,6 @@ bool CxbCal_Tree::IsLeaf()
 }
 
 
-void CxbCal_Tree::Prepare()
-{
-
-	//对每一个CxbCalculate
-	for each (CxbCalculate * vCal in pChildren)
-	{
-		vCal->Prepare();
-	}
-}
-
 
 int CxbCal_Tree::ChildCount()
 {
@@ -99,6 +86,17 @@ pxbCalVector CxbCal_Tree::Children()
 {
 
 	return pChildren;
+}
+
+
+void CxbCal_Tree::Prepare()
+{
+
+	//对每一个CxbCalculate
+	for each (CxbCalculate * vCal in pChildren)
+	{
+		vCal->Prepare();
+	}
 }
 
 
@@ -266,7 +264,8 @@ void CxbCal_Tree::UpdateI()
 
 
 
-void CxbCal_Tree::NewCal_Tree(CDeviceBase* vDev){
+void CxbCal_Tree::NewCal_Tree(CDeviceBase* vDev)
+{
 
 	CPowerCalculate * vCal;
 	CxbDev_Tree * vNode;

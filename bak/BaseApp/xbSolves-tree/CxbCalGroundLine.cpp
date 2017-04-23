@@ -6,3 +6,9 @@
 ///////////////////////////////////////////////////////////
 
 #include "CxbCalGroundLine.h"
+
+
+void CxbCalGroundLine::NodeGround(NodeMap& vNodeMap)
+{
+	
+}

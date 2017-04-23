@@ -25,7 +25,7 @@ protected:
 	virtual void doClear();
 	
 public:
-	virtual void InitMatrix(int vN);
+	virtual void InitMatrix();
 
 	void ReSetData();
 
@@ -57,7 +57,6 @@ public:
 	CMatrix * Uvect;
 	
 public:
-
 	
 	double Omega();
 

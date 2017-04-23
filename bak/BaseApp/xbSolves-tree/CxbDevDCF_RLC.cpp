@@ -23,7 +23,6 @@ CxbDevDCF_RLC::~CxbDevDCF_RLC()
 
 	delete[] RandDevYg;
 	delete[] RandDevYb;
-
 }
 
 void CxbDevDCF_RLC::Init()
@@ -37,9 +36,6 @@ void CxbDevDCF_RLC::Init()
 
 void CxbDevDCF_RLC::Clear()
 {
-	delete[] Yg;
-	delete[] Yb;
-
 	delete[] NoneDevYg;
 	delete[] NoneDevYb;
 
@@ -48,14 +44,12 @@ void CxbDevDCF_RLC::Clear()
 
 	delete[] RandDevYg;
 	delete[] RandDevYb;
-
 }
 
 void CxbDevDCF_RLC::InitData()
 {
-	Yg = new double[hMax()];
-	Yb = new double[hMax()];
 
+	//
 	NoneDevYg = new double[hMax()];
 	NoneDevYb = new double[hMax()];
 
@@ -69,10 +63,9 @@ void CxbDevDCF_RLC::InitData()
 
 void CxbDevDCF_RLC::Prepare_hRLC()
 {
-	Clear();
-
-	InitData();
-
+	//
+	Yg = new double[hMax()];
+	Yb = new double[hMax()];
 
 	//
 	doDelta_None();
@@ -84,6 +77,10 @@ void CxbDevDCF_RLC::Prepare_hRLC()
 	doDelta_Ref_Min();
 
 	doDelta_Rand();
+
+	//
+	//delete[] Yg;
+	//delete[] Yb;
 
 }
 
@@ -97,10 +94,10 @@ void CxbDevDCF_RLC::doDelta_None()
 	doDelta();
 
 	//
-	for (int vhOrder = 0; vhOrder < hMax(); vhOrder++)
+	for (int vhOrder = 1; vhOrder <= hMax(); vhOrder++)
 	{
-		NoneDevYg[vhOrder] = Yg[vhOrder];
-		NoneDevYb[vhOrder] = Yb[vhOrder];
+		NoneDevYg[vhOrder-1] = Yg[vhOrder-1];
+		NoneDevYb[vhOrder-1] = Yb[vhOrder-1];
 	}
 
 }
@@ -115,10 +112,10 @@ void CxbDevDCF_RLC::doDelta_Ref_None()
 	doDelta();
 
 	//
-	for (int vhOrder = 0; vhOrder < hMax(); vhOrder++)
+	for (int vhOrder = 1; vhOrder <= hMax(); vhOrder++)
 	{
-		ConstDevYg[vhOrder] = Yg[vhOrder];
-		ConstDevYg[vhOrder] = Yb[vhOrder];
+		ConstDevYg[vhOrder-1] = Yg[vhOrder-1];
+		ConstDevYg[vhOrder-1] = Yb[vhOrder-1];
 	}
 
 }
@@ -134,10 +131,10 @@ void CxbDevDCF_RLC::doDelta_Ref_Max()
 	doDelta();
 
 	int vK = hMax();
-	for (int vhOrder = 0; vhOrder < hMax(); vhOrder++)
+	for (int vhOrder = 1; vhOrder <= hMax(); vhOrder++)
 	{
-		ConstDevYg[vK + vhOrder] = Yg[vhOrder];
-		ConstDevYb[vK + vhOrder] = Yb[vhOrder];
+		ConstDevYg[vK + vhOrder - 1] = Yg[vhOrder-1];
+		ConstDevYb[vK + vhOrder - 1] = Yb[vhOrder-1];
 	}
 	
 }
@@ -155,10 +152,10 @@ void CxbDevDCF_RLC::doDelta_Ref_Min()
 
 	//
 	int vK = 2*hMax();
-	for (int vhOrder = 0; vhOrder < hMax(); vhOrder++)
+	for (int vhOrder = 1; vhOrder <= hMax(); vhOrder++)
 	{
-		ConstDevYg[vK+vhOrder] = Yg[vhOrder];
-		ConstDevYb[vK+vhOrder] = Yb[vhOrder];
+		ConstDevYg[vK+ vhOrder - 1] = Yg[vhOrder-1];
+		ConstDevYb[vK+ vhOrder - 1] = Yb[vhOrder-1];
 	}
 
 }
@@ -183,9 +180,13 @@ void CxbDevDCF_RLC::doDelta_Rand()
 		doDelta();
 
 		vK = i*hMax();
-		RandDevYg[vK + i] = Yg[i];
-		RandDevYg[vK + i] = Yb[i];
-	}
+		for (int vhOrder = 1; vhOrder <= hMax(); vhOrder++)
+		{
+			RandDevYg[vK + vhOrder-1] = Yg[vhOrder - 1];
+			RandDevYg[vK + vhOrder-1] = Yb[vhOrder - 1];
+		}//hOrder
+
+	}// for i
 
 }
 

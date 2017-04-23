@@ -16,5 +16,8 @@
 class CxbCalMetalLine : public CxbCalDcLine
 {
 
+
+public:
+	virtual void NodeGround(NodeMap& vNodeMap);
 };
 #endif // !defined(EA_222930FA_1FFE_4cca_B581_56F508AAFB25__INCLUDED_)

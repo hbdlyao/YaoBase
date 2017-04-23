@@ -60,3 +60,15 @@ double CxbDevBase::Omega()
 
 	return 2 * PI*FreqRef();
 }
+
+
+string CxbDevBase::BusName(int vIndex)
+{
+	string vBus;
+	
+	vBus = GetStationName() + "--" + GetNodeName(vIndex);
+	
+	//vBus =GetNodeName(vIndex);
+	
+	return vBus;
+}

@@ -126,6 +126,16 @@ void CPower_YU_I::UpdateY(int iNode, int jNode, double vYg, double vYb)
 
 }
 
+int CPower_YU_I::GetYdim()
+{
+	return Ydim;
+}
+
+void CPower_YU_I::SetYdim(int vN)
+{
+	Ydim = vN; 
+}
+
 void CPower_YU_I::UpdateI0(int iNode, double vIr,double vIm)
 {
 	//注意电流注入正方向的规定

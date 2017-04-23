@@ -88,10 +88,8 @@ void CxbProfile::doClear()
 	Uvect	= nullptr;
 }
 
-void CxbProfile::InitMatrix(int vN)
+void CxbProfile::InitMatrix()
 {
-	StaCount = vN;
-
 	Ydim = NodeCount;
 
 	//
@@ -173,13 +171,22 @@ void CxbProfile::UpdateYLine(int * pNode, CMatrix vY)
 	int vN = Ydim;
 
 	for (int i = 0; i < 4; i++)
+	{
+		//马骏鹏
+		if (pNode[i] == -1)
+			continue;
+
 		for (int j = 0; j < 4; j++)
 		{
+			if (pNode[j] == -1)
+				continue;
+
 			Yg_Matrix[pNode[i] * vN + pNode[j]] += vY._mat[i][j].real();
 			Yb_Matrix[pNode[i] * vN + pNode[j]] += vY._mat[i][j].image();
 
 			//(*Ymatrix)._mat[pNode[i]][pNode[j]] += vY._mat[i][j];
 		}//for j
+	}
 }
 
 void CxbProfile::UpdateI0(int iNode, double vIr, double vIm)
@@ -223,19 +230,30 @@ void CxbProfile::Solve()
 	//复数求解:本函数里
 
 	double vYg, vYb;
+	double vIr, vIm;
 
-	for (int i=0;i<Ydim;i++)
+	for (int i = 0; i<Ydim; i++)
 		for (int j = 0; j < Ydim; j++)
 		{
-			vYg = Yg_Matrix[i*Ydim+j];
+			vYg = Yg_Matrix[i*Ydim + j];
 			vYb = Yb_Matrix[i*Ydim + j];
 
 			(*Ymatrix)._mat[i][j] = CComplex(vYg, vYb);
 
 		}
 
+	for (int i = 0; i<Ydim; i++)
+		for (int j = 0; j < StaCount; j++)
+		{
+			vIr = Ir_Vect[i*Ydim + j];
+			vIm = Im_Vect[i*Ydim + j];
+
+			(*Ivect)._mat[i][j] = CComplex(vIr, vIm);
+
+		}
+
 	//
-	if (Ydim!=0 )
+	if (Ydim != 0)
 		*Uvect = (Ymatrix->inversion()) * (*Ivect);
 
 }

@@ -33,9 +33,6 @@ void CxbDevDcLine::Init()
 
 void CxbDevDcLine::Prepare_hRLC()
 {
-	Clear();
-	
-	InitData();
 
 }
 
@@ -174,5 +171,34 @@ void CxbDevDcLine::SetYm11im(int vhOrder, double vY)
 void CxbDevDcLine::SetYm12im(int vhOrder, double vY)
 {
 	pLineParam[vhOrder - 1].Ym12im = vY;
+
+}
+
+
+
+string CxbDevDcLine::BusName(int vIndex)
+{
+
+	string vBus;
+	
+	switch (vIndex)
+	{
+	case 0:
+	case 1:
+		vBus = GetStationName1() + "--" + GetNodeName(vIndex);
+
+	case 2:
+	case 3:
+		vBus = GetStationName2() + "--" + GetNodeName(vIndex);
+
+	default:
+		break;
+	}
+
+	//vBus = DeviceName + "--" + GetNodeName(vIndex);
+	
+	vBus =GetNodeName(vIndex);
+	
+	return vBus;
 
 }

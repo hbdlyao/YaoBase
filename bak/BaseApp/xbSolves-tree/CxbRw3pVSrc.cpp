@@ -266,7 +266,7 @@ void CxbRw3pVSrc::doSave_hData(CxbDev3pVSrc * vDev)
 	{
 		cout << "save---" + tblName + "_hData " << endl;
 
-		for (i = 0; i<vDev->hMax(); i++)
+		for (i = 1; i<=vDev->hMax(); i++)
 		{
 			RwAdo->Record_AddNew();
 			//

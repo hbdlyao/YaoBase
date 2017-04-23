@@ -31,5 +31,6 @@ public:
 	 */
 	double FreqRef();
 	double Omega();
+	virtual string BusName(int vIndex);
 	
 };

@@ -37,7 +37,6 @@ void CDevBase_Tree::Remove(CDeviceBase* vItem)
 
 bool CDevBase_Tree::IsLeaf()
 {
-
 	return false;
 }
 
@@ -58,12 +57,12 @@ CDeviceBase * CDevBase_Tree::Child(int vIndex)
 
 pObjVector CDevBase_Tree::Children()
 {
-
 	return pChildren;
 }
 
 
-void CDevBase_Tree::ClearNodeID(){
+void CDevBase_Tree::ClearNodeID()
+{
 
 	for each (CDeviceBase * vDev in pChildren)
 	{

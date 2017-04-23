@@ -1,48 +1,44 @@
-UpdateF, J 要考虑接地情况
+
+====================2017-4-22================
+CmcCalAcSys 
+CmcCalAcFilter	添加NodeGround(), 空函数，这些设备不参加节点编号
+CmcCalXf2
 
 
-==================2017-4-19=================
-CDevice		添加 IsLeaf()，Add,Remove
 
-==================2017-4-18=================
+============================
+Calculate
+	函数中 如果全部是用到的Profile数据，应该放进 CmcProfile。
+	
+CmcSolves，Calculate，CmcProfile 三者的关系
+	CmcSolves 只负责流程控制
+	Calculate 只负责计算数据处理的流程，如prepare,存储
+	CmcProfile 实现算法，在有充分的数据信息后，算法相关的应该都放在Profile，包括算法的流程
 
-CxbHvdcGrid	修改Init(), 增加新的设备类型
-CHvdcFunc	修改xbTypeToName,增加新的设备类型
+//
+struct_mcStationData 中添加下面的数据，这样算法就可以完整的放在Profile里
+	//换流站节点
+	int iNodeID,jNodeID;
 
-CxbDeviceTBL	修改doNewDevice(int vDevType),增加新的设备
+	int StaCtrlType;
+	int UdRef_StaIndex; //
+	int IdRef_StaIndex; //
+	int J_Index;//换流站在J矩阵中的序号
 
-增加
-CxbCal_Leaf ,CxbCal_Composite, CxbCalDCFs
+定电流站的处理，可以不用增加变量，
+	UpdateJ和F，放入Profilem,这样具体Update时可以很容易的排除定电流站。
+	其他控制类型的记下对应J中的序号即可
 
-CxbDevRLCs, CxbDevTrap, CxbDevMonitor
+CmcCalConvertor
+	MeasureNodeIndex,可以用固定数组？
 
-CRwDbf		添加 tblName,tbltype,DevType
-		添加 InitTable()
-
-==================2017-4-17=================
-
-CxbSolveMvc	增加 doPrepare_Line(),doPrepare_DCF() 用于 谐波电流计算之前计算出 线路参数和DCF各次谐波的导纳
-		Run()中，添加对doPrepare_Line(),doPrepare_DCF()的调用
-		selectU3p() 改名为 doSelectU3p()
-
-CxbSolve	doNewXbSolvers10(),doNewXbSolvers11(),doNewXbSolvers20(),doNewXbSolvers21(),
-
-
-CPowerGrid	修改 ClearNodeID()
-		CDeviceBase 添加 ClearNodeID()
-
-CDeviceBase    添加 NodeSort(),NodeGround(),NodeID();
-
-
-CPowerCalculate  修改 NodeSort(NodeMap& vNodeID), NodeID(NodeMap& vNodeID)
-
-CDeviceTBL	NewDevice(int vDevType) 修正错误
-		
-		doNewDevice() 修正错误 case xb_PulseC:
+	ChangeStationCtrlType()
+	//没有定电流控制?
+	//哪两种类型间的转换?
 
 
-CxbSolves	修改 doNewItem(int vtblType)
+doSovleDcNet 中的UpdateY 应该放在循环外
 
+极线对中性点和对地 可以是否可用派生
 
-数据库 xbBranch 字段StationName1  改为 StationName,去掉 StationName2字段
 

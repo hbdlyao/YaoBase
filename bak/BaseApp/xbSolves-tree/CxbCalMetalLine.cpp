@@ -6,3 +6,9 @@
 ///////////////////////////////////////////////////////////
 
 #include "CxbCalMetalLine.h"
+
+
+void CxbCalMetalLine::NodeGround(NodeMap& vNodeMap)
+{
+
+}

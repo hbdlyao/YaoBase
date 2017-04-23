@@ -17,6 +17,5 @@ class CPowerProfile : public CPower_YU_I
 public:
 	int NodeCount;
 	int StaCount;
-
 };
 #endif // !defined(EA_8BA55D66_0E12_4be4_98D8_62C258569774__INCLUDED_)

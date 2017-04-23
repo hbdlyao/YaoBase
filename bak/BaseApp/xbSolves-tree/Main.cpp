@@ -117,9 +117,9 @@ int main()
 	///////////////////////////////////////////
 	CHvdcMvcs::pxbRwMvc->OnLoad();
 	
-	xbTest(xb_Ground10);
+	//xbTest(xb_Ground10);
 
-	//xbCalculate();
+	xbCalculate();
 	
 	//CHvdcMvcs::pxbRwMvc->OnSave();
 

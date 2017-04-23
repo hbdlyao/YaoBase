@@ -56,8 +56,10 @@ public:
 	void SetYm12re(int vhOrder,double vY);
 	void SetYm12im(int vhOrder,double vY);
 
-	//
+public:
 	virtual void Prepare_hRLC();
+
+	virtual string BusName(int vIndex) override;
 
 };
 #endif // !defined(EA_8F46C231_3B03_492f_AF91_2960C3884C16__INCLUDED_)

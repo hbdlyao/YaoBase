@@ -98,7 +98,7 @@ double CxbDev3pVSrc::hUim(int vhOrder)
 */
 double CxbDev3pVSrc::hIre(int vhOrder)
 {//
-	return pU3pData.Ire[vhOrder];
+	return pU3pData.Ire[vhOrder-1];
 }
 
 /*
@@ -106,7 +106,7 @@ double CxbDev3pVSrc::hIre(int vhOrder)
 */
 double CxbDev3pVSrc::hIim(int vhOrder)
 {
-	return pU3pData.Iim[vhOrder];
+	return pU3pData.Iim[vhOrder-1];
 }
 
 double CxbDev3pVSrc::hYg(int vhOrder)
@@ -116,37 +116,37 @@ double CxbDev3pVSrc::hYg(int vhOrder)
 
 double CxbDev3pVSrc::hYb(int vhOrder)
 {
-	return pU3pData.Yb[vhOrder];
+	return pU3pData.Yb[vhOrder-1];
 }
 
 double CxbDev3pVSrc::Get_hUrms(int vhOrder)
 {
-	return pU3pData.Urms[vhOrder];
+	return pU3pData.Urms[vhOrder-1];
 }
 
 void CxbDev3pVSrc::Set_hUrms(int vhOrder, double vX)
 {
-	pU3pData.Urms[vhOrder] = vX;
+	pU3pData.Urms[vhOrder-1] = vX;
 }
 
 double CxbDev3pVSrc::Get_hAngle(int vhOrder)
 {
-	return pU3pData.Angle[vhOrder];
+	return pU3pData.Angle[vhOrder-1];
 }
 
 void CxbDev3pVSrc::Set_hAngle(int vhOrder, double vX)
 {
-	pU3pData.Angle[vhOrder] = vX;
+	pU3pData.Angle[vhOrder-1] = vX;
 }
 
 double CxbDev3pVSrc::Get_hYb(int vhOrder)
 {
-	return pU3pData.Yb[vhOrder];
+	return pU3pData.Yb[vhOrder-1];
 }
 
 void CxbDev3pVSrc::Set_hYb(int vhOrder, double vX)
 {
-	pU3pData.Yb[vhOrder] = vX;
+	pU3pData.Yb[vhOrder-1] = vX;
 }
 
 

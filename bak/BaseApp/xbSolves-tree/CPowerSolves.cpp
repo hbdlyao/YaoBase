@@ -210,7 +210,7 @@ void CPowerSolves::NodeID()
 
 	 //
 	pProfile->NodeCount = vK;
-	pGrid->NodeCount = vK;
+	//pGrid->NodeCount = vK;
 
 	for each (pPowerCal_Pair vPair in pItems)
 	{

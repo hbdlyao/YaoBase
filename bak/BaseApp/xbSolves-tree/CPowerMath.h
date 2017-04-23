@@ -31,7 +31,8 @@ public:
 	double* Yg_Matrix;
 	double* Yb_Matrix;
 	
-	virtual int GetYdim() { return Ydim; }; 
+	virtual int GetYdim() ; 
+	virtual void SetYdim(int vN) ;
 
 
 	virtual void UpdateI0(int iNode, double vIr, double vIm);

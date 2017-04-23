@@ -79,7 +79,6 @@ void CxbSolveMvc::InitOrder()
 
 void CxbSolveMvc::Test(int vGNDType)
 {
-
 	doPrepare_hRLC();
 
 	//
@@ -117,19 +116,18 @@ void CxbSolveMvc::doStationSort()
 
 void CxbSolveMvc::doNewSolves(int vGNDType)
 {
+	//
 	pxbSolves->Clear();
+	//
 	pxbSolves->NewSolves(vGNDType);
-
 	//
 }
 
 
 int CxbSolveMvc::StaCount()
 {
-	//应该从工程属性中读取
+	//从工程属性中读取
 	return CHvdcParams::xbStationCount;
-
-	//return 3;
 
 }
 
@@ -149,7 +147,6 @@ void CxbSolveMvc::Run()
 
 void CxbSolveMvc::doPrepare_hRLC()
 {
-	//马俊鹏
 	//计算出相关设备的各次谐波阻抗；
 	pxbHvdc->Prepare_hRLC();
 
@@ -170,14 +167,16 @@ void CxbSolveMvc::doRun()
 	//马俊鹏
 
 	//考虑工况(功率水平)、DCF偏差类型、谐波次数
-	doPrepare_U3p(pxbProfile->pxbOrder->CreateCaseID());
+	//doPrepare_U3p(pxbProfile->pxbOrder->CreateCaseID());
 	
 	//谐波次数1-hMax()
 	for (int i = 1; i <= hMax(); i++)
+	//int i = 1;
 	{
-		pxbProfile->ReSetData();
+		cout << "----谐波次数:  " << i <<"-----" << endl;
 
-		pxbProfile->xbHOrder = i;
+		pxbProfile->xbHOrder = i;		
+		pxbProfile->ReSetData();
 
 		pxbSolves->Run();
 
@@ -231,13 +230,8 @@ void CxbSolveMvc::doInitRun()
 
 void CxbSolveMvc::doInitMatrix() 
 {
-
-	int vN;
-
-	vN = StaCount();
-
 	//
-	pxbProfile->InitMatrix(vN);
+	pxbProfile->InitMatrix();
 }
 
 
@@ -386,9 +380,9 @@ void CxbSolveMvc::doRun_Pd()
 	{
 		pxbProfile->pxbOrder->UpdatePdPercent(i);
 
-		doRun_DCF();
+		//doRun_DCF();
 
-		
+		doRun();
 
 	}//for
 }

@@ -1,8 +1,0 @@
-///////////////////////////////////////////////////////////
-//  CxbSolves_Tree.cpp
-//  Implementation of the Class CxbSolves_Tree
-//  Created on:      21-4ÔÂ-2017 20:29:55
-//  Original author: open2
-///////////////////////////////////////////////////////////
-
-#include "CxbSolves_Tree.h"

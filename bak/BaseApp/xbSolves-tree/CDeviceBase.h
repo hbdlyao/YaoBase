@@ -51,7 +51,7 @@ public:
 	int GetNodeID(int vIndex);
 	void SetNodeID(int vIndex, int vID);
 
-	string BusName(int vIndex);
+	virtual string BusName(int vIndex);
 public:
 
 	virtual void ClearNodeID();

@@ -16,5 +16,8 @@
 class CxbCalGroundLine : public CxbCalDcLine
 {
 
+
+public:
+	virtual void NodeGround(NodeMap& vNodeMap);
 };
 #endif // !defined(EA_DB92C873_DE7D_45e1_AB38_217D0205DCF1__INCLUDED_)

@@ -36,21 +36,18 @@ void CxbDevShunt::Init()
 
 void CxbDevShunt::Prepare_hRLC()
 {
-	Clear();
-
-	InitData();
 
 	CComplex vY;
 	double vZg, vZb;
 
 
 	//
-	for (int vh = 0; vh < hMax(); vh++)
+	for (int vh = 1; vh < hMax(); vh++)
 	{
 		vZg = GetZr();
 		vZb = (vh + 1) * Omega() * GetZ_L();
 
-		if (GetZ_C() == 0)
+		if (GetZ_C() != 0)
 			vZb = vZb + -1.0 / ((vh + 1) * Omega() * GetZ_C());
 
 		//
@@ -72,7 +69,7 @@ double CxbDevShunt::GetZr() {
 
 double CxbDevShunt::GetZ_C() {
 
-	return structBranch.Z_C;
+	return structBranch.Z_C*1E-6;
 }
 
 

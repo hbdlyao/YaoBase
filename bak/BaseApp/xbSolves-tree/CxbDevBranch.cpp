@@ -35,30 +35,25 @@ void CxbDevBranch::Init()
 
 void CxbDevBranch::Prepare_hRLC()
 {
-
-	Clear();
-	
-	InitData();
-
 	//
 	CComplex vY;
 	double vZg, vZb;
 
 	//
-	for (int vh = 0; vh < hMax(); vh++)
+	for (int vh = 1; vh <= hMax(); vh++)
 	{
 		vZg = GetZr();
-		vZb = (vh + 1) * Omega() * GetZ_L();
+		vZb = vh * Omega() * GetZ_L();
 
-		if (GetZ_C() == 0)
-			vZb = vZb + -1.0 / ((vh + 1) * Omega() * GetZ_C());
+		if (GetZ_C() != 0)
+			vZb = vZb + -1.0 / (vh * Omega() * GetZ_C());
 
 		//
 		vY = CComplex(vZg, vZb).inverse();
 
 		///////////////////////
-		Yg[vh] = vY.real();
-		Yb[vh] = vY.image();
+		Yg[vh - 1] = vY.real();
+		Yb[vh - 1] = vY.image();
 
 	}
 
@@ -73,8 +68,7 @@ double CxbDevBranch::GetZr()
 
 double CxbDevBranch::GetZ_C()
 {
-
-	return structBranch.Z_C;
+	return structBranch.Z_C*1E-6;
 }
 
 

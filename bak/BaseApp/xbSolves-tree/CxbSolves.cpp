@@ -9,7 +9,7 @@
 
 #include "CxbDevBase.h"
 #include "CxbDev_Tree.h"
-
+#include <iostream>
 
 int CxbSolves::GroundType()
 {
@@ -41,11 +41,7 @@ void CxbSolves::NewSolves(int vGndType)
 		break;
 	
 	case xb_Ground20:
-		doNewXbSolvers20();//双极中性点
-		break;
-	
-	case xb_Ground21:
-		doNewXbSolvers21();//双极并联大地
+		doNewXbSolvers20();//双极
 		break;
 	
 	default:
@@ -57,8 +53,8 @@ void CxbSolves::NewSolves(int vGndType)
 void CxbSolves::doNewXbSolvers10()
 {
 
-	//to-do,马俊鹏
-	
+	cout << "doNewCal---单极大地---" << endl;
+
 	//单极大地	
 	doNewItem(xb_3pVSrc);
 	
@@ -86,9 +82,8 @@ void CxbSolves::doNewXbSolvers10()
 
 void CxbSolves::doNewXbSolvers11()
 {
+	cout << "doNewCal---单极金属回线---" << endl;
 
-	//to-do,马俊鹏
-	
 	//单极金属回线	
 	doNewItem(xb_3pVSrc);
 	
@@ -97,8 +92,10 @@ void CxbSolves::doNewXbSolvers11()
 	doNewItem(xb_DCF);
 	
 	doNewItem(xb_DcLine);
+
 	//doNewItem(xb_GroundLine);
 	//doNewItem(xb_Ground);
+
 	doNewItem(xb_MetalLine);
 	
 	doNewItem(xb_XfC);
@@ -109,67 +106,34 @@ void CxbSolves::doNewXbSolvers11()
 	doNewItem(xb_Branch);
 	
 	doNewItem(xb_Trap);
-	doNewItem(xb_Monitor);
+	
+	//doNewItem(xb_Monitor);
 }
 
 
 void CxbSolves::doNewXbSolvers20()
 {
+	cout << "doNewCal---双极---" << endl;
 
-	//to-do,马俊鹏
-	
-	//双极中性点	
 	doNewItem(xb_3pVSrc);
 	
 	doNewItem(xb_PbDKQ);
 	
 	doNewItem(xb_DCF);
 	
-	doNewItem(xb_DcLine);
-	//doNewItem(xb_GroundLine);
-	//doNewItem(xb_Ground);
-	//doNewItem(xb_MetalLine);
-	
-	doNewItem(xb_XfC);
-	doNewItem(xb_CoupleC);
-	doNewItem(xb_PulseC);
-	
-	
-	doNewItem(xb_Shunt);
-	doNewItem(xb_Branch);
-	
-	
-	doNewItem(xb_Trap);
-	doNewItem(xb_Monitor);
-}
-
-
-void CxbSolves::doNewXbSolvers21()
-{
-
-	//to-do,马俊鹏
-	
-	//双极并联
-	doNewItem(xb_3pVSrc);
-	
-	doNewItem(xb_PbDKQ);
-	
-	doNewItem(xb_DCF);
-	
-	doNewItem(xb_DcLine);
+	doNewItem(xb_DcLine);	
 	doNewItem(xb_GroundLine);
 	doNewItem(xb_Ground);
+
 	//doNewItem(xb_MetalLine);
 	
 	doNewItem(xb_XfC);
 	doNewItem(xb_CoupleC);
 	doNewItem(xb_PulseC);
-	
-	
+		
 	doNewItem(xb_Shunt);
 	doNewItem(xb_Branch);
-	
-	
+		
 	doNewItem(xb_Trap);
 	doNewItem(xb_Monitor);
 }
@@ -177,10 +141,16 @@ void CxbSolves::doNewXbSolvers21()
 
 void CxbSolves::doSovle()
 {
+	//cout << "----UpdateY---" << endl;
+
 	//形成Y
 	UpdateY();	
+
+	//cout << "----UpdateI---" << endl;
 	//
 	UpdateI();
+
+	//cout << "----SolveU---" << endl;
 	//
 	//SolveU();
 
@@ -205,7 +175,6 @@ void CxbSolves::NewSolves()
 
 void CxbSolves::doNewItem(int vtblType)
 {
-
 	CDeviceTBL * vTBL;
 	
 	vTBL = pHvdc->DeviceTBL(vtblType);
@@ -216,7 +185,6 @@ void CxbSolves::doNewItem(int vtblType)
 
 void CxbSolves::doNewItem(CDeviceTBL* vTBL)
 {
-
 	for each (CxbDevBase *  vDev in  vTBL->ItemVect())
 	{
 		if ((vDev->GetPosOrNeg()) == xb_Pos) //正极设备
@@ -241,10 +209,7 @@ void CxbSolves::doNewItem(CDeviceTBL* vTBL)
 
 void CxbSolves::StationSort()
 {
-
 	StationMap vStaMap;
-
-	//doStationSort(vStaMap);
 
 	//Children
 	for each (CxbCalculate * vCal in pChildren)
@@ -254,8 +219,6 @@ void CxbSolves::StationSort()
 
 	pProfile->StaCount = static_cast<int>(vStaMap.size());
 }
-
-
 
 
 void CxbSolves::Run()
@@ -310,8 +273,10 @@ void CxbSolves::NodeID()
 	}// for each
 	
 	 //
-	pProfile->NodeCount = vK;
-	pHvdc->NodeCount = vK;
+	pxbProfile->NodeCount = vK;
+	pxbProfile->SetYdim(vK) ;
+
+	//pHvdc->NodeCount = vK;
 	
 	for each (CxbCalculate * vCal in pChildren)
 	{

@@ -9,8 +9,8 @@
 
 
 
-
-void CxbRw_Tree::OnLoad(){
+void CxbRw_Tree::OnLoad()
+{
 
 	doLoad_Root();
 	
